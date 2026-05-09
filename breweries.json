@@ -1,0 +1,945 @@
+{
+  "metadata": {
+    "name": "Jax Brewery Guide",
+    "version": "1.0.0",
+    "description": "Comprehensive guide to breweries in the greater Jacksonville, FL area",
+    "last_updated": "2026-05-09",
+    "next_refresh": "Weekly \u2014 every Monday",
+    "total_breweries": 31,
+    "coverage_area": "Jacksonville, Jacksonville Beach, Atlantic Beach, Neptune Beach, Springfield, San Marco, Riverside, Murray Hill, Mandarin, Southside, Fernandina Beach/Amelia Island, St. Augustine",
+    "curator": "Kendall Dale",
+    "notes": "Phase 1 \u2014 curated dataset from web research. Breweries marked as permanently closed have been excluded. Hours and events may change; verify before visiting."
+  },
+  "breweries": [
+    {
+      "id": 1,
+      "name": "Intuition Ale Works",
+      "neighborhood": "Downtown / Doro District",
+      "address": "929 E Bay St, Jacksonville, FL 32204",
+      "phone": "(904) 683-7720",
+      "website": "https://intuitionale.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/intuitionaleworks/",
+        "facebook": "https://www.facebook.com/intuitionaleworks/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "3PM\u20139PM",
+        "Wed": "3PM\u20139PM",
+        "Thu": "3PM\u20139PM",
+        "Fri": "3PM\u201310PM",
+        "Sat": "12PM\u201310PM",
+        "Sun": "12PM\u20137PM"
+      },
+      "known_for": "Jacksonville's OG craft brewery. Small-batch handcrafted ales in the historic Doro District next to the Baseball Grounds. Brewery tours available hourly.",
+      "food": "Food trucks on rotation",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Brewery tours, live events, community gatherings",
+      "tap_highlights": "Rotating small-batch ales, seasonal releases",
+      "status": "open",
+      "latitude": 30.3235,
+      "longitude": -81.6478
+    },
+    {
+      "id": 2,
+      "name": "Bold City Brewery \u2014 Downtown",
+      "neighborhood": "Downtown",
+      "address": "109 E Bay St, Jacksonville, FL 32202",
+      "phone": "(904) 503-7682",
+      "website": "https://boldcitydowntown.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/boldcitybrewery/",
+        "facebook": "https://www.facebook.com/boldcitybrewery/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "3PM\u20138PM",
+        "Wed": "3PM\u20138PM",
+        "Thu": "3PM\u20138PM",
+        "Fri": "3PM\u201310PM",
+        "Sat": "1PM\u201310PM",
+        "Sun": "11:30AM\u20135PM"
+      },
+      "known_for": "One of Jacksonville's legacy breweries. Known for Killer Whale Cream Ale and Duke's Cold Nose Brown Ale.",
+      "food": "No food at downtown location",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Game day events, seasonal releases",
+      "tap_highlights": "Killer Whale Cream Ale, Duke's Cold Nose Brown Ale, Mad Manatee IPA",
+      "status": "open",
+      "latitude": 30.3252,
+      "longitude": -81.6558
+    },
+    {
+      "id": 3,
+      "name": "Bold City Brewery \u2014 Riverside",
+      "neighborhood": "Riverside",
+      "address": "2670 Rosselle St #7, Jacksonville, FL 32204",
+      "phone": "(904) 379-6551",
+      "website": "https://boldcitybrewery.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/boldcitybrewery/",
+        "facebook": "https://www.facebook.com/boldcitybrewery/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "3PM\u201310PM",
+        "Wed": "3PM\u201310PM",
+        "Thu": "3PM\u201310PM",
+        "Fri": "12PM\u201310PM",
+        "Sat": "12PM\u201310PM",
+        "Sun": "12PM\u20136PM"
+      },
+      "known_for": "The production facility & original HQ. 16+ year institution with full kitchen.",
+      "food": "Full kitchen on site \u2014 burgers, apps, pub fare",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Live music, food specials, seasonal releases",
+      "tap_highlights": "Full Bold City lineup plus production-only exclusives",
+      "status": "open",
+      "latitude": 30.3155,
+      "longitude": -81.685
+    },
+    {
+      "id": 4,
+      "name": "Aardwolf Brewing Company",
+      "neighborhood": "San Marco",
+      "address": "1461 Hendricks Ave, Jacksonville, FL 32207",
+      "phone": "(904) 301-0082",
+      "website": "https://www.aardwolfbrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/aardwolf_brew/",
+        "facebook": "https://www.facebook.com/aardwolffuntimes/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "3PM\u201311PM",
+        "Wed": "3PM\u201311PM",
+        "Thu": "3PM\u201311PM",
+        "Fri": "3PM\u201312AM",
+        "Sat": "12PM\u201312AM",
+        "Sun": "12PM\u20139PM"
+      },
+      "known_for": "Housed in a 1927 ice factory in San Marco. Famous for bourbon barrel-aged beers. 20+ brews on tap at any time.",
+      "food": "Permanent food truck on site",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Themed weeks, barrel-aged beer releases, special events",
+      "tap_highlights": "Bourbon barrel-aged stouts, rotating 20+ tap selection",
+      "status": "open",
+      "latitude": 30.3072,
+      "longitude": -81.6556
+    },
+    {
+      "id": 5,
+      "name": "Wicked Barley Brewing Company",
+      "neighborhood": "Baymeadows / Mandarin",
+      "address": "4100 Baymeadows Rd, Jacksonville, FL 32217",
+      "phone": "(904) 379-7077",
+      "website": "https://wickedbarley.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/wickedbarleybrewing/",
+        "facebook": "https://www.facebook.com/wickedbarley/"
+      },
+      "hours": {
+        "Mon": "11AM\u201310PM",
+        "Tue": "11AM\u201310PM",
+        "Wed": "11AM\u201310PM",
+        "Thu": "11AM\u201310PM",
+        "Fri": "11AM\u201311PM",
+        "Sat": "11AM\u201311PM",
+        "Sun": "11AM\u20139PM"
+      },
+      "known_for": "Waterfront beer garden with boat dock on Goodby's Creek. Gastropub-style food. 18+ house beers, ciders, and meads on tap.",
+      "food": "Full gastropub kitchen \u2014 burgers, salads, sandwiches, shareable apps",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Live bands, trivia, food & beer pairing events",
+      "tap_highlights": "18+ house-brewed beers, ciders, meads. Rotating seasonals.",
+      "status": "open",
+      "latitude": 30.242,
+      "longitude": -81.6239
+    },
+    {
+      "id": 6,
+      "name": "Engine 15 Brewing Co.",
+      "neighborhood": "Jacksonville Beach",
+      "address": "1500 Beach Blvd, Ste 217, Jacksonville Beach, FL 32250",
+      "phone": "(904) 249-2337",
+      "website": "https://engine15.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/engine15brewing/",
+        "facebook": "https://www.facebook.com/Engine15Brewing/"
+      },
+      "hours": {
+        "Mon": "4:30PM\u201310PM",
+        "Tue": "11AM\u201310PM",
+        "Wed": "11AM\u201310PM",
+        "Thu": "11AM\u201311PM",
+        "Fri": "11AM\u201311PM",
+        "Sat": "11AM\u201311PM",
+        "Sun": "11AM\u201310PM"
+      },
+      "known_for": "Jacksonville Beach staple with 5-barrel brewhouse and 50 tap lines. Excellent pub food \u2014 smoked meats, brisket, short ribs.",
+      "food": "Full pub menu \u2014 smoked BLTs, brisket, braised short ribs",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Live music, beer releases, community events",
+      "tap_highlights": "50 tap lines, many pouring Engine 15 originals",
+      "status": "open",
+      "latitude": 30.2839,
+      "longitude": -81.3961
+    },
+    {
+      "id": 7,
+      "name": "Southern Swells Brewing Co.",
+      "neighborhood": "Jacksonville Beach",
+      "address": "1312 Beach Blvd, Jacksonville Beach, FL 32250",
+      "phone": "(904) 372-9289",
+      "website": "https://www.southernswells.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/southernswellsbrewing/",
+        "facebook": "https://www.facebook.com/southernswellsbrew/"
+      },
+      "hours": {
+        "Mon": "2PM\u20139PM",
+        "Tue": "2PM\u20139PM",
+        "Wed": "12PM\u201310PM",
+        "Thu": "12PM\u201310PM",
+        "Fri": "12PM\u201311PM",
+        "Sat": "12PM\u201311PM",
+        "Sun": "12PM\u20138PM"
+      },
+      "known_for": "Hazy IPAs, lagers, inspired seasonals. 7,500 sq ft taproom plus patio. Also at The Block Jax with Kanine Social dog park.",
+      "food": "Snacks (popcorn, chips); pop-up food vendors at events. BYOF friendly.",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Craft beer bingo, local crafter markets, pop-up food events",
+      "tap_highlights": "Hazy IPAs, crispy lagers, seasonal rotating taps",
+      "status": "open",
+      "latitude": 30.2847,
+      "longitude": -81.399
+    },
+    {
+      "id": 8,
+      "name": "Green Room Brewing",
+      "neighborhood": "Jacksonville Beach",
+      "address": "228 3rd St N, Jacksonville Beach, FL 32250",
+      "phone": "(904) 201-9283",
+      "website": "https://greenroombrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/greenroombrewing/",
+        "facebook": "https://www.facebook.com/p/Green-Room-Brewing-61577401145126/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "3PM\u201310PM",
+        "Wed": "3PM\u201310PM",
+        "Thu": "3PM\u201310PM",
+        "Fri": "12PM\u201311PM",
+        "Sat": "12PM\u201311PM",
+        "Sun": "12PM\u20139PM"
+      },
+      "known_for": "Jax Beach's first microbrewery. Surf-inspired vibe with 16 house drafts. Live music, trivia, run club.",
+      "food": "Vegetarian options, delivery and takeout available",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Tuesday & Thursday trivia, Wednesday run club, weekend live music, games in the back",
+      "tap_highlights": "16 house-made drafts",
+      "status": "open",
+      "latitude": 30.2879,
+      "longitude": -81.3937
+    },
+    {
+      "id": 9,
+      "name": "Hyperion Brewing Company",
+      "neighborhood": "Springfield",
+      "address": "1740 N Main St, Jacksonville, FL 32206",
+      "phone": "(904) 507-0396",
+      "website": "https://www.hyperionbrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/hyperionbrewingco/",
+        "facebook": "https://www.facebook.com/HyperionBrewingCo/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "Closed",
+        "Wed": "Closed",
+        "Thu": "4PM\u20139PM",
+        "Fri": "4PM\u20139PM",
+        "Sat": "12PM\u20139PM",
+        "Sun": "12PM\u20135PM"
+      },
+      "known_for": "Jacksonville's first nano brewery. Cultural hub of Springfield \u2014 live music, comedy, art gallery, storytelling open mics. The Helios Beer Garden out back is a hidden gem.",
+      "food": "Food available on-site",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Live music, stand-up comedy, storytelling open mics, art exhibitions",
+      "tap_highlights": "Small-batch rotating taps, custom spice blends from Avondale",
+      "status": "open",
+      "latitude": 30.3422,
+      "longitude": -81.6527
+    },
+    {
+      "id": 10,
+      "name": "Strings Sports Brewery \u2014 Springfield",
+      "neighborhood": "Springfield",
+      "address": "1850 N Main St, Jacksonville, FL 32206",
+      "phone": "(904) 619-7571",
+      "website": "https://stringssportsbrewery.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/stringssportsbrewery/",
+        "facebook": "https://www.facebook.com/stringsbrewery/"
+      },
+      "hours": {
+        "Mon": "11AM\u20139PM",
+        "Tue": "11AM\u20139PM",
+        "Wed": "11AM\u20139PM",
+        "Thu": "11AM\u20139PM",
+        "Fri": "11AM\u20139PM",
+        "Sat": "11AM\u20139PM",
+        "Sun": "11AM\u20139PM"
+      },
+      "known_for": "Family-friendly sports bar brewery. Smoked chicken wings, burgers, BBQ. Dog treats for pups. Also has a Jax Beach location.",
+      "food": "Full kitchen \u2014 wings, burgers, sandwiches, tacos, BBQ",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Game day watch parties, live sports on multiple screens",
+      "tap_highlights": "House craft beers paired with sports bar vibes",
+      "status": "open",
+      "latitude": 30.3432,
+      "longitude": -81.6527
+    },
+    {
+      "id": 11,
+      "name": "Strings Sports Brewery \u2014 Jax Beach",
+      "neighborhood": "Jacksonville Beach",
+      "address": "1618 Penman Rd, Jacksonville Beach, FL 32250",
+      "phone": "(904) 372-4844",
+      "website": "https://stringssportsbrewery.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/stringssportsbrewery/",
+        "facebook": "https://www.facebook.com/stringsbrewery/"
+      },
+      "hours": {
+        "Mon": "11AM\u20139PM",
+        "Tue": "11AM\u20139PM",
+        "Wed": "11AM\u20139PM",
+        "Thu": "11AM\u20139PM",
+        "Fri": "11AM\u20139PM",
+        "Sat": "11AM\u20139PM",
+        "Sun": "11AM\u20139PM"
+      },
+      "known_for": "Second location of Strings at Jax Beach. Same great sports brewery vibes, food, and dog-friendly policy.",
+      "food": "Full kitchen \u2014 wings, burgers, BBQ",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Game day watch parties, live sports",
+      "tap_highlights": "House craft beers",
+      "status": "open",
+      "latitude": 30.2767,
+      "longitude": -81.4019
+    },
+    {
+      "id": 12,
+      "name": "Tepeyolot Cerveceria",
+      "neighborhood": "East San Marco",
+      "address": "2130 Kings Ave, Jacksonville, FL 32207",
+      "phone": "(904) 240-0250",
+      "website": "https://tepeys.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/tepeyolotbeer/",
+        "facebook": "https://www.facebook.com/tepeyolotbeer/"
+      },
+      "hours": {
+        "Mon": "5PM\u20139PM",
+        "Tue": "11AM\u201310PM",
+        "Wed": "11AM\u201310PM",
+        "Thu": "11AM\u201310PM",
+        "Fri": "11AM\u201311PM",
+        "Sat": "11AM\u201311PM",
+        "Sun": "11AM\u20139PM"
+      },
+      "known_for": "Aztec-inspired brewpub with authentic Mexican tacos, street corn, esquites. Unique cultural vibe in San Marco East.",
+      "food": "Full kitchen \u2014 authentic Mexican tacos, street corn, esquite, appetizers",
+      "dog_friendly": false,
+      "kid_friendly": true,
+      "events": "Happy hour specials, seasonal beer releases",
+      "tap_highlights": "Mexican-inspired craft lagers and ales, seasonal specials",
+      "status": "open",
+      "latitude": 30.3005,
+      "longitude": -81.6454
+    },
+    {
+      "id": 13,
+      "name": "Voodoo Brewing Co. \u2014 Jacksonville",
+      "neighborhood": "San Marco",
+      "address": "1974 San Marco Blvd, Jacksonville, FL 32207",
+      "phone": "(904) 204-2881",
+      "website": "https://jacksonville.voodoobrewery.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/voodoojax/",
+        "facebook": "https://www.facebook.com/voodoojax/"
+      },
+      "hours": {
+        "Mon": "2PM\u20139PM",
+        "Tue": "2PM\u20139PM",
+        "Wed": "12PM\u20139PM",
+        "Thu": "12PM\u201310PM",
+        "Fri": "12PM\u201311PM",
+        "Sat": "11AM\u201311PM",
+        "Sun": "11AM\u20139PM"
+      },
+      "known_for": "PA-based chain's Jax outpost. Elevated pub food menu, great bar games. Top-rated on TripAdvisor.",
+      "food": "Full elevated pub food menu \u2014 classic fare crafted to pair with their beers",
+      "dog_friendly": false,
+      "kid_friendly": true,
+      "events": "Seasonal specials, beer pairing dinners",
+      "tap_highlights": "Hop-forward IPAs, malty ambers, stouts, wide rotating lineup",
+      "status": "open",
+      "latitude": 30.3028,
+      "longitude": -81.6512
+    },
+    {
+      "id": 14,
+      "name": "Ruby Beach Brewing",
+      "neighborhood": "Downtown",
+      "address": "228 E Forsyth St, Jacksonville, FL 32202",
+      "phone": "(904) 647-6044",
+      "website": "https://www.rubybeachbrewing.com",
+      "social": {
+        "instagram": "https://www.instagram.com/rubybeachbrewing/",
+        "facebook": "https://www.facebook.com/rubybeachbrewing/"
+      },
+      "hours": {
+        "Mon": "2PM\u201310PM",
+        "Tue": "2PM\u201310PM",
+        "Wed": "2PM\u201310PM",
+        "Thu": "2PM\u201310PM",
+        "Fri": "11AM\u201312AM",
+        "Sat": "11AM\u201312AM",
+        "Sun": "10AM\u201310PM"
+      },
+      "known_for": "Downtown's go-to brewpub. 18 rotating house beers brewed on-site plus guest ciders, meads, and spirits.",
+      "food": "Ruby Beach Smoke food truck open 7 days a week",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Live music, downtown events, seasonal releases",
+      "tap_highlights": "18 rotating house-brewed drafts, guest ciders & meads",
+      "status": "open",
+      "latitude": 30.3279,
+      "longitude": -81.6548
+    },
+    {
+      "id": 15,
+      "name": "King Maker Brewing",
+      "neighborhood": "Downtown / Brooklyn",
+      "address": "720 King St, Jacksonville, FL 32204",
+      "phone": "(904) 683-1431",
+      "website": "https://kingmakerbrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/kingmakerbrewing/",
+        "facebook": "https://www.facebook.com/KingMakerBrewing/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "4PM\u20139PM",
+        "Wed": "4PM\u20139PM",
+        "Thu": "4PM\u201310PM",
+        "Fri": "2PM\u201311PM",
+        "Sat": "12PM\u201311PM",
+        "Sun": "12PM\u20138PM"
+      },
+      "known_for": "Craft ales, lagers, ciders, meads. Has a glass blowing studio \u2014 you can get blown glass beer mugs. Biergarten vibes. Kid-friendly with icy pops.",
+      "food": "El Cubano permanent food truck",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Glass blowing events, food truck lineups, biergarten gatherings",
+      "tap_highlights": "Craft ales, lagers, ciders, meads",
+      "status": "open",
+      "latitude": 30.3197,
+      "longitude": -81.668
+    },
+    {
+      "id": 16,
+      "name": "Legacy Ale Works",
+      "neighborhood": "Mandarin / South Jacksonville",
+      "address": "14965 Old St Augustine Rd, Jacksonville, FL 32258",
+      "phone": "(904) 448-1228",
+      "website": "https://www.legacyaleworks.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/legacyaleworks/",
+        "facebook": "https://www.facebook.com/LegacyAle/"
+      },
+      "hours": {
+        "Mon": "3PM\u20138PM",
+        "Tue": "3PM\u201310PM",
+        "Wed": "3PM\u201310PM",
+        "Thu": "3PM\u201310PM",
+        "Fri": "11AM\u201311PM",
+        "Sat": "11AM\u201311PM",
+        "Sun": "11AM\u20138PM"
+      },
+      "known_for": "Mandarin's neighborhood brewpub. Full food menu with vegan/vegetarian options. Family-friendly outdoor courtyard. Live music every Friday.",
+      "food": "Full pub-style kitchen \u2014 vegan & vegetarian options available",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Live music every Friday, family-friendly events, beer pairing dinners",
+      "tap_highlights": "House ales, seasonal rotating selection, beer dinners",
+      "status": "open",
+      "latitude": 30.1666,
+      "longitude": -81.612
+    },
+    {
+      "id": 17,
+      "name": "Veterans United Craft Brewery",
+      "neighborhood": "Southside / Baymeadows",
+      "address": "8999 Western Way, Ste 104, Jacksonville, FL 32256",
+      "phone": "(904) 253-3326",
+      "website": "https://www.vubrew.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/vubrew/",
+        "facebook": "https://www.facebook.com/VUBrew/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "5PM\u201310PM",
+        "Wed": "3PM\u201310PM",
+        "Thu": "3PM\u201310PM",
+        "Fri": "3PM\u201311PM",
+        "Sat": "1PM\u201311PM",
+        "Sun": "12PM\u20138PM"
+      },
+      "known_for": "Veteran-owned brewery with strong community vibe. Themed nights every day of the week. BYOF welcome.",
+      "food": "Basic pub snacks (pretzels, mozzarella sticks). Food trucks on select days. BYOF welcome.",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Tue: Crowler Specials, Wed: Trivia, Thu: Small Batch Night, Fri: Live Music, Sat: Tours, Sun: Televised Games",
+      "tap_highlights": "Rotating small-batch brews, weekly specials",
+      "status": "open",
+      "latitude": 30.2289,
+      "longitude": -81.5886
+    },
+    {
+      "id": 18,
+      "name": "Reve Brewing",
+      "neighborhood": "Atlantic Beach",
+      "address": "1237 Mayport Rd, Atlantic Beach, FL 32233",
+      "phone": "(904) 249-2545",
+      "website": "https://www.revebrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/revebrewing/",
+        "facebook": "https://www.facebook.com/revebrewing/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "12PM\u201310PM",
+        "Wed": "12PM\u201310PM",
+        "Thu": "12PM\u201310PM",
+        "Fri": "12PM\u201311PM",
+        "Sat": "12PM\u201311PM",
+        "Sun": "12PM\u20139PM"
+      },
+      "known_for": "Neighborhood brewery gem with Bones Pizza inside. Stouts, imperials, sours. Weekly beer slushies. Conversation pits, ping pong, kid play area.",
+      "food": "Bones Pizza \u2014 wood-fired pizza, vegan options, full menu",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Beer slushie days, community events, seasonal releases",
+      "tap_highlights": "Stouts, imperial ales, sours, beer slushies",
+      "status": "open",
+      "latitude": 30.3296,
+      "longitude": -81.3963
+    },
+    {
+      "id": 19,
+      "name": "Ink Factory Brewing",
+      "neighborhood": "Jacksonville Beach",
+      "address": "602 Shetter Ave, Jacksonville Beach, FL 32250",
+      "phone": "(904) 853-6650",
+      "website": "https://www.inkfactorybrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/inkfactorybrewing/",
+        "facebook": "https://www.facebook.com/inkfactorybrewing/"
+      },
+      "hours": {
+        "Mon": "8AM\u20136PM",
+        "Tue": "8AM\u20138PM",
+        "Wed": "8AM\u201310PM",
+        "Thu": "8AM\u201310PM",
+        "Fri": "8AM\u201310PM",
+        "Sat": "8AM\u201310PM",
+        "Sun": "8AM\u20138PM"
+      },
+      "known_for": "Brewery meets coffee shop (opens at 8AM!). Smash burger truck. Arcade games, inflatable movie screen, live art events.",
+      "food": "Smash burger food truck on site (opens 11AM)",
+      "dog_friendly": false,
+      "kid_friendly": true,
+      "events": "Rat Town Beach Bash, live art, skate demos, movie nights, live music",
+      "tap_highlights": "House-brewed craft beers, specialty releases",
+      "status": "open",
+      "latitude": 30.2774,
+      "longitude": -81.4002
+    },
+    {
+      "id": 20,
+      "name": "Fishweir Brewing Company",
+      "neighborhood": "Murray Hill",
+      "address": "1183 Edgewood Ave S, Jacksonville, FL 32205",
+      "phone": "(904) 551-9469",
+      "website": "https://fishweirbrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/fishweirbrewing/",
+        "facebook": "https://www.facebook.com/fishweirbrewing/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "3PM\u20139PM",
+        "Wed": "3PM\u201310PM",
+        "Thu": "3PM\u201310PM",
+        "Fri": "12PM\u201311PM",
+        "Sat": "12PM\u201311PM",
+        "Sun": "12PM\u20138PM"
+      },
+      "known_for": "Murray Hill's local taproom. Clean, locally inspired beers. Wine, kombucha, cheese flights, pretzels. Wednesday farmers market.",
+      "food": "Cheese flights, pretzels, light snacks. Wed farmers market 4-8PM.",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Wednesday farmers market (4-8PM), community events",
+      "tap_highlights": "Clean, approachable craft beers, kombucha on tap",
+      "status": "open",
+      "latitude": 30.3041,
+      "longitude": -81.7106
+    },
+    {
+      "id": 21,
+      "name": "Myrtle Avenue Brewing",
+      "neighborhood": "Railyard District",
+      "address": "633 Myrtle Ave N, Jacksonville, FL 32204",
+      "phone": "(904) 513-2793",
+      "website": "https://www.facebook.com/MyrtleAveBrewing",
+      "social": {
+        "instagram": "https://www.instagram.com/myrtleavebrewing/",
+        "facebook": "https://www.facebook.com/MyrtleAveBrewing"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "Closed",
+        "Wed": "4PM\u20139PM",
+        "Thu": "4PM\u20139PM",
+        "Fri": "3PM\u201310PM",
+        "Sat": "11AM\u201310PM",
+        "Sun": "11AM\u20138PM"
+      },
+      "known_for": "Railyard District brewery with spacious biergarten. Kid play area. Dog-friendly indoor and outdoor. Live music Thursdays.",
+      "food": "Food trucks and pop-up vendors",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Live music every Thursday, food truck pop-ups",
+      "tap_highlights": "Rotating craft beer selection",
+      "status": "open",
+      "latitude": 30.3299,
+      "longitude": -81.669
+    },
+    {
+      "id": 22,
+      "name": "Historically Hoppy Brewing Company",
+      "neighborhood": "Springfield",
+      "address": "1636 N Main St, Jacksonville, FL 32206",
+      "phone": "(904) 619-2850",
+      "website": "https://www.facebook.com/HistoricallyHoppy/",
+      "social": {
+        "instagram": "https://www.instagram.com/historically_hoppy/",
+        "facebook": "https://www.facebook.com/HistoricallyHoppy/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "5PM\u20139PM",
+        "Wed": "5PM\u20139PM",
+        "Thu": "5PM\u20139PM",
+        "Fri": "4PM\u201311PM",
+        "Sat": "12PM\u201311PM",
+        "Sun": "1PM\u20139PM"
+      },
+      "known_for": "Feels like a giant living room \u2014 communal tables, sofas, TVs, bookcases, board games. Dogs welcome indoors. Springfield pub crawl neighbor.",
+      "food": "BYOF \u2014 grab food from Strings down the street",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Community hangouts, game nights",
+      "tap_highlights": "Rotating craft selection in a cozy setting",
+      "status": "open",
+      "latitude": 30.3413,
+      "longitude": -81.6528
+    },
+    {
+      "id": 23,
+      "name": "Bottlenose Brewing",
+      "neighborhood": "Southside / Deer Lake",
+      "address": "9700 Deer Lake Ct #1, Jacksonville, FL 32246",
+      "phone": "(904) 551-7570",
+      "website": "https://bottlenosebrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/bottlenosebrewing/",
+        "facebook": "https://www.facebook.com/bottlenosebrewingfl/"
+      },
+      "hours": {
+        "Mon": "3PM\u201310PM",
+        "Tue": "3PM\u201310PM",
+        "Wed": "3PM\u201310PM",
+        "Thu": "3PM\u201310PM",
+        "Fri": "3PM\u201311PM",
+        "Sat": "12PM\u201311PM",
+        "Sun": "12PM\u201310PM"
+      },
+      "known_for": "Brewery and pizza kitchen. Handcrafted stone-oven pizzas with house-made dough. Bavarian pretzels with beer cheese.",
+      "food": "Full kitchen \u2014 stone-oven pizza, craft burgers, jumbo wings, Bavarian pretzels",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Pizza and beer pairing events, seasonal releases",
+      "tap_highlights": "House-brewed craft beers paired with fresh pizza",
+      "status": "open",
+      "latitude": 30.2666,
+      "longitude": -81.5197
+    },
+    {
+      "id": 24,
+      "name": "Kanine Social",
+      "neighborhood": "Downtown / College St",
+      "address": "580 College St, Jacksonville, FL 32204",
+      "phone": "(904) 204-3332",
+      "website": "https://www.kaninesocial.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/kaninesocial/",
+        "facebook": "https://www.facebook.com/KanineSocial/"
+      },
+      "hours": {
+        "Mon": "7AM\u20137PM",
+        "Tue": "7AM\u20137PM",
+        "Wed": "7AM\u20137PM",
+        "Thu": "7AM\u20137PM",
+        "Fri": "7AM\u20137PM",
+        "Sat": "9AM\u20137PM",
+        "Sun": "10AM\u20135PM"
+      },
+      "known_for": "Dog park + craft beer bar combo. 15 local/regional craft beers, kombucha, nitro cold brew. Indoor/outdoor dog park. Also at The Block Jax.",
+      "food": "Coffee bar, light snacks",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Dog socials, pup-friendly events",
+      "tap_highlights": "15 rotating local/regional craft beers, kombucha, nitro cold brew",
+      "status": "open",
+      "latitude": 30.3182,
+      "longitude": -81.6697
+    },
+    {
+      "id": 25,
+      "name": "Jacksonville Brewing Co. (The Phoenix)",
+      "neighborhood": "Westside / Orange Park area",
+      "address": "2600 Blanding Blvd, Jacksonville, FL 32210",
+      "phone": "(904) 619-5683",
+      "website": "https://the-phoenix.edan.io/",
+      "social": {
+        "instagram": "",
+        "facebook": "https://www.facebook.com/jaxbrewing/"
+      },
+      "hours": {
+        "Mon": "4PM\u201312AM",
+        "Tue": "4PM\u201312AM",
+        "Wed": "4PM\u201312AM",
+        "Thu": "4PM\u201312AM",
+        "Fri": "4PM\u20132AM",
+        "Sat": "11AM\u20132AM",
+        "Sun": "11AM\u201312AM"
+      },
+      "known_for": "Brewery + entertainment complex with 12 bowling lanes, 3 full bars, pizza kitchen, games, and open-air patio.",
+      "food": "Pizza kitchen on-site",
+      "dog_friendly": false,
+      "kid_friendly": true,
+      "events": "Bowling leagues, game nights, live entertainment",
+      "tap_highlights": "House-brewed beers alongside full bar",
+      "status": "open",
+      "latitude": 30.2873,
+      "longitude": -81.7356
+    },
+    {
+      "id": 26,
+      "name": "Town Beer Co.",
+      "neighborhood": "Murray Hill",
+      "address": "1065 Edgewood Ave S, Jacksonville, FL 32205",
+      "phone": "(904) 330-4037",
+      "website": "https://www.instagram.com/townbeerco/",
+      "social": {
+        "instagram": "https://www.instagram.com/townbeerco/",
+        "facebook": ""
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "Closed",
+        "Wed": "3PM\u20139PM",
+        "Thu": "3PM\u20139PM",
+        "Fri": "2PM\u201310PM",
+        "Sat": "12PM\u201310PM",
+        "Sun": "12PM\u20137PM"
+      },
+      "known_for": "Craft beer shop + tasting bar showcasing Jacksonville-made beer. Natural wine, sandwiches. Murray Hill neighborhood gem.",
+      "food": "Sandwiches and light fare",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Local brewery features, tasting events",
+      "tap_highlights": "Rotating local Jax beers on draft, curated bottle selection",
+      "status": "open",
+      "latitude": 30.3052,
+      "longitude": -81.7079
+    },
+    {
+      "id": 27,
+      "name": "Amelia Island Brewing Co.",
+      "neighborhood": "Fernandina Beach / Amelia Island",
+      "address": "318 Centre St, Fernandina Beach, FL 32034",
+      "phone": "(904) 277-4373",
+      "website": "https://www.ameliaislandbrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/ameliaislandbrewing/",
+        "facebook": "https://www.facebook.com/ameliaislandbrewing/"
+      },
+      "hours": {
+        "Mon": "11AM\u20139PM",
+        "Tue": "Closed",
+        "Wed": "11AM\u20139PM",
+        "Thu": "11AM\u20139PM",
+        "Fri": "11AM\u201310PM",
+        "Sat": "11AM\u201310PM",
+        "Sun": "11AM\u20138PM"
+      },
+      "known_for": "Two Centre St storefronts \u2014 The Tavern (full kitchen) and The Alley (light fare). Southern comfort food paired with house beers.",
+      "food": "Full kitchen \u2014 southern comfort food, appetizers, light fare at The Alley",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Downtown Fernandina events, live music",
+      "tap_highlights": "House-brewed beers, signature cocktails",
+      "status": "open",
+      "latitude": 30.6697,
+      "longitude": -81.4618
+    },
+    {
+      "id": 28,
+      "name": "First Love Brewing",
+      "neighborhood": "Fernandina Beach / Amelia Island",
+      "address": "116 S 3rd St, Fernandina Beach, FL 32034",
+      "phone": "(904) 310-9721",
+      "website": "https://firstlovebrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/firstlovebrewing/",
+        "facebook": "https://www.facebook.com/firstlovebrewing/"
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "Closed",
+        "Wed": "4PM\u20139PM",
+        "Thu": "4PM\u20139PM",
+        "Fri": "4PM\u20139PM",
+        "Sat": "12PM\u20139PM",
+        "Sun": "12PM\u20137PM"
+      },
+      "known_for": "Amelia Island's favorite brewery. Artisan pizza from a Cuppone oven. Smash burgers, Caesar salads, wings.",
+      "food": "Full menu \u2014 artisan pizza (Cuppone oven), smash burgers, wings, salads",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Community events, seasonal releases",
+      "tap_highlights": "Craft beers designed to pair with their pizza",
+      "status": "open",
+      "latitude": 30.6685,
+      "longitude": -81.4593
+    },
+    {
+      "id": 29,
+      "name": "Mocama Beer Company",
+      "neighborhood": "Fernandina Beach / Amelia Island",
+      "address": "629 S 8th St, Fernandina Beach, FL 32034",
+      "phone": "(904) 456-9088",
+      "website": "https://mocama.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/mocamabeer/",
+        "facebook": "https://www.facebook.com/mocamacoffee/"
+      },
+      "hours": {
+        "Mon": "1PM\u20139PM",
+        "Tue": "1PM\u20139PM",
+        "Wed": "1PM\u20139PM",
+        "Thu": "1PM\u20139PM",
+        "Fri": "12PM\u201310PM",
+        "Sat": "12PM\u201310PM",
+        "Sun": "11AM\u20138PM"
+      },
+      "known_for": "Founded by four friends in a former motor company building. Also has a coffee and bagel shop inside. Great taproom atmosphere.",
+      "food": "No kitchen \u2014 food trucks sometimes, delivery welcome. Coffee & bagels on-site.",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Community gatherings, beer releases",
+      "tap_highlights": "Diverse craft beer lineup, coffee & bagels",
+      "status": "open",
+      "latitude": 30.6636,
+      "longitude": -81.4633
+    },
+    {
+      "id": 30,
+      "name": "Dog Rose Brewing Co.",
+      "neighborhood": "St. Augustine / Lincolnville",
+      "address": "77 Bridge St, St. Augustine, FL 32084",
+      "phone": "(904) 217-3355",
+      "website": "https://www.dogrosebrewing.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/dogrosebrewing/",
+        "facebook": "https://www.facebook.com/dogrosebrewing/"
+      },
+      "hours": {
+        "Mon": "12PM\u201310PM",
+        "Tue": "12PM\u201310PM",
+        "Wed": "12PM\u201310PM",
+        "Thu": "12PM\u201310PM",
+        "Fri": "12PM\u201312AM",
+        "Sat": "12PM\u201312AM",
+        "Sun": "12PM\u201310PM"
+      },
+      "known_for": "In historic Lincolnville, blocks from downtown St. Augustine. Opened 2017. Wines, sodas, snacks. Food trucks available.",
+      "food": "Light snacks; food trucks on rotation",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Community events, food truck nights",
+      "tap_highlights": "House-brewed beers, wines, craft sodas",
+      "status": "open",
+      "latitude": 29.8889,
+      "longitude": -81.3142
+    },
+    {
+      "id": 31,
+      "name": "Bog Brewing Company",
+      "neighborhood": "St. Augustine",
+      "address": "218 W King St, St. Augustine, FL 32084",
+      "phone": "(904) 295-4741",
+      "website": "https://www.drinkbogbeer.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/bogbrewing/",
+        "facebook": "https://www.facebook.com/bogbrewing/"
+      },
+      "hours": {
+        "Mon": "11:30AM\u201310PM",
+        "Tue": "11:30AM\u201310PM",
+        "Wed": "11:30AM\u201310PM",
+        "Thu": "11:30AM\u201312AM",
+        "Fri": "11:30AM\u201312AM",
+        "Sat": "11:30AM\u201312AM",
+        "Sun": "11:30AM\u201310PM"
+      },
+      "known_for": "St. Augustine staple. Brewed on-premise \u2014 lagers, hazy IPAs, West Coast IPAs, sours, Belgians. Tacos My Blessing food truck out back Mon-Sat.",
+      "food": "No kitchen \u2014 BYOF welcome. Tacos My Blessing food truck Mon-Sat.",
+      "dog_friendly": true,
+      "kid_friendly": true,
+      "events": "Live music, community events, seasonal beer releases",
+      "tap_highlights": "Lagers, hazy IPAs, West Coast IPAs, sours, Belgian ales",
+      "status": "open",
+      "latitude": 29.8928,
+      "longitude": -81.3185
+    }
+  ]
+}
