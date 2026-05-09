@@ -2,16 +2,17 @@
 
 A geolocation + recommendation-aware craft brewery discovery app.
 
-- **In Jacksonville?** → curated dataset with neighborhoods, vibes, weekly schedules, dog/kid friendly, food, live tap links, and reviews
+- **In Jacksonville?** → curated dataset with rich detail drawers, vibes, weekly schedules, dog/kid friendly, food, live tap links, reviews
 - **Anywhere else?** → falls back to [Open Brewery DB](https://www.openbrewerydb.org/) for global coverage
 
 ## Features
 
+- **In-app brewery detail drawer** — tap any card → full-screen drawer with hours, weekly events, tap highlights, reviews, mini map, directions, and call/website CTAs. No bouncing to other apps.
 - **Geolocation auto-detect** — opens with your local breweries
-- **Map view** — see your location and breweries around you (Leaflet + OpenStreetMap)
+- **Map view** — see your location and breweries around you (Leaflet)
 - **"What's Good Tonight"** — pick a mood (live music, trivia, dog, date night, sports, etc.) and get ranked recommendations based on what's open *right now*, what's happening tonight, distance, and vibe match
 - **Live tap lists** — every brewery card links to its Untappd venue page
-- **Reviews & photos** — one-tap links to Google Maps and Yelp. Optional Google Places API integration (set `GOOGLE_PLACES_API_KEY` env var in Vercel) for embedded reviews + photos
+- **Reviews & photos** — embedded directly in the drawer when Google Places API is configured (free tier available); review platform links always present as fallback
 - **City search** — type any city to discover its brewery scene
 
 ## API
@@ -23,28 +24,28 @@ A geolocation + recommendation-aware craft brewery discovery app.
 | `GET /api/breweries/nearby?lat=X&lng=Y&radius=25` | Nearby — curated near Jax, Open Brewery DB elsewhere |
 | `GET /api/breweries/by-city?city=Atlanta` | Breweries in any US city |
 | `GET /api/breweries/right-now?lat=X&lng=Y&moods=live_music,dog` | Smart recommendations with `why` reasons |
-| `GET /api/breweries/details?id=X` | Reviews + photos (Google Places when key configured) |
+| `GET /api/breweries/details?id=X` | Reviews + photos (Google Places when configured) |
 
-CORS is open on all endpoints.
+CORS open on all endpoints.
 
-## Enabling Google Places reviews + photos
+## Enabling embedded reviews + photos (5 minutes)
 
 1. Create a Google Cloud project at [console.cloud.google.com](https://console.cloud.google.com)
-2. Enable **Places API** for the project
+2. Enable **Places API** (and optionally Places API New)
 3. Create an API key, restrict it to Places API + your Vercel domain
-4. In Vercel: Project → Settings → Environment Variables → add `GOOGLE_PLACES_API_KEY`
-5. Redeploy. The `/api/breweries/details` endpoint will start returning live reviews + photos.
+4. Vercel → Project → Settings → Environment Variables → add `GOOGLE_PLACES_API_KEY`
+5. Redeploy. The drawer will start showing live reviews + photos automatically.
 
-Free tier covers ~11k Place Details calls/month at $0 (then $17/1000 calls).
+Free tier: ~11k Place Details calls/month at $0. Each card open = 1 call (cached 24h).
 
 ## Roadmap
 
 - **Phase 1** ✅ Static dashboard + curated JSON
-- **Phase 2** ✅ API endpoints + geolocation + global fallback
+- **Phase 2** ✅ API + geolocation + global fallback
 - **Phase 3** ✅ Right-Now recommendations + map view
-- **Phase 3.5** ✅ Live tap links (Untappd) + review/photo links (Google Maps/Yelp) + Places API scaffold
-- **Phase 4** Real-time tap list scraper (Vercel Cron + KV); embedded Google Places reviews; weather-aware recommendations
-- **Phase 5** User accounts, check-ins, ratings
+- **Phase 3.5** ✅ Live tap links + review platform links
+- **Phase 4** ✅ In-app brewery detail drawer + lazy-loaded reviews/photos via Places API
+- **Phase 5** Real-time tap list scraper (Vercel Cron + KV); weather-aware recommendations; user accounts & check-ins
 - **Phase 6** Native iOS/Android wrapper
 
 ## Refresh cadence

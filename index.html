@@ -506,6 +506,291 @@
   }
   .mood-chip .emoji { font-size: 1.2rem; display: block; margin-bottom: 2px; }
 
+  /* DRAWER */
+  .drawer-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .drawer-backdrop.active { opacity: 1; pointer-events: auto; }
+  .drawer {
+    position: fixed;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    width: 100%;
+    max-width: 640px;
+    height: 92vh;
+    background: var(--bg);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    display: flex;
+    flex-direction: column;
+  }
+  .drawer-backdrop.active .drawer { transform: translateX(-50%) translateY(0); }
+  .drawer-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    color: var(--text);
+    border: none;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+  }
+  .drawer-close:hover { background: rgba(255,255,255,0.15); }
+  .drawer-content {
+    overflow-y: auto;
+    flex: 1;
+    -webkit-overflow-scrolling: touch;
+  }
+  .drawer-hero {
+    height: 200px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 24px;
+    color: #fff;
+    overflow: hidden;
+  }
+  .drawer-hero.gradient {
+    background: linear-gradient(135deg, var(--accent3) 0%, #ec4899 50%, var(--accent) 100%);
+  }
+  .drawer-hero-photo {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .drawer-hero-photo::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(15,17,23,0.85) 100%);
+  }
+  .drawer-hero h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.15;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .drawer-hero-tag {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    z-index: 2;
+    color: #fff;
+  }
+
+  .drawer-photos {
+    display: flex;
+    gap: 8px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+  .drawer-photos::-webkit-scrollbar { height: 0; }
+  .drawer-photos img {
+    height: 140px;
+    width: auto;
+    border-radius: 8px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    object-fit: cover;
+  }
+
+  .drawer-body { padding: 8px 24px 32px; }
+  .drawer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+    align-items: center;
+  }
+  .drawer-meta .meta-item { display: inline-flex; align-items: center; gap: 4px; }
+  .drawer-rating { color: var(--accent); font-weight: 600; }
+
+  .drawer-desc {
+    color: var(--text);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .drawer-vibes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .vibe-tag {
+    background: var(--tag-bg);
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .drawer-section {
+    margin-bottom: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .drawer-section h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .drawer-section p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; }
+
+  .tap-list-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .tap-list-card .tap-text {
+    color: var(--text);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .schedule-list { display: flex; flex-direction: column; gap: 8px; }
+  .schedule-day {
+    display: flex;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    align-items: center;
+    font-size: 0.88rem;
+  }
+  .schedule-day.today {
+    border: 1.5px solid var(--accent);
+    background: rgba(245,158,11,0.05);
+  }
+  .schedule-day-label {
+    font-weight: 600;
+    width: 50px;
+    color: var(--text);
+  }
+  .schedule-event { color: var(--text-muted); }
+
+  .hours-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--card-bg);
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+  .hours-row.today { border: 1.5px solid var(--accent); background: rgba(245,158,11,0.05); }
+  .hours-row .day { color: var(--text-dim); font-weight: 500; }
+  .hours-row .time { color: var(--text); }
+
+  .reviews-list { display: flex; flex-direction: column; gap: 12px; }
+  .review-item {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 14px;
+    border: 1px solid var(--border);
+  }
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.82rem;
+  }
+  .review-author { color: var(--text); font-weight: 600; }
+  .review-meta { color: var(--text-dim); }
+  .review-text {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .review-stars { color: var(--accent); }
+
+  .empty-section {
+    background: var(--card-bg);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+  .empty-section a { color: var(--accent); }
+
+  #drawerMiniMap {
+    height: 180px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+
+  .drawer-cta-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .drawer-cta {
+    flex: 1;
+    min-width: 140px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+  .drawer-cta:hover { border-color: var(--accent); color: var(--accent); }
+  .drawer-cta.primary {
+    background: linear-gradient(135deg, var(--accent), #fbbf24);
+    color: #000;
+    border-color: transparent;
+  }
+  .drawer-cta.primary:hover { opacity: 0.9; color: #000; }
+
+  /* card cursor + tap target */
+  .card { cursor: pointer; }
+  .card a { position: relative; z-index: 2; }
+
   footer {
     text-align: center;
     padding: 32px 24px;
@@ -616,6 +901,14 @@
   </div>
 </div>
 
+<!-- Brewery Detail Drawer -->
+<div class="drawer-backdrop" id="drawerBackdrop">
+  <div class="drawer" id="drawer">
+    <button class="drawer-close" id="drawerClose">×</button>
+    <div class="drawer-content" id="drawerContent"></div>
+  </div>
+</div>
+
 <footer>
   <p>Brewery Guide v3.0 — Curated Jax data + <a href="https://www.openbrewerydb.org/" target="_blank">Open Brewery DB</a></p>
   <p style="margin-top:4px">
@@ -688,7 +981,7 @@ function renderCard(b, rank) {
     : '';
 
   return `
-    <div class="card ${isRec ? 'recommended' : ''}">
+    <div class="card ${isRec ? 'recommended' : ''}" data-brewery-id="${b.id || ''}" onclick="handleCardClick(event, '${b.id || ''}')">
       ${isRec ? `<div class="card-rank">${rank}</div>` : ''}
       <div class="card-header">
         <h2>
@@ -1050,6 +1343,263 @@ document.querySelectorAll('.view-toggle button').forEach(btn => {
     state.view = btn.dataset.view;
     renderAll();
   });
+});
+
+// ===== DRAWER =====
+let miniMap = null;
+
+function handleCardClick(e, id) {
+  // Don't open drawer if user clicked a link inside the card
+  if (e.target.closest('a')) return;
+  const brewery = state.breweries.find(b => String(b.id) === String(id));
+  if (brewery) openDrawer(brewery);
+}
+
+function getHueFromName(name) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = (hash << 5) - hash + name.charCodeAt(i);
+  return Math.abs(hash) % 360;
+}
+
+function renderStars(rating) {
+  if (!rating) return '';
+  const full = Math.floor(rating);
+  const half = (rating - full) >= 0.5 ? 1 : 0;
+  return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - half);
+}
+
+function renderDrawerSchedule(b) {
+  if (!b.weekly_schedule) return '';
+  const dayLabels = { Mon: 'Monday', Tue: 'Tuesday', Wed: 'Wednesday', Thu: 'Thursday', Fri: 'Friday', Sat: 'Saturday', Sun: 'Sunday' };
+  const eventEmojis = {
+    live_music: '🎤', trivia: '🧠', comedy: '😂', open_mic: '🎙️',
+    sports_watch: '📺', run_club: '🏃', bingo: '🎱', food_truck: '🚚',
+    farmers_market: '🥕', glass_blowing: '🔥', dog_social: '🐕',
+    tour: '🍺', release: '🆕', specials: '💸', happy_hour: '💸'
+  };
+  const order = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const rows = order.map(day => {
+    const events = b.weekly_schedule[day] || [];
+    if (!events.length) return '';
+    const eventList = events.map(e => `${eventEmojis[e.type] || '🎉'} ${e.label}${e.time ? ` · ${e.time}` : ''}`).join(' · ');
+    return `<div class="schedule-day ${day === today ? 'today' : ''}">
+      <span class="schedule-day-label">${day}</span>
+      <span class="schedule-event">${eventList}</span>
+    </div>`;
+  }).filter(Boolean).join('');
+  return rows || '<div class="empty-section">No regular weekly events listed</div>';
+}
+
+function renderDrawerHours(b) {
+  if (!b.hours || Object.keys(b.hours).length === 0) {
+    return '<div class="empty-section">Hours not available — check the brewery\'s website</div>';
+  }
+  const order = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  return `<div class="hours-list">${order.map(d => `
+    <div class="hours-row ${d === today ? 'today' : ''}">
+      <span class="day">${d}</span>
+      <span class="time">${b.hours[d] || '—'}</span>
+    </div>`).join('')}</div>`;
+}
+
+async function openDrawer(b) {
+  document.getElementById('drawerBackdrop').classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  const hue = getHueFromName(b.name);
+  const heroStyle = `background: linear-gradient(135deg, hsl(${hue}, 70%, 35%), hsl(${(hue + 60) % 360}, 65%, 45%));`;
+
+  const distLabel = b.distance != null ? `<span class="meta-item">📍 ${b.distance} mi away</span>` : '';
+  const todayHours = b.hours && b.hours[today] ? b.hours[today] : null;
+  const openInfo = todayHours && isOpenNow(b.hours)
+    ? `<span class="meta-item" style="color: var(--green)">● Open now</span>`
+    : todayHours
+    ? `<span class="meta-item" style="color: var(--red)">● Closed</span>`
+    : '';
+
+  const content = `
+    <div class="drawer-hero" id="drawerHero" style="${heroStyle}">
+      ${b.neighborhood ? `<span class="drawer-hero-tag">${b.neighborhood.split('/')[0].trim()}</span>` : ''}
+      <h1>${b.name}</h1>
+    </div>
+
+    <div class="drawer-photos" id="drawerPhotos" style="display:none"></div>
+
+    <div class="drawer-body">
+      <div class="drawer-meta">
+        <span class="meta-item drawer-rating" id="drawerRating"></span>
+        ${distLabel}
+        ${openInfo}
+        ${todayHours ? `<span class="meta-item">🕐 ${todayHours}</span>` : ''}
+      </div>
+
+      <p class="drawer-desc">${b.known_for || 'Local craft brewery.'}</p>
+
+      ${b.vibes && b.vibes.length ? `
+        <div class="drawer-vibes">
+          ${b.vibes.map(v => `<span class="vibe-tag">${v.replace(/_/g,' ')}</span>`).join('')}
+        </div>` : ''}
+
+      <div class="drawer-cta-row">
+        ${b.untappd_url ? `<a class="drawer-cta primary" href="${b.untappd_url}" target="_blank" rel="noopener">🍺 Live Tap List</a>` : ''}
+        ${b.latitude && b.longitude ? `<a class="drawer-cta" href="https://www.google.com/maps/dir/?api=1&destination=${b.latitude},${b.longitude}" target="_blank" rel="noopener">🧭 Directions</a>` : ''}
+        ${b.phone ? `<a class="drawer-cta" href="tel:${b.phone.replace(/\D/g,'')}">📞 Call</a>` : ''}
+      </div>
+
+      <div class="drawer-section">
+        <h3>🍺 What to Drink</h3>
+        ${b.tap_highlights ? `
+          <div class="tap-list-card">
+            <div class="tap-text">${b.tap_highlights}</div>
+          </div>` : '<div class="empty-section">Tap highlights not available</div>'}
+        <p style="margin-top:8px; font-size:0.82rem;">
+          Live tap list updates: <a href="${b.untappd_url || '#'}" target="_blank" style="color: var(--accent)">Untappd →</a>
+        </p>
+      </div>
+
+      <div class="drawer-section">
+        <h3>📅 This Week</h3>
+        <div class="schedule-list">${renderDrawerSchedule(b)}</div>
+      </div>
+
+      <div class="drawer-section">
+        <h3>🕐 Hours</h3>
+        ${renderDrawerHours(b)}
+      </div>
+
+      <div class="drawer-section">
+        <h3>⭐ Reviews</h3>
+        <div id="drawerReviews">
+          <div class="empty-section">Loading reviews…</div>
+        </div>
+      </div>
+
+      ${b.latitude && b.longitude ? `
+        <div class="drawer-section">
+          <h3>📍 Location</h3>
+          <div id="drawerMiniMap"></div>
+          <p style="margin-bottom: 12px;">${b.address || ''}</p>
+          <div class="drawer-cta-row">
+            <a class="drawer-cta primary" href="https://www.google.com/maps/dir/?api=1&destination=${b.latitude},${b.longitude}" target="_blank" rel="noopener">🧭 Get Directions</a>
+            ${b.google_maps_url ? `<a class="drawer-cta" href="${b.google_maps_url}" target="_blank" rel="noopener">View on Google</a>` : ''}
+          </div>
+        </div>` : ''}
+
+      ${b.events ? `
+        <div class="drawer-section">
+          <h3>🎉 Special Events</h3>
+          <p>${b.events}</p>
+        </div>` : ''}
+
+      <div class="drawer-section">
+        <h3>🌐 Connect</h3>
+        <div class="drawer-cta-row">
+          ${b.website ? `<a class="drawer-cta" href="${b.website}" target="_blank" rel="noopener">Website</a>` : ''}
+          ${b.social && b.social.instagram ? `<a class="drawer-cta" href="${b.social.instagram}" target="_blank" rel="noopener">📸 Instagram</a>` : ''}
+          ${b.social && b.social.facebook ? `<a class="drawer-cta" href="${b.social.facebook}" target="_blank" rel="noopener">📘 Facebook</a>` : ''}
+          ${b.yelp_url ? `<a class="drawer-cta" href="${b.yelp_url}" target="_blank" rel="noopener">📝 Yelp</a>` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('drawerContent').innerHTML = content;
+  document.getElementById('drawerContent').scrollTop = 0;
+
+  // Init mini map
+  if (b.latitude && b.longitude) {
+    setTimeout(() => {
+      const mapEl = document.getElementById('drawerMiniMap');
+      if (!mapEl) return;
+      if (miniMap) { miniMap.remove(); miniMap = null; }
+      miniMap = L.map(mapEl, { zoomControl: false, attributionControl: false, scrollWheelZoom: false, dragging: true })
+        .setView([b.latitude, b.longitude], 14);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19, subdomains: 'abcd'
+      }).addTo(miniMap);
+      L.marker([b.latitude, b.longitude]).addTo(miniMap);
+      if (state.userLoc) {
+        const userIcon = L.divIcon({ className: '', html: '<div class="user-marker"></div>', iconSize: [16,16], iconAnchor: [8,8] });
+        L.marker([state.userLoc.lat, state.userLoc.lng], { icon: userIcon }).addTo(miniMap);
+        miniMap.fitBounds([[b.latitude, b.longitude], [state.userLoc.lat, state.userLoc.lng]], { padding: [30, 30], maxZoom: 13 });
+      }
+    }, 200);
+  }
+
+  // Lazy-load reviews + photos via /api/breweries/details (only for curated breweries with numeric id)
+  if (b.source !== 'openbrewerydb' && typeof b.id === 'number') {
+    try {
+      const res = await fetch(`/api/breweries/details?id=${b.id}`);
+      const data = await res.json();
+      renderReviews(data, b);
+      renderPhotos(data);
+    } catch (err) {
+      renderReviews({ provider: 'error' }, b);
+    }
+  } else {
+    renderReviews({ provider: 'unsupported' }, b);
+  }
+}
+
+function renderPhotos(data) {
+  if (!data.photos || data.photos.length === 0) return;
+  const photosEl = document.getElementById('drawerPhotos');
+  if (!photosEl) return;
+  photosEl.innerHTML = data.photos.map(p => `<img src="${p.url}" alt="" loading="lazy" />`).join('');
+  photosEl.style.display = 'flex';
+  document.getElementById('drawerHero').style.display = 'none';
+}
+
+function renderReviews(data, brewery) {
+  const el = document.getElementById('drawerReviews');
+  if (!el) return;
+
+  // Update rating in meta
+  const ratingEl = document.getElementById('drawerRating');
+  if (data.rating && ratingEl) {
+    ratingEl.innerHTML = `<span class="review-stars">${renderStars(data.rating)}</span> ${data.rating} (${data.review_count || 0})`;
+  }
+
+  if (data.provider === 'google' && data.reviews && data.reviews.length) {
+    el.innerHTML = `<div class="reviews-list">${data.reviews.slice(0, 5).map(r => `
+      <div class="review-item">
+        <div class="review-header">
+          <span class="review-author">${r.author}</span>
+          <span class="review-meta">${r.time}</span>
+        </div>
+        <div class="review-stars">${renderStars(r.rating)}</div>
+        <p class="review-text">${r.text}</p>
+      </div>`).join('')}</div>
+      <p style="margin-top:12px; font-size:0.82rem; text-align:center;">
+        <a href="${brewery.google_maps_url}" target="_blank" style="color:var(--accent)">See all reviews on Google →</a>
+      </p>`;
+  } else if (data.provider === 'none') {
+    el.innerHTML = `<div class="empty-section">
+      ⭐ Embedded reviews coming soon. For now:<br><br>
+      <a href="${brewery.google_maps_url}" target="_blank">View on Google Maps</a> ·
+      <a href="${brewery.yelp_url}" target="_blank">Yelp</a>
+    </div>`;
+  } else if (data.provider === 'error' || data.provider === 'unsupported') {
+    el.innerHTML = `<div class="empty-section">
+      <a href="${brewery.google_maps_url || '#'}" target="_blank">View reviews on Google Maps →</a>
+    </div>`;
+  } else {
+    el.innerHTML = `<div class="empty-section">No reviews available</div>`;
+  }
+}
+
+function closeDrawer() {
+  document.getElementById('drawerBackdrop').classList.remove('active');
+  document.body.style.overflow = '';
+  if (miniMap) { setTimeout(() => { if (miniMap) { miniMap.remove(); miniMap = null; }}, 300); }
+}
+
+document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+document.getElementById('drawerBackdrop').addEventListener('click', e => {
+  if (e.target.id === 'drawerBackdrop') closeDrawer();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDrawer();
 });
 
 // ----- init -----
