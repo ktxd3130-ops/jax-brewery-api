@@ -1,14 +1,27 @@
 {
   "metadata": {
     "name": "Jax Brewery Guide",
-    "version": "3.5.0",
-    "description": "Curated brewery dataset with weekly schedules, vibes, live tap links, and review platform links",
+    "version": "4.0.0",
+    "description": "Pint \u2014 the curated craft beer guide. City-keyed, food-tagged, curator-driven.",
     "last_updated": "2026-05-09",
     "next_refresh": "Weekly \u2014 every Monday",
     "total_breweries": 31,
     "coverage_area": "Jacksonville, Jacksonville Beach, Atlantic Beach, Neptune Beach, Springfield, San Marco, Riverside, Murray Hill, Mandarin, Southside, Fernandina Beach/Amelia Island, St. Augustine",
     "curator": "Kendall Dale",
-    "notes": "Phase 1 \u2014 curated dataset from web research. Breweries marked as permanently closed have been excluded. Hours and events may change; verify before visiting."
+    "notes": "Phase 1 \u2014 curated dataset from web research. Breweries marked as permanently closed have been excluded. Hours and events may change; verify before visiting.",
+    "brand": {
+      "name": "Pint",
+      "tagline": "Fill your pint.",
+      "tagline_long": "What's pouring tonight?",
+      "is_placeholder_name": true
+    },
+    "regions": [
+      "Jacksonville",
+      "Jax Beach",
+      "Atlantic Beach",
+      "Amelia Island",
+      "St. Augustine"
+    ]
   },
   "breweries": [
     {
@@ -64,7 +77,13 @@
       ],
       "untappd_url": "https://untappd.com/v/intuition-ale-works/5334380",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Intuition%20Ale%20Works%20929%20E%20Bay%20St%2C%20Jacksonville%2C%20FL%2032204",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Intuition%20Ale%20Works&find_loc=929%20E%20Bay%20St%2C%20Jacksonville%2C%20FL%2032204"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Intuition%20Ale%20Works&find_loc=929%20E%20Bay%20St%2C%20Jacksonville%2C%20FL%2032204",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "food_trucks"
+      ],
+      "curator_take": null
     },
     {
       "id": 2,
@@ -118,7 +137,11 @@
       ],
       "untappd_url": "https://untappd.com/BoldCityBrewery",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Bold%20City%20Brewery%20%E2%80%94%20Downtown%20109%20E%20Bay%20St%2C%20Jacksonville%2C%20FL%2032202",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Bold%20City%20Brewery%20%E2%80%94%20Downtown&find_loc=109%20E%20Bay%20St%2C%20Jacksonville%2C%20FL%2032202"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Bold%20City%20Brewery%20%E2%80%94%20Downtown&find_loc=109%20E%20Bay%20St%2C%20Jacksonville%2C%20FL%2032202",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [],
+      "curator_take": null
     },
     {
       "id": 3,
@@ -172,7 +195,15 @@
       ],
       "untappd_url": "https://untappd.com/BoldCityBrewery",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Bold%20City%20Brewery%20%E2%80%94%20Riverside%202670%20Rosselle%20St%20%237%2C%20Jacksonville%2C%20FL%2032204",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Bold%20City%20Brewery%20%E2%80%94%20Riverside&find_loc=2670%20Rosselle%20St%20%237%2C%20Jacksonville%2C%20FL%2032204"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Bold%20City%20Brewery%20%E2%80%94%20Riverside&find_loc=2670%20Rosselle%20St%20%237%2C%20Jacksonville%2C%20FL%2032204",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "full_menu",
+        "gastropub",
+        "burgers"
+      ],
+      "curator_take": null
     },
     {
       "id": 4,
@@ -227,7 +258,17 @@
       ],
       "untappd_url": "https://untappd.com/AardwolfBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Aardwolf%20Brewing%20Company%201461%20Hendricks%20Ave%2C%20Jacksonville%2C%20FL%2032207",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Aardwolf%20Brewing%20Company&find_loc=1461%20Hendricks%20Ave%2C%20Jacksonville%2C%20FL%2032207"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Aardwolf%20Brewing%20Company&find_loc=1461%20Hendricks%20Ave%2C%20Jacksonville%2C%20FL%2032207",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "food_truck_permanent"
+      ],
+      "curator_take": {
+        "author": "Kendall",
+        "text": "Best for serious beer drinkers \u2014 the bourbon barrel-aged stuff is what you came for. The 1927 ice factory bones make it the most architecturally cool taproom in town. Go for a release weekend.",
+        "draft": true
+      }
     },
     {
       "id": 5,
@@ -303,7 +344,20 @@
       ],
       "untappd_url": "https://untappd.com/WickedBarley",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Wicked%20Barley%20Brewing%20Company%204100%20Baymeadows%20Rd%2C%20Jacksonville%2C%20FL%2032217",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Wicked%20Barley%20Brewing%20Company&find_loc=4100%20Baymeadows%20Rd%2C%20Jacksonville%2C%20FL%2032217"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Wicked%20Barley%20Brewing%20Company&find_loc=4100%20Baymeadows%20Rd%2C%20Jacksonville%2C%20FL%2032217",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "full_menu",
+        "gastropub",
+        "burgers",
+        "salads"
+      ],
+      "curator_take": {
+        "author": "Kendall",
+        "text": "This is the Saturday afternoon move. Bring the dog, post up on the dock, share a pizza. Wednesday trivia is genuinely fun if you're competitive. Skip the parking lot at sunset on weekends \u2014 go early or come hungry to sit on the patio.",
+        "draft": true
+      }
     },
     {
       "id": 6,
@@ -365,7 +419,16 @@
       ],
       "untappd_url": "https://untappd.com/v/engine-15-brewing-co/35506",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Engine%2015%20Brewing%20Co.%201500%20Beach%20Blvd%2C%20Ste%20217%2C%20Jacksonville%20Beach%2C%20FL%2032250",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Engine%2015%20Brewing%20Co.&find_loc=1500%20Beach%20Blvd%2C%20Ste%20217%2C%20Jacksonville%20Beach%2C%20FL%2032250"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Engine%2015%20Brewing%20Co.&find_loc=1500%20Beach%20Blvd%2C%20Ste%20217%2C%20Jacksonville%20Beach%2C%20FL%2032250",
+      "city": "Jacksonville Beach",
+      "region": "Jax Beach",
+      "food_tags": [
+        "full_menu",
+        "smoked_meats",
+        "burgers",
+        "bbq"
+      ],
+      "curator_take": null
     },
     {
       "id": 7,
@@ -421,7 +484,15 @@
       ],
       "untappd_url": "https://untappd.com/SouthernSwellsBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Southern%20Swells%20Brewing%20Co.%201312%20Beach%20Blvd%2C%20Jacksonville%20Beach%2C%20FL%2032250",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Southern%20Swells%20Brewing%20Co.&find_loc=1312%20Beach%20Blvd%2C%20Jacksonville%20Beach%2C%20FL%2032250"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Southern%20Swells%20Brewing%20Co.&find_loc=1312%20Beach%20Blvd%2C%20Jacksonville%20Beach%2C%20FL%2032250",
+      "city": "Jacksonville Beach",
+      "region": "Jax Beach",
+      "food_tags": [
+        "snacks_only",
+        "byof_friendly",
+        "popups"
+      ],
+      "curator_take": null
     },
     {
       "id": 8,
@@ -501,7 +572,18 @@
       ],
       "untappd_url": "https://untappd.com/GreenRoomBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Green%20Room%20Brewing%20228%203rd%20St%20N%2C%20Jacksonville%20Beach%2C%20FL%2032250",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Green%20Room%20Brewing&find_loc=228%203rd%20St%20N%2C%20Jacksonville%20Beach%2C%20FL%2032250"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Green%20Room%20Brewing&find_loc=228%203rd%20St%20N%2C%20Jacksonville%20Beach%2C%20FL%2032250",
+      "city": "Jacksonville Beach",
+      "region": "Jax Beach",
+      "food_tags": [
+        "full_menu",
+        "vegetarian"
+      ],
+      "curator_take": {
+        "author": "Kendall",
+        "text": "The dependable Jax Beach hang. Tuesday + Thursday trivia gets serious. Wednesday Run Club is real (and the post-run beer is earned). The 16 house drafts rotate fast \u2014 ask the bartender what's hitting.",
+        "draft": true
+      }
     },
     {
       "id": 9,
@@ -570,7 +652,17 @@
       ],
       "untappd_url": "https://untappd.com/HyperionBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Hyperion%20Brewing%20Company%201740%20N%20Main%20St%2C%20Jacksonville%2C%20FL%2032206",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Hyperion%20Brewing%20Company&find_loc=1740%20N%20Main%20St%2C%20Jacksonville%2C%20FL%2032206"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Hyperion%20Brewing%20Company&find_loc=1740%20N%20Main%20St%2C%20Jacksonville%2C%20FL%2032206",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "light_food"
+      ],
+      "curator_take": {
+        "author": "Kendall",
+        "text": "Skip on weeknights \u2014 the magic is the Saturday storytelling open mics and the cast of Springfield characters in the Helios beer garden. Cozy living-room energy with Springfield's best people-watching.",
+        "draft": true
+      }
     },
     {
       "id": 10,
@@ -632,7 +724,17 @@
       ],
       "untappd_url": "https://untappd.com/StringsSportsBrewery",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Strings%20Sports%20Brewery%20%E2%80%94%20Springfield%201850%20N%20Main%20St%2C%20Jacksonville%2C%20FL%2032206",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Strings%20Sports%20Brewery%20%E2%80%94%20Springfield&find_loc=1850%20N%20Main%20St%2C%20Jacksonville%2C%20FL%2032206"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Strings%20Sports%20Brewery%20%E2%80%94%20Springfield&find_loc=1850%20N%20Main%20St%2C%20Jacksonville%2C%20FL%2032206",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "full_menu",
+        "wings",
+        "burgers",
+        "bbq",
+        "tacos"
+      ],
+      "curator_take": null
     },
     {
       "id": 11,
@@ -694,7 +796,17 @@
       ],
       "untappd_url": "https://untappd.com/StringsSportsBrewery",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Strings%20Sports%20Brewery%20%E2%80%94%20Jax%20Beach%201618%20Penman%20Rd%2C%20Jacksonville%20Beach%2C%20FL%2032250",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Strings%20Sports%20Brewery%20%E2%80%94%20Jax%20Beach&find_loc=1618%20Penman%20Rd%2C%20Jacksonville%20Beach%2C%20FL%2032250"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Strings%20Sports%20Brewery%20%E2%80%94%20Jax%20Beach&find_loc=1618%20Penman%20Rd%2C%20Jacksonville%20Beach%2C%20FL%2032250",
+      "city": "Jacksonville Beach",
+      "region": "Jax Beach",
+      "food_tags": [
+        "full_menu",
+        "wings",
+        "burgers",
+        "bbq",
+        "tacos"
+      ],
+      "curator_take": null
     },
     {
       "id": 12,
@@ -750,7 +862,19 @@
       ],
       "untappd_url": "https://untappd.com/Tepeyolot",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Tepeyolot%20Cerveceria%202130%20Kings%20Ave%2C%20Jacksonville%2C%20FL%2032207",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Tepeyolot%20Cerveceria&find_loc=2130%20Kings%20Ave%2C%20Jacksonville%2C%20FL%2032207"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Tepeyolot%20Cerveceria&find_loc=2130%20Kings%20Ave%2C%20Jacksonville%2C%20FL%2032207",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "full_menu",
+        "mexican",
+        "tacos"
+      ],
+      "curator_take": {
+        "author": "Kendall",
+        "text": "Tacos and craft beer pairing that actually works. The al pastor + their lager is a perfect match. Date night that doesn't take itself too seriously. East San Marco's most underrated spot.",
+        "draft": true
+      }
     },
     {
       "id": 13,
@@ -799,7 +923,14 @@
       ],
       "untappd_url": "https://untappd.com/VoodooBrewingJax",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Voodoo%20Brewing%20Co.%20%E2%80%94%20Jacksonville%201974%20San%20Marco%20Blvd%2C%20Jacksonville%2C%20FL%2032207",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Voodoo%20Brewing%20Co.%20%E2%80%94%20Jacksonville&find_loc=1974%20San%20Marco%20Blvd%2C%20Jacksonville%2C%20FL%2032207"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Voodoo%20Brewing%20Co.%20%E2%80%94%20Jacksonville&find_loc=1974%20San%20Marco%20Blvd%2C%20Jacksonville%2C%20FL%2032207",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "full_menu",
+        "gastropub"
+      ],
+      "curator_take": null
     },
     {
       "id": 14,
@@ -860,7 +991,14 @@
       ],
       "untappd_url": "https://untappd.com/v/ruby-beach-brewing-company/10224576",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Ruby%20Beach%20Brewing%20228%20E%20Forsyth%20St%2C%20Jacksonville%2C%20FL%2032202",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Ruby%20Beach%20Brewing&find_loc=228%20E%20Forsyth%20St%2C%20Jacksonville%2C%20FL%2032202"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Ruby%20Beach%20Brewing&find_loc=228%20E%20Forsyth%20St%2C%20Jacksonville%2C%20FL%2032202",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "smoked_meats",
+        "food_truck_permanent"
+      ],
+      "curator_take": null
     },
     {
       "id": 15,
@@ -916,7 +1054,15 @@
       ],
       "untappd_url": "https://untappd.com/KingMakerBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=King%20Maker%20Brewing%20720%20King%20St%2C%20Jacksonville%2C%20FL%2032204",
-      "yelp_url": "https://www.yelp.com/search?find_desc=King%20Maker%20Brewing&find_loc=720%20King%20St%2C%20Jacksonville%2C%20FL%2032204"
+      "yelp_url": "https://www.yelp.com/search?find_desc=King%20Maker%20Brewing&find_loc=720%20King%20St%2C%20Jacksonville%2C%20FL%2032204",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "sandwiches",
+        "food_truck_permanent",
+        "cuban"
+      ],
+      "curator_take": null
     },
     {
       "id": 16,
@@ -972,7 +1118,15 @@
       ],
       "untappd_url": "https://untappd.com/LegacyAleWorks",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Legacy%20Ale%20Works%2014965%20Old%20St%20Augustine%20Rd%2C%20Jacksonville%2C%20FL%2032258",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Legacy%20Ale%20Works&find_loc=14965%20Old%20St%20Augustine%20Rd%2C%20Jacksonville%2C%20FL%2032258"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Legacy%20Ale%20Works&find_loc=14965%20Old%20St%20Augustine%20Rd%2C%20Jacksonville%2C%20FL%2032258",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "full_menu",
+        "vegan_options",
+        "vegetarian"
+      ],
+      "curator_take": null
     },
     {
       "id": 17,
@@ -1059,7 +1213,19 @@
       ],
       "untappd_url": "https://untappd.com/v/veterans-united-craft-brewery/1980543",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Veterans%20United%20Craft%20Brewery%208999%20Western%20Way%2C%20Ste%20104%2C%20Jacksonville%2C%20FL%2032256",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Veterans%20United%20Craft%20Brewery&find_loc=8999%20Western%20Way%2C%20Ste%20104%2C%20Jacksonville%2C%20FL%2032256"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Veterans%20United%20Craft%20Brewery&find_loc=8999%20Western%20Way%2C%20Ste%20104%2C%20Jacksonville%2C%20FL%2032256",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "snacks_only",
+        "food_trucks",
+        "byof_friendly"
+      ],
+      "curator_take": {
+        "author": "Kendall",
+        "text": "Best brewery for a weeknight. Wednesday trivia + Thursday small batch night gives you a reason to show up twice. Veteran-owned, BYOF welcome, food truck rotation is solid. The locals' brewery in Southside.",
+        "draft": true
+      }
     },
     {
       "id": 18,
@@ -1116,7 +1282,20 @@
       ],
       "untappd_url": "https://untappd.com/ReveBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Reve%20Brewing%201237%20Mayport%20Rd%2C%20Atlantic%20Beach%2C%20FL%2032233",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Reve%20Brewing&find_loc=1237%20Mayport%20Rd%2C%20Atlantic%20Beach%2C%20FL%2032233"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Reve%20Brewing&find_loc=1237%20Mayport%20Rd%2C%20Atlantic%20Beach%2C%20FL%2032233",
+      "city": "Atlantic Beach",
+      "region": "Atlantic Beach",
+      "food_tags": [
+        "full_menu",
+        "pizza",
+        "wood_fired",
+        "vegan_options"
+      ],
+      "curator_take": {
+        "author": "Kendall",
+        "text": "The pizza IS the reason you're here. Order the wood-fired margherita, grab a stout slushie if they're slinging them, let the kids destroy the play area. Easiest brewery to take a family to in Jax.",
+        "draft": true
+      }
     },
     {
       "id": 19,
@@ -1179,7 +1358,18 @@
       ],
       "untappd_url": "https://untappd.com/v/ink-factory-brewing/11019043",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Ink%20Factory%20Brewing%20602%20Shetter%20Ave%2C%20Jacksonville%20Beach%2C%20FL%2032250",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Ink%20Factory%20Brewing&find_loc=602%20Shetter%20Ave%2C%20Jacksonville%20Beach%2C%20FL%2032250"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Ink%20Factory%20Brewing&find_loc=602%20Shetter%20Ave%2C%20Jacksonville%20Beach%2C%20FL%2032250",
+      "city": "Jacksonville Beach",
+      "region": "Jax Beach",
+      "food_tags": [
+        "smash_burgers",
+        "food_truck_permanent"
+      ],
+      "curator_take": {
+        "author": "Kendall",
+        "text": "Opens at 8AM as a coffee shop, becomes a brewery at noon, hosts skate demos and movie nights at night. The smash burger truck is criminally good. The whole vibe is creative-class Jax Beach in one room.",
+        "draft": true
+      }
     },
     {
       "id": 20,
@@ -1235,7 +1425,14 @@
       ],
       "untappd_url": "https://untappd.com/FishweirBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Fishweir%20Brewing%20Company%201183%20Edgewood%20Ave%20S%2C%20Jacksonville%2C%20FL%2032205",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Fishweir%20Brewing%20Company&find_loc=1183%20Edgewood%20Ave%20S%2C%20Jacksonville%2C%20FL%2032205"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Fishweir%20Brewing%20Company&find_loc=1183%20Edgewood%20Ave%20S%2C%20Jacksonville%2C%20FL%2032205",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "snacks_only",
+        "cheese_flights"
+      ],
+      "curator_take": null
     },
     {
       "id": 21,
@@ -1292,7 +1489,13 @@
       ],
       "untappd_url": "https://untappd.com/MyrtleAvenueBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Myrtle%20Avenue%20Brewing%20633%20Myrtle%20Ave%20N%2C%20Jacksonville%2C%20FL%2032204",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Myrtle%20Avenue%20Brewing&find_loc=633%20Myrtle%20Ave%20N%2C%20Jacksonville%2C%20FL%2032204"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Myrtle%20Avenue%20Brewing&find_loc=633%20Myrtle%20Ave%20N%2C%20Jacksonville%2C%20FL%2032204",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "food_trucks"
+      ],
+      "curator_take": null
     },
     {
       "id": 22,
@@ -1342,7 +1545,13 @@
       ],
       "untappd_url": "https://untappd.com/HistoricallyHoppy",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Historically%20Hoppy%20Brewing%20Company%201636%20N%20Main%20St%2C%20Jacksonville%2C%20FL%2032206",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Historically%20Hoppy%20Brewing%20Company&find_loc=1636%20N%20Main%20St%2C%20Jacksonville%2C%20FL%2032206"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Historically%20Hoppy%20Brewing%20Company&find_loc=1636%20N%20Main%20St%2C%20Jacksonville%2C%20FL%2032206",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "byof_friendly"
+      ],
+      "curator_take": null
     },
     {
       "id": 23,
@@ -1392,7 +1601,16 @@
       ],
       "untappd_url": "https://untappd.com/v/bottlenose-brewing/6124414",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Bottlenose%20Brewing%209700%20Deer%20Lake%20Ct%20%231%2C%20Jacksonville%2C%20FL%2032246",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Bottlenose%20Brewing&find_loc=9700%20Deer%20Lake%20Ct%20%231%2C%20Jacksonville%2C%20FL%2032246"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Bottlenose%20Brewing&find_loc=9700%20Deer%20Lake%20Ct%20%231%2C%20Jacksonville%2C%20FL%2032246",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "full_menu",
+        "pizza",
+        "wings",
+        "burgers"
+      ],
+      "curator_take": null
     },
     {
       "id": 24,
@@ -1448,7 +1666,14 @@
       ],
       "untappd_url": "https://untappd.com/KanineSocial",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Kanine%20Social%20580%20College%20St%2C%20Jacksonville%2C%20FL%2032204",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Kanine%20Social&find_loc=580%20College%20St%2C%20Jacksonville%2C%20FL%2032204"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Kanine%20Social&find_loc=580%20College%20St%2C%20Jacksonville%2C%20FL%2032204",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "coffee",
+        "light_snacks"
+      ],
+      "curator_take": null
     },
     {
       "id": 25,
@@ -1498,7 +1723,14 @@
       ],
       "untappd_url": "https://untappd.com/JacksonvilleBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Jacksonville%20Brewing%20Co.%20%28The%20Phoenix%29%202600%20Blanding%20Blvd%2C%20Jacksonville%2C%20FL%2032210",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Jacksonville%20Brewing%20Co.%20%28The%20Phoenix%29&find_loc=2600%20Blanding%20Blvd%2C%20Jacksonville%2C%20FL%2032210"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Jacksonville%20Brewing%20Co.%20%28The%20Phoenix%29&find_loc=2600%20Blanding%20Blvd%2C%20Jacksonville%2C%20FL%2032210",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "pizza",
+        "full_menu"
+      ],
+      "curator_take": null
     },
     {
       "id": 26,
@@ -1547,7 +1779,14 @@
       ],
       "untappd_url": "https://untappd.com/TownBeerCo",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Town%20Beer%20Co.%201065%20Edgewood%20Ave%20S%2C%20Jacksonville%2C%20FL%2032205",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Town%20Beer%20Co.&find_loc=1065%20Edgewood%20Ave%20S%2C%20Jacksonville%2C%20FL%2032205"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Town%20Beer%20Co.&find_loc=1065%20Edgewood%20Ave%20S%2C%20Jacksonville%2C%20FL%2032205",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "sandwiches",
+        "natural_wine"
+      ],
+      "curator_take": null
     },
     {
       "id": 27,
@@ -1608,7 +1847,14 @@
       ],
       "untappd_url": "https://untappd.com/AmeliaIslandBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Amelia%20Island%20Brewing%20Co.%20318%20Centre%20St%2C%20Fernandina%20Beach%2C%20FL%2032034",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Amelia%20Island%20Brewing%20Co.&find_loc=318%20Centre%20St%2C%20Fernandina%20Beach%2C%20FL%2032034"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Amelia%20Island%20Brewing%20Co.&find_loc=318%20Centre%20St%2C%20Fernandina%20Beach%2C%20FL%2032034",
+      "city": "Fernandina Beach",
+      "region": "Amelia Island",
+      "food_tags": [
+        "full_menu",
+        "southern_comfort"
+      ],
+      "curator_take": null
     },
     {
       "id": 28,
@@ -1658,7 +1904,16 @@
       ],
       "untappd_url": "https://untappd.com/FirstLoveBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=First%20Love%20Brewing%20116%20S%203rd%20St%2C%20Fernandina%20Beach%2C%20FL%2032034",
-      "yelp_url": "https://www.yelp.com/search?find_desc=First%20Love%20Brewing&find_loc=116%20S%203rd%20St%2C%20Fernandina%20Beach%2C%20FL%2032034"
+      "yelp_url": "https://www.yelp.com/search?find_desc=First%20Love%20Brewing&find_loc=116%20S%203rd%20St%2C%20Fernandina%20Beach%2C%20FL%2032034",
+      "city": "Fernandina Beach",
+      "region": "Amelia Island",
+      "food_tags": [
+        "pizza",
+        "wood_fired",
+        "smash_burgers",
+        "wings"
+      ],
+      "curator_take": null
     },
     {
       "id": 29,
@@ -1708,7 +1963,15 @@
       ],
       "untappd_url": "https://untappd.com/MocamaBeer",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Mocama%20Beer%20Company%20629%20S%208th%20St%2C%20Fernandina%20Beach%2C%20FL%2032034",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Mocama%20Beer%20Company&find_loc=629%20S%208th%20St%2C%20Fernandina%20Beach%2C%20FL%2032034"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Mocama%20Beer%20Company&find_loc=629%20S%208th%20St%2C%20Fernandina%20Beach%2C%20FL%2032034",
+      "city": "Fernandina Beach",
+      "region": "Amelia Island",
+      "food_tags": [
+        "coffee",
+        "bagels",
+        "byof_friendly"
+      ],
+      "curator_take": null
     },
     {
       "id": 30,
@@ -1770,7 +2033,13 @@
       ],
       "untappd_url": "https://untappd.com/DogRoseBrewingCo",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Dog%20Rose%20Brewing%20Co.%2077%20Bridge%20St%2C%20St.%20Augustine%2C%20FL%2032084",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Dog%20Rose%20Brewing%20Co.&find_loc=77%20Bridge%20St%2C%20St.%20Augustine%2C%20FL%2032084"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Dog%20Rose%20Brewing%20Co.&find_loc=77%20Bridge%20St%2C%20St.%20Augustine%2C%20FL%2032084",
+      "city": "St. Augustine",
+      "region": "St. Augustine",
+      "food_tags": [
+        "food_trucks"
+      ],
+      "curator_take": null
     },
     {
       "id": 31,
@@ -1832,7 +2101,14 @@
       ],
       "untappd_url": "https://untappd.com/BogBrewing",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Bog%20Brewing%20Company%20218%20W%20King%20St%2C%20St.%20Augustine%2C%20FL%2032084",
-      "yelp_url": "https://www.yelp.com/search?find_desc=Bog%20Brewing%20Company&find_loc=218%20W%20King%20St%2C%20St.%20Augustine%2C%20FL%2032084"
+      "yelp_url": "https://www.yelp.com/search?find_desc=Bog%20Brewing%20Company&find_loc=218%20W%20King%20St%2C%20St.%20Augustine%2C%20FL%2032084",
+      "city": "St. Augustine",
+      "region": "St. Augustine",
+      "food_tags": [
+        "taco_truck",
+        "byof_friendly"
+      ],
+      "curator_take": null
     }
   ]
 }

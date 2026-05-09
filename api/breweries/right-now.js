@@ -3,23 +3,31 @@ const { haversine, applyCors } = require("../../lib/util");
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-// Map mood keywords → matching event types and vibes
+// Map mood keywords → matching event types, vibes, and food_tags
 const MOOD_MAP = {
+  // Vibe / activity
   live_music: { events: ["live_music"], vibes: ["live_music_venue"] },
   trivia: { events: ["trivia"], vibes: ["trivia_spot"] },
   comedy: { events: ["comedy", "open_mic"], vibes: ["comedy"] },
   sports: { events: ["sports_watch"], vibes: ["sports_bar"] },
-  food: { events: [], vibes: ["full_kitchen", "gastropub", "pizza_focused", "smoked_food", "mexican_food", "southern_comfort_food", "elevated_pub_food"] },
-  pizza: { events: [], vibes: ["pizza_focused", "stone_oven", "wood_fired"] },
-  dog: { events: ["dog_social"], vibes: ["dog_park"], require_dog_friendly: true },
-  family: { events: [], vibes: ["family_focused", "kid_play_area", "biergarten"], require_kid_friendly: true },
   date_night: { events: [], vibes: ["date_night", "cozy", "patio", "waterfront"] },
   outdoor: { events: [], vibes: ["beer_garden", "patio", "outdoor_seating", "waterfront", "biergarten", "boat_dock", "outdoor_courtyard"] },
   chill: { events: [], vibes: ["low_key", "cozy", "neighborhood", "chill_lounge", "living_room_vibe"] },
   lively: { events: [], vibes: ["lively", "sports_bar", "big_taproom", "20_plus_taps", "50_taps"] },
   release: { events: ["release"], vibes: ["barrel_aged_focus"] },
   tour: { events: ["tour"], vibes: ["tour_friendly"] },
-  food_truck: { events: ["food_truck"], vibes: ["food_trucks", "byof_friendly"] }
+  // Food-first moods
+  pizza: { events: [], vibes: [], food_tags: ["pizza", "wood_fired", "stone_oven"] },
+  tacos: { events: [], vibes: ["mexican_food"], food_tags: ["tacos", "mexican", "taco_truck"] },
+  burgers: { events: [], vibes: [], food_tags: ["burgers", "smash_burgers"] },
+  bbq: { events: [], vibes: [], food_tags: ["bbq", "smoked_meats"] },
+  full_menu: { events: [], vibes: ["gastropub", "full_kitchen"], food_tags: ["full_menu", "gastropub"] },
+  byof: { events: [], vibes: ["byof_friendly"], food_tags: ["byof_friendly", "snacks_only"] },
+  food: { events: [], vibes: ["full_kitchen", "gastropub"], food_tags: ["full_menu", "gastropub", "pizza", "tacos", "burgers", "bbq"] },
+  food_truck: { events: ["food_truck"], vibes: ["food_trucks"], food_tags: ["food_trucks", "food_truck_permanent"] },
+  // Who's coming
+  dog: { events: ["dog_social"], vibes: ["dog_park"], require_dog_friendly: true },
+  family: { events: [], vibes: ["family_focused", "kid_play_area", "biergarten"], require_kid_friendly: true }
 };
 
 function parseTime(t) {
@@ -128,25 +136,34 @@ module.exports = (req, res) => {
       reasons.unshift(`${emoji} ${ev.label}${ev.time ? ` · ${ev.time}` : ""}`);
     });
 
-    // 4) Mood matching
+    // 4) Mood matching (vibes + food_tags + events)
     let moodMatched = false;
     moods.forEach(mood => {
       const cfg = MOOD_MAP[mood];
       if (!cfg) return;
 
-      // Strict requirements
+      // Strict requirements (deprioritize hard if missing)
       if (cfg.require_dog_friendly && !b.dog_friendly) return;
       if (cfg.require_kid_friendly && !b.kid_friendly) return;
 
       // Vibe match
-      const vibeMatches = (b.vibes || []).filter(v => cfg.vibes.includes(v));
+      const vibeMatches = (b.vibes || []).filter(v => (cfg.vibes || []).includes(v));
       if (vibeMatches.length > 0) {
         score += 25 * vibeMatches.length;
         moodMatched = true;
       }
 
+      // Food tag match (the food-first moods score here)
+      const foodMatches = (b.food_tags || []).filter(t => (cfg.food_tags || []).includes(t));
+      if (foodMatches.length > 0) {
+        score += 35 * foodMatches.length;
+        moodMatched = true;
+        const foodEmoji = { pizza: "🍕", tacos: "🌮", burgers: "🍔", bbq: "🍖", smoked_meats: "🍖", full_menu: "🍽️", gastropub: "🍽️", food_trucks: "🚚", food_truck_permanent: "🚚", taco_truck: "🌮", byof_friendly: "🥡", smash_burgers: "🍔", wood_fired: "🍕", stone_oven: "🍕" }[foodMatches[0]] || "🍽️";
+        reasons.unshift(`${foodEmoji} ${foodMatches[0].replace(/_/g, " ")}`);
+      }
+
       // Today's events match
-      const eventMatches = todayEvents.filter(e => cfg.events.includes(e.type));
+      const eventMatches = todayEvents.filter(e => (cfg.events || []).includes(e.type));
       if (eventMatches.length > 0) {
         score += 50;
         moodMatched = true;

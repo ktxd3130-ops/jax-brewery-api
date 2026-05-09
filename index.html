@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brewery Guide — Find Local Craft Beer Anywhere</title>
-<meta name="description" content="Discover craft breweries near you. Curated for Jacksonville, FL — global coverage everywhere else.">
+<title>Pint — Fill Your Pint</title>
+<meta name="description" content="Pint is your local guide to craft beer. Find the right brewery, right now — based on your mood, your food, and what's pouring tonight.">
 
 <!-- Leaflet for the map view -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -639,6 +639,27 @@
     margin-bottom: 16px;
     line-height: 1.5;
   }
+  .curator-take {
+    background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(168,85,247,0.08));
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 4px 0 20px;
+  }
+  .curator-take-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .curator-take-text {
+    color: var(--text);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    font-style: italic;
+  }
   .drawer-vibes {
     display: flex;
     flex-wrap: wrap;
@@ -814,8 +835,8 @@
 <body>
 
 <div class="hero">
-  <h1>Brewery Guide</h1>
-  <p class="sub">Curated craft beer in Jacksonville · Local discovery anywhere</p>
+  <h1 id="brandName">Pint</h1>
+  <p class="sub" id="brandTagline">Fill your pint. Find the right brewery, right now.</p>
 
   <div class="location-bar">
     <div class="location-pill" id="locationPill">
@@ -823,7 +844,7 @@
       <span class="loc-name" id="locName">Detecting your location...</span>
       <span class="loc-source" id="locSource" style="display:none"></span>
     </div>
-    <button class="loc-action-btn tonight" id="tonightBtn">✨ What's Good Tonight</button>
+    <button class="loc-action-btn tonight" id="tonightBtn">✨ What sounds good tonight?</button>
     <button class="loc-action-btn" id="useLocationBtn">Use My Location</button>
     <button class="loc-action-btn secondary" id="changeCityBtn">Change City</button>
   </div>
@@ -878,25 +899,36 @@
 <!-- Tonight / Mood modal -->
 <div class="modal-backdrop" id="tonightModal">
   <div class="modal">
-    <h2>What are you in the mood for?</h2>
-    <p>Pick a few. We'll rank breweries that are open right now and match your vibe.</p>
-    <div class="mood-grid" id="moodGrid">
+    <h2>What sounds good tonight?</h2>
+    <p>Pick a few. Pint will rank the breweries that are open right now and match your vibe.</p>
+    <div style="font-size:0.78rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px; margin: 16px 0 8px;">Food</div>
+    <div class="mood-grid">
+      <button class="mood-chip" data-mood="pizza"><span class="emoji">🍕</span>Pizza</button>
+      <button class="mood-chip" data-mood="tacos"><span class="emoji">🌮</span>Tacos</button>
+      <button class="mood-chip" data-mood="burgers"><span class="emoji">🍔</span>Burgers</button>
+      <button class="mood-chip" data-mood="bbq"><span class="emoji">🍖</span>BBQ</button>
+      <button class="mood-chip" data-mood="full_menu"><span class="emoji">🍽️</span>Full Menu</button>
+      <button class="mood-chip" data-mood="byof"><span class="emoji">🥡</span>BYO Food</button>
+    </div>
+    <div style="font-size:0.78rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px; margin: 16px 0 8px;">Tonight's Vibe</div>
+    <div class="mood-grid">
       <button class="mood-chip" data-mood="live_music"><span class="emoji">🎤</span>Live Music</button>
       <button class="mood-chip" data-mood="trivia"><span class="emoji">🧠</span>Trivia</button>
-      <button class="mood-chip" data-mood="comedy"><span class="emoji">😂</span>Comedy</button>
       <button class="mood-chip" data-mood="sports"><span class="emoji">📺</span>Watch Sports</button>
-      <button class="mood-chip" data-mood="food"><span class="emoji">🍽️</span>Good Food</button>
-      <button class="mood-chip" data-mood="pizza"><span class="emoji">🍕</span>Pizza</button>
-      <button class="mood-chip" data-mood="dog"><span class="emoji">🐕</span>Bring the Dog</button>
-      <button class="mood-chip" data-mood="family"><span class="emoji">👨‍👩‍👧</span>With Kids</button>
+      <button class="mood-chip" data-mood="comedy"><span class="emoji">😂</span>Comedy</button>
       <button class="mood-chip" data-mood="date_night"><span class="emoji">💑</span>Date Night</button>
-      <button class="mood-chip" data-mood="outdoor"><span class="emoji">🌿</span>Outdoor</button>
-      <button class="mood-chip" data-mood="chill"><span class="emoji">🧘</span>Chill</button>
+      <button class="mood-chip" data-mood="chill"><span class="emoji">🧘</span>Just Chill</button>
       <button class="mood-chip" data-mood="lively"><span class="emoji">🔥</span>Lively</button>
+      <button class="mood-chip" data-mood="outdoor"><span class="emoji">🌿</span>Outdoor</button>
+    </div>
+    <div style="font-size:0.78rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px; margin: 16px 0 8px;">Who's Coming</div>
+    <div class="mood-grid">
+      <button class="mood-chip" data-mood="dog"><span class="emoji">🐕</span>The Dog</button>
+      <button class="mood-chip" data-mood="family"><span class="emoji">👨‍👩‍👧</span>The Kids</button>
     </div>
     <div class="modal-actions">
       <button id="tonightCancel">Cancel</button>
-      <button class="primary" id="tonightSubmit">Find My Spot →</button>
+      <button class="primary" id="tonightSubmit">Pour Me a Pint →</button>
     </div>
   </div>
 </div>
@@ -910,15 +942,29 @@
 </div>
 
 <footer>
-  <p>Brewery Guide v3.0 — Curated Jax data + <a href="https://www.openbrewerydb.org/" target="_blank">Open Brewery DB</a></p>
+  <p><strong>Pint</strong> — find the right brewery, right now</p>
   <p style="margin-top:4px">
-    Built by Kendall Dale ·
+    Curated by Kendall Dale · global coverage by <a href="https://www.openbrewerydb.org/" target="_blank">Open Brewery DB</a>
+  </p>
+  <p style="margin-top:4px; font-size:0.75rem;">
     <a href="/breweries.json" target="_blank">JSON</a> ·
-    <a href="/api/breweries" target="_blank">API</a>
+    <a href="/api/breweries" target="_blank">API</a> ·
+    name placeholder — final brand TBD
   </p>
 </footer>
 
 <script>
+// ===== BRAND CONFIG =====
+// To rename the app later, change these three values.
+const BRAND = {
+  name: 'Pint',
+  tagline: 'Fill your pint. Find the right brewery, right now.',
+  short: 'Find the right brewery, right now'
+};
+document.title = `${BRAND.name} — ${BRAND.short}`;
+document.getElementById('brandName').textContent = BRAND.name;
+document.getElementById('brandTagline').textContent = BRAND.tagline;
+
 const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const today = days[new Date().getDay()];
 
@@ -1434,6 +1480,12 @@ async function openDrawer(b) {
       </div>
 
       <p class="drawer-desc">${b.known_for || 'Local craft brewery.'}</p>
+
+      ${b.curator_take && b.curator_take.text ? `
+        <div class="curator-take">
+          <div class="curator-take-label">${b.curator_take.draft ? '✏️ Curator\'s draft take' : '💭 Kendall\'s take'}</div>
+          <p class="curator-take-text">${b.curator_take.text}</p>
+        </div>` : ''}
 
       ${b.vibes && b.vibes.length ? `
         <div class="drawer-vibes">
