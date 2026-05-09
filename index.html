@@ -4,7 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brewery Guide — Find Local Craft Beer Anywhere</title>
-<meta name="description" content="Discover craft breweries near you. Curated guide for Jacksonville, FL — global coverage everywhere else.">
+<meta name="description" content="Discover craft breweries near you. Curated for Jacksonville, FL — global coverage everywhere else.">
+
+<!-- Leaflet for the map view -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -14,6 +19,7 @@
     --card-hover: #22263a;
     --accent: #f59e0b;
     --accent2: #3b82f6;
+    --accent3: #a855f7;
     --text: #e2e8f0;
     --text-muted: #94a3b8;
     --text-dim: #64748b;
@@ -37,40 +43,39 @@
   .hero {
     background: linear-gradient(135deg, #1a1d27 0%, #0f1117 50%, #1a1d27 100%);
     border-bottom: 1px solid var(--border);
-    padding: 40px 24px 32px;
+    padding: 32px 24px 24px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
   .hero::before {
     content: '';
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: radial-gradient(ellipse at 50% 0%, rgba(245,158,11,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
   .hero h1 {
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     font-weight: 800;
     letter-spacing: -1px;
     background: linear-gradient(135deg, var(--accent) 0%, #fbbf24 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .hero .sub {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-muted);
     font-weight: 300;
   }
 
   .location-bar {
     max-width: 1400px;
-    margin: 20px auto 0;
+    margin: 16px auto 0;
     padding: 0 24px;
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
     flex-wrap: wrap;
   }
@@ -78,16 +83,16 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 18px;
+    padding: 8px 14px;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 24px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
   }
   .location-pill .loc-name { color: var(--text); font-weight: 500; }
   .location-pill .loc-source {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     padding: 2px 8px;
@@ -100,28 +105,33 @@
     color: var(--accent2);
   }
   .loc-action-btn {
-    padding: 10px 18px;
+    padding: 8px 14px;
     background: var(--accent);
     color: #000;
     border: none;
     border-radius: 24px;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, transform 0.1s;
     font-family: inherit;
   }
   .loc-action-btn:hover { opacity: 0.85; }
+  .loc-action-btn:active { transform: scale(0.97); }
   .loc-action-btn.secondary {
     background: var(--card-bg);
     color: var(--text);
     border: 1px solid var(--border);
   }
+  .loc-action-btn.tonight {
+    background: linear-gradient(135deg, var(--accent3), #ec4899);
+    color: #fff;
+  }
 
   .controls {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 24px 24px 0;
+    padding: 20px 24px 0;
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -154,13 +164,33 @@
     font-size: 1rem;
   }
 
-  .filter-group {
+  .view-toggle {
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px;
   }
+  .view-toggle button {
+    padding: 6px 14px;
+    background: transparent;
+    border: none;
+    border-radius: 16px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .view-toggle button.active {
+    background: var(--accent);
+    color: #000;
+    font-weight: 600;
+  }
+
+  .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
   .filter-btn {
-    padding: 8px 16px;
+    padding: 8px 14px;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 20px;
@@ -181,32 +211,69 @@
 
   .stats-bar {
     max-width: 1400px;
-    margin: 16px auto 0;
+    margin: 14px auto 0;
     padding: 0 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--text-dim);
   }
   .stats-bar .count { font-weight: 600; color: var(--accent); }
 
+  /* GRID VIEW */
   .grid {
     max-width: 1400px;
-    margin: 20px auto;
+    margin: 16px auto;
     padding: 0 24px 48px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     gap: 16px;
   }
 
+  /* MAP VIEW */
+  #mapContainer {
+    max-width: 1400px;
+    margin: 16px auto;
+    padding: 0 24px 24px;
+    display: none;
+  }
+  #mapContainer.active { display: block; }
+  .grid.map-mode { display: none; }
+  #map {
+    height: 600px;
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  /* Custom Leaflet popup */
+  .leaflet-popup-content-wrapper {
+    background: var(--card-bg) !important;
+    color: var(--text) !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--border);
+  }
+  .leaflet-popup-tip { background: var(--card-bg) !important; }
+  .leaflet-popup-content { margin: 14px 16px !important; font-family: inherit !important; }
+  .leaflet-popup-content h4 { font-size: 1rem; margin-bottom: 4px; color: #fff; }
+  .leaflet-popup-content p { font-size: 0.82rem; color: var(--text-muted); margin: 4px 0; }
+  .leaflet-popup-content a { color: var(--accent); }
+  .leaflet-popup-close-button { color: var(--text-muted) !important; }
+  .user-marker {
+    background: var(--accent2);
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 4px rgba(59,130,246,0.4), 0 0 12px rgba(59,130,246,0.6);
+  }
+
+  /* CARD */
   .card {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 24px;
+    padding: 22px;
     transition: all 0.25s;
-    cursor: default;
     position: relative;
     overflow: hidden;
   }
@@ -216,32 +283,46 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   }
+  .card.recommended {
+    border-color: rgba(168,85,247,0.4);
+    background: linear-gradient(135deg, var(--card-bg), rgba(168,85,247,0.05));
+  }
+  .card-rank {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: linear-gradient(135deg, var(--accent3), #ec4899);
+    color: #fff;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     gap: 12px;
+    padding-right: 32px;
   }
   .card-header h2 {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 700;
     line-height: 1.3;
     color: #fff;
     flex: 1;
   }
-  .card-header h2 a {
-    color: inherit;
-    text-decoration: none;
-  }
+  .card-header h2 a { color: inherit; text-decoration: none; }
   .card-header h2 a:hover { color: var(--accent); }
-
   .neighborhood-tag {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 6px;
     background: var(--tag-bg);
     color: var(--accent);
@@ -255,70 +336,68 @@
     font-weight: 600;
     color: var(--accent2);
   }
-
   .card-desc {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     color: var(--text-muted);
-    margin-bottom: 14px;
-    line-height: 1.55;
+    margin-bottom: 12px;
+    line-height: 1.5;
   }
-
-  .card-details {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
-    margin-bottom: 14px;
-  }
-  .detail-item {
+  .why-list {
     display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 0.82rem;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    background: rgba(168,85,247,0.08);
+    border-radius: 8px;
+    border: 1px solid rgba(168,85,247,0.2);
   }
+  .why-list .why-item {
+    font-size: 0.82rem;
+    color: var(--text);
+  }
+  .tap-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: linear-gradient(135deg, var(--accent), #fbbf24);
+    color: #000;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: opacity 0.2s;
+  }
+  .tap-cta:hover { opacity: 0.85; }
+  .card-details { display: grid; grid-template-columns: 1fr; gap: 6px; margin-bottom: 12px; }
+  .detail-item { display: flex; align-items: flex-start; gap: 8px; font-size: 0.8rem; }
   .detail-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
   .detail-value { color: var(--text-muted); }
-
-  .badges {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-    min-height: 4px;
-  }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; min-height: 4px; }
   .badge {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 500;
-    padding: 3px 10px;
+    padding: 3px 9px;
     border-radius: 12px;
     border: 1px solid;
   }
   .badge-dog { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: var(--green); }
   .badge-kid { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3); color: var(--accent2); }
   .badge-food { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.3); color: var(--accent); }
-
   .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 14px;
+    padding-top: 12px;
     border-top: 1px solid var(--border);
   }
-  .hours-today {
-    font-size: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--text-dim);
-  }
-  .hours-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-  }
+  .hours-today { font-size: 0.78rem; display: flex; align-items: center; gap: 6px; color: var(--text-dim); }
+  .hours-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
   .hours-dot.open { background: var(--green); box-shadow: 0 0 6px rgba(34,197,94,0.5); }
   .hours-dot.closed { background: var(--red); }
   .hours-dot.unknown { background: var(--text-dim); }
-
   .social-links { display: flex; gap: 10px; }
   .social-links a {
     color: var(--text-dim);
@@ -328,7 +407,7 @@
   }
   .social-links a:hover { color: var(--accent); }
 
-  /* LOADING / EMPTY */
+  /* STATUS / EMPTY */
   .status-message {
     grid-column: 1 / -1;
     text-align: center;
@@ -338,8 +417,7 @@
   .status-message .icon { font-size: 3rem; margin-bottom: 16px; }
   .status-message h3 { font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
   .spinner {
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     border: 3px solid var(--border);
     border-top-color: var(--accent);
     border-radius: 50%;
@@ -350,13 +428,13 @@
 
   /* MODAL */
   .modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 100;
+    z-index: 1000;
     padding: 24px;
   }
   .modal-backdrop.active { display: flex; }
@@ -364,12 +442,14 @@
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 32px;
-    max-width: 420px;
+    padding: 28px;
+    max-width: 480px;
     width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
   }
   .modal h2 { font-size: 1.3rem; margin-bottom: 8px; }
-  .modal p { color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem; }
+  .modal p { color: var(--text-muted); margin-bottom: 18px; font-size: 0.88rem; }
   .modal input {
     width: 100%;
     padding: 12px 16px;
@@ -383,9 +463,9 @@
     outline: none;
   }
   .modal input:focus { border-color: var(--accent); }
-  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
   .modal-actions button {
-    padding: 10px 18px;
+    padding: 10px 16px;
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 600;
@@ -396,10 +476,35 @@
     color: var(--text);
   }
   .modal-actions button.primary {
-    background: var(--accent);
-    color: #000;
-    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--accent3), #ec4899);
+    color: #fff;
+    border-color: transparent;
   }
+  .mood-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .mood-chip {
+    padding: 12px 8px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 0.82rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .mood-chip:hover { border-color: var(--accent); }
+  .mood-chip.selected {
+    background: rgba(168,85,247,0.15);
+    border-color: var(--accent3);
+    color: var(--text);
+  }
+  .mood-chip .emoji { font-size: 1.2rem; display: block; margin-bottom: 2px; }
 
   footer {
     text-align: center;
@@ -411,11 +516,13 @@
   footer a { color: var(--accent); text-decoration: none; }
 
   @media (max-width: 768px) {
-    .hero h1 { font-size: 2rem; }
+    .hero h1 { font-size: 1.9rem; }
     .grid { grid-template-columns: 1fr; }
-    .controls { flex-direction: column; }
+    .controls { flex-direction: column; align-items: stretch; }
     .search-box { min-width: 100%; }
+    .view-toggle { width: 100%; justify-content: space-around; }
     .stats-bar { flex-direction: column; gap: 8px; align-items: flex-start; }
+    #map { height: 70vh; }
   }
 </style>
 </head>
@@ -423,7 +530,7 @@
 
 <div class="hero">
   <h1>Brewery Guide</h1>
-  <p class="sub">Curated craft beer in Jacksonville · Local discovery anywhere else</p>
+  <p class="sub">Curated craft beer in Jacksonville · Local discovery anywhere</p>
 
   <div class="location-bar">
     <div class="location-pill" id="locationPill">
@@ -431,6 +538,7 @@
       <span class="loc-name" id="locName">Detecting your location...</span>
       <span class="loc-source" id="locSource" style="display:none"></span>
     </div>
+    <button class="loc-action-btn tonight" id="tonightBtn">✨ What's Good Tonight</button>
     <button class="loc-action-btn" id="useLocationBtn">Use My Location</button>
     <button class="loc-action-btn secondary" id="changeCityBtn">Change City</button>
   </div>
@@ -439,6 +547,10 @@
 <div class="controls">
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="Search by name, vibe, neighborhood..." />
+  </div>
+  <div class="view-toggle">
+    <button data-view="list" class="active">📋 List</button>
+    <button data-view="map">🗺️ Map</button>
   </div>
   <div class="filter-group" id="filterGroup">
     <button class="filter-btn active" data-filter="all">All</button>
@@ -461,6 +573,11 @@
   </div>
 </div>
 
+<div id="mapContainer">
+  <div id="map"></div>
+</div>
+
+<!-- City modal -->
 <div class="modal-backdrop" id="cityModal">
   <div class="modal">
     <h2>Search by city</h2>
@@ -473,9 +590,39 @@
   </div>
 </div>
 
+<!-- Tonight / Mood modal -->
+<div class="modal-backdrop" id="tonightModal">
+  <div class="modal">
+    <h2>What are you in the mood for?</h2>
+    <p>Pick a few. We'll rank breweries that are open right now and match your vibe.</p>
+    <div class="mood-grid" id="moodGrid">
+      <button class="mood-chip" data-mood="live_music"><span class="emoji">🎤</span>Live Music</button>
+      <button class="mood-chip" data-mood="trivia"><span class="emoji">🧠</span>Trivia</button>
+      <button class="mood-chip" data-mood="comedy"><span class="emoji">😂</span>Comedy</button>
+      <button class="mood-chip" data-mood="sports"><span class="emoji">📺</span>Watch Sports</button>
+      <button class="mood-chip" data-mood="food"><span class="emoji">🍽️</span>Good Food</button>
+      <button class="mood-chip" data-mood="pizza"><span class="emoji">🍕</span>Pizza</button>
+      <button class="mood-chip" data-mood="dog"><span class="emoji">🐕</span>Bring the Dog</button>
+      <button class="mood-chip" data-mood="family"><span class="emoji">👨‍👩‍👧</span>With Kids</button>
+      <button class="mood-chip" data-mood="date_night"><span class="emoji">💑</span>Date Night</button>
+      <button class="mood-chip" data-mood="outdoor"><span class="emoji">🌿</span>Outdoor</button>
+      <button class="mood-chip" data-mood="chill"><span class="emoji">🧘</span>Chill</button>
+      <button class="mood-chip" data-mood="lively"><span class="emoji">🔥</span>Lively</button>
+    </div>
+    <div class="modal-actions">
+      <button id="tonightCancel">Cancel</button>
+      <button class="primary" id="tonightSubmit">Find My Spot →</button>
+    </div>
+  </div>
+</div>
+
 <footer>
-  <p>Brewery Guide v2.0 — Powered by curated Jax data + <a href="https://www.openbrewerydb.org/" target="_blank">Open Brewery DB</a></p>
-  <p style="margin-top:4px">Built by Kendall Dale | <a href="/breweries.json" target="_blank">JSON</a> · <a href="/api/breweries" target="_blank">API</a></p>
+  <p>Brewery Guide v3.0 — Curated Jax data + <a href="https://www.openbrewerydb.org/" target="_blank">Open Brewery DB</a></p>
+  <p style="margin-top:4px">
+    Built by Kendall Dale ·
+    <a href="/breweries.json" target="_blank">JSON</a> ·
+    <a href="/api/breweries" target="_blank">API</a>
+  </p>
 </footer>
 
 <script>
@@ -487,8 +634,15 @@ let state = {
   source: 'curated',
   city: 'Jacksonville',
   userLoc: null,
-  loading: true
+  loading: true,
+  view: 'list',
+  recommendMode: false,
+  selectedMoods: new Set()
 };
+
+let mapInstance = null;
+let mapMarkers = [];
+let userMarker = null;
 
 // ----- helpers -----
 function isOpenNow(hours) {
@@ -513,30 +667,29 @@ function isOpenNow(hours) {
   const nowMin = now.getHours() * 60 + now.getMinutes();
   return nowMin >= openMin && nowMin < closeMin;
 }
-
 function hasFullKitchen(food) {
   if (!food) return false;
   const f = food.toLowerCase();
   return f.includes('full') || f.includes('kitchen') || f.includes('menu') || f.includes('pizza') || f.includes('burger');
 }
 
-function hoursToday(b) {
-  if (!b.hours || !b.hours[today]) return null;
-  return b.hours[today];
-}
-
 // ----- card rendering -----
-function renderCard(b) {
+function renderCard(b, rank) {
   const isCurated = b.source !== 'openbrewerydb';
   const open = isCurated ? isOpenNow(b.hours) : null;
   const hoursLabel = isCurated && b.hours[today] ? `${today}: ${b.hours[today]}` : 'Hours: see website';
-
   const dotClass = open === true ? 'open' : open === false ? 'closed' : 'unknown';
   const distStr = b.distance != null ? ` <span class="distance-tag">${b.distance} mi</span>` : '';
   const neighborhoodLabel = b.neighborhood ? b.neighborhood.split('/')[0].trim() : '';
+  const isRec = state.recommendMode && rank != null;
+
+  const whyHtml = isRec && b.why && b.why.length
+    ? `<div class="why-list">${b.why.map(w => `<div class="why-item">${w}</div>`).join('')}</div>`
+    : '';
 
   return `
-    <div class="card">
+    <div class="card ${isRec ? 'recommended' : ''}">
+      ${isRec ? `<div class="card-rank">${rank}</div>` : ''}
       <div class="card-header">
         <h2>
           ${b.website ? `<a href="${b.website}" target="_blank" rel="noopener">${b.name}</a>` : b.name}
@@ -545,6 +698,8 @@ function renderCard(b) {
         ${neighborhoodLabel ? `<span class="neighborhood-tag">${neighborhoodLabel}</span>` : ''}
       </div>
       <p class="card-desc">${b.known_for || 'Local brewery'}</p>
+      ${whyHtml}
+      ${isRec && b.untappd_url ? `<a class="tap-cta" href="${b.untappd_url}" target="_blank" rel="noopener">🍺 See What's On Tap →</a>` : ''}
       <div class="badges">
         ${b.dog_friendly === true ? '<span class="badge badge-dog">Dog Friendly</span>' : ''}
         ${b.kid_friendly === true ? '<span class="badge badge-kid">Kid Friendly</span>' : ''}
@@ -553,7 +708,7 @@ function renderCard(b) {
       <div class="card-details">
         ${b.address ? `<div class="detail-item"><span class="detail-icon">📍</span><span class="detail-value">${b.address}</span></div>` : ''}
         ${b.phone ? `<div class="detail-item"><span class="detail-icon">📞</span><span class="detail-value">${b.phone}</span></div>` : ''}
-        ${b.food ? `<div class="detail-item"><span class="detail-icon">🍽️</span><span class="detail-value">${b.food}</span></div>` : ''}
+        ${b.food && !isRec ? `<div class="detail-item"><span class="detail-icon">🍽️</span><span class="detail-value">${b.food}</span></div>` : ''}
       </div>
       <div class="card-footer">
         <div class="hours-today">
@@ -564,9 +719,79 @@ function renderCard(b) {
           ${b.social && b.social.instagram ? `<a href="${b.social.instagram}" target="_blank" rel="noopener" title="Instagram">📸</a>` : ''}
           ${b.social && b.social.facebook ? `<a href="${b.social.facebook}" target="_blank" rel="noopener" title="Facebook">📘</a>` : ''}
           ${b.website ? `<a href="${b.website}" target="_blank" rel="noopener" title="Website">🌐</a>` : ''}
+          ${b.untappd_url ? `<a href="${b.untappd_url}" target="_blank" rel="noopener" title="Live Tap List on Untappd">🍺</a>` : ''}
+          ${b.google_maps_url ? `<a href="${b.google_maps_url}" target="_blank" rel="noopener" title="Reviews & Photos on Google Maps">⭐</a>` : ''}
+          ${b.yelp_url ? `<a href="${b.yelp_url}" target="_blank" rel="noopener" title="Yelp Reviews">📝</a>` : ''}
+          ${b.latitude && b.longitude ? `<a href="https://www.google.com/maps/dir/?api=1&destination=${b.latitude},${b.longitude}" target="_blank" rel="noopener" title="Directions">🧭</a>` : ''}
         </div>
       </div>
     </div>`;
+}
+
+// ----- map rendering -----
+function ensureMap() {
+  if (mapInstance) return mapInstance;
+  mapInstance = L.map('map', { zoomControl: true });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap contributors © CARTO',
+    maxZoom: 19,
+    subdomains: 'abcd'
+  }).addTo(mapInstance);
+  return mapInstance;
+}
+
+function renderMap() {
+  const map = ensureMap();
+  // Clear old markers
+  mapMarkers.forEach(m => map.removeLayer(m));
+  mapMarkers = [];
+  if (userMarker) { map.removeLayer(userMarker); userMarker = null; }
+
+  const points = [];
+
+  // User marker
+  if (state.userLoc) {
+    const userIcon = L.divIcon({
+      className: '',
+      html: '<div class="user-marker"></div>',
+      iconSize: [16, 16],
+      iconAnchor: [8, 8]
+    });
+    userMarker = L.marker([state.userLoc.lat, state.userLoc.lng], { icon: userIcon })
+      .bindPopup('<b>You are here</b>')
+      .addTo(map);
+    points.push([state.userLoc.lat, state.userLoc.lng]);
+  }
+
+  // Brewery markers
+  state.breweries.forEach(b => {
+    if (!b.latitude || !b.longitude) return;
+    const popupHtml = `
+      <h4>${b.name}</h4>
+      <p>${b.neighborhood || ''}</p>
+      <p>${b.address || ''}</p>
+      ${b.distance != null ? `<p><strong>${b.distance} mi away</strong></p>` : ''}
+      <p>
+        ${b.website ? `<a href="${b.website}" target="_blank" rel="noopener">Website</a> · ` : ''}
+        ${b.untappd_url ? `<a href="${b.untappd_url}" target="_blank" rel="noopener">🍺 Taps</a> · ` : ''}
+        ${b.google_maps_url ? `<a href="${b.google_maps_url}" target="_blank" rel="noopener">⭐ Reviews</a> · ` : ''}
+        <a href="https://www.google.com/maps/dir/?api=1&destination=${b.latitude},${b.longitude}" target="_blank" rel="noopener">Directions</a>
+      </p>
+    `;
+    const marker = L.marker([b.latitude, b.longitude]).bindPopup(popupHtml).addTo(map);
+    mapMarkers.push(marker);
+    points.push([b.latitude, b.longitude]);
+  });
+
+  // Fit bounds
+  if (points.length > 1) {
+    map.fitBounds(points, { padding: [40, 40], maxZoom: 13 });
+  } else if (points.length === 1) {
+    map.setView(points[0], 12);
+  } else {
+    map.setView([30.33, -81.66], 11); // Default Jax
+  }
+  setTimeout(() => map.invalidateSize(), 100);
 }
 
 // ----- filtering & rendering -----
@@ -581,37 +806,50 @@ function renderAll() {
     return;
   }
 
-  const query = document.getElementById('searchInput').value.toLowerCase();
-  const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-
-  let filtered = state.breweries.filter(b => {
-    const searchStr = `${b.name} ${b.neighborhood || ''} ${b.known_for || ''} ${b.food || ''} ${b.events || ''} ${b.tap_highlights || ''} ${b.address || ''}`.toLowerCase();
-    if (query && !searchStr.includes(query)) return false;
-    if (activeFilter === 'dog' && b.dog_friendly !== true) return false;
-    if (activeFilter === 'kid' && b.kid_friendly !== true) return false;
-    if (activeFilter === 'food' && !hasFullKitchen(b.food)) return false;
-    if (activeFilter === 'open' && !isOpenNow(b.hours)) return false;
-    return true;
-  });
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div class="status-message">
-        <div class="icon">🍺</div>
-        <h3>No breweries match your search</h3>
-        <p>Try adjusting filters, switching cities, or search for something else.</p>
-      </div>`;
+  let filtered;
+  if (state.recommendMode) {
+    filtered = state.breweries; // already ranked + scored by API
   } else {
-    grid.innerHTML = filtered.map(renderCard).join('');
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+    filtered = state.breweries.filter(b => {
+      const searchStr = `${b.name} ${b.neighborhood || ''} ${b.known_for || ''} ${b.food || ''} ${b.events || ''} ${b.tap_highlights || ''} ${b.address || ''} ${(b.vibes || []).join(' ')}`.toLowerCase();
+      if (query && !searchStr.includes(query)) return false;
+      if (activeFilter === 'dog' && b.dog_friendly !== true) return false;
+      if (activeFilter === 'kid' && b.kid_friendly !== true) return false;
+      if (activeFilter === 'food' && !hasFullKitchen(b.food)) return false;
+      if (activeFilter === 'open' && !isOpenNow(b.hours)) return false;
+      return true;
+    });
+  }
+
+  if (state.view === 'map') {
+    document.getElementById('breweryGrid').classList.add('map-mode');
+    document.getElementById('mapContainer').classList.add('active');
+    state.breweries = filtered; // map renders from this
+    renderMap();
+  } else {
+    document.getElementById('breweryGrid').classList.remove('map-mode');
+    document.getElementById('mapContainer').classList.remove('active');
+    if (filtered.length === 0) {
+      grid.innerHTML = `
+        <div class="status-message">
+          <div class="icon">🍺</div>
+          <h3>No breweries match your search</h3>
+          <p>Try adjusting filters, switching cities, or relax the moods.</p>
+        </div>`;
+    } else {
+      grid.innerHTML = filtered.map((b, i) => renderCard(b, state.recommendMode ? i + 1 : null)).join('');
+    }
   }
 
   showingCount.textContent = filtered.length;
-  sourceLabel.textContent = state.source === 'curated'
-    ? '🌟 Curated dataset'
-    : '🌐 Powered by Open Brewery DB';
+  sourceLabel.textContent = state.recommendMode
+    ? `✨ Tonight's picks (${state.selectedMoods.size > 0 ? Array.from(state.selectedMoods).join(', ') : 'all moods'})`
+    : (state.source === 'curated' ? '🌟 Curated dataset' : '🌐 Open Brewery DB');
 }
 
-// ----- location handling -----
+// ----- location pill -----
 function updateLocationPill() {
   document.getElementById('locName').textContent = state.city;
   const sourceEl = document.getElementById('locSource');
@@ -620,8 +858,10 @@ function updateLocationPill() {
   sourceEl.style.display = '';
 }
 
+// ----- data loaders -----
 async function loadCurated() {
   state.loading = true;
+  state.recommendMode = false;
   renderAll();
   try {
     const res = await fetch('/breweries.json');
@@ -635,17 +875,13 @@ async function loadCurated() {
     renderAll();
   } catch (err) {
     state.loading = false;
-    document.getElementById('breweryGrid').innerHTML = `
-      <div class="status-message">
-        <div class="icon">⚠️</div>
-        <h3>Couldn't load brewery data</h3>
-        <p>${err.message}</p>
-      </div>`;
+    showError(err.message);
   }
 }
 
 async function loadNearby(lat, lng) {
   state.loading = true;
+  state.recommendMode = false;
   renderAll();
   try {
     const res = await fetch(`/api/breweries/nearby?lat=${lat}&lng=${lng}&radius=25`);
@@ -659,17 +895,13 @@ async function loadNearby(lat, lng) {
     renderAll();
   } catch (err) {
     state.loading = false;
-    document.getElementById('breweryGrid').innerHTML = `
-      <div class="status-message">
-        <div class="icon">⚠️</div>
-        <h3>Couldn't load nearby breweries</h3>
-        <p>${err.message}</p>
-      </div>`;
+    showError(err.message);
   }
 }
 
 async function loadByCity(city) {
   state.loading = true;
+  state.recommendMode = false;
   renderAll();
   try {
     const res = await fetch(`/api/breweries/by-city?city=${encodeURIComponent(city)}`);
@@ -683,13 +915,59 @@ async function loadByCity(city) {
     renderAll();
   } catch (err) {
     state.loading = false;
-    document.getElementById('breweryGrid').innerHTML = `
-      <div class="status-message">
-        <div class="icon">⚠️</div>
-        <h3>Couldn't find breweries in ${city}</h3>
-        <p>Try a different city.</p>
-      </div>`;
+    showError(err.message);
   }
+}
+
+async function loadRightNow() {
+  state.loading = true;
+  state.recommendMode = true;
+  renderAll();
+
+  // Need user location for ranking
+  let lat = state.userLoc?.lat;
+  let lng = state.userLoc?.lng;
+
+  if (lat == null && navigator.geolocation) {
+    try {
+      const pos = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 8000 });
+      });
+      lat = pos.coords.latitude;
+      lng = pos.coords.longitude;
+      state.userLoc = { lat, lng };
+    } catch {
+      // Fallback to Jax center
+      lat = 30.33; lng = -81.66;
+    }
+  } else if (lat == null) {
+    lat = 30.33; lng = -81.66;
+  }
+
+  const moods = Array.from(state.selectedMoods).join(',');
+  try {
+    const url = `/api/breweries/right-now?lat=${lat}&lng=${lng}&radius=30${moods ? `&moods=${moods}` : ''}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    state.breweries = data.breweries || [];
+    state.source = 'curated';
+    state.city = `Tonight near you · ${data.day}`;
+    state.loading = false;
+    updateLocationPill();
+    renderAll();
+  } catch (err) {
+    state.loading = false;
+    showError(err.message);
+  }
+}
+
+function showError(msg) {
+  document.getElementById('breweryGrid').innerHTML = `
+    <div class="status-message">
+      <div class="icon">⚠️</div>
+      <h3>Something went wrong</h3>
+      <p>${msg}</p>
+    </div>`;
 }
 
 function requestGeolocation() {
@@ -712,6 +990,7 @@ function requestGeolocation() {
 
 // ----- event wiring -----
 document.getElementById('useLocationBtn').addEventListener('click', requestGeolocation);
+
 document.getElementById('changeCityBtn').addEventListener('click', () => {
   document.getElementById('cityModal').classList.add('active');
   document.getElementById('cityInput').focus();
@@ -729,16 +1008,51 @@ document.getElementById('citySubmit').addEventListener('click', () => {
 document.getElementById('cityInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') document.getElementById('citySubmit').click();
 });
+
+document.getElementById('tonightBtn').addEventListener('click', () => {
+  document.getElementById('tonightModal').classList.add('active');
+});
+document.getElementById('tonightCancel').addEventListener('click', () => {
+  document.getElementById('tonightModal').classList.remove('active');
+});
+document.getElementById('tonightSubmit').addEventListener('click', () => {
+  document.getElementById('tonightModal').classList.remove('active');
+  loadRightNow();
+});
+document.querySelectorAll('.mood-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const m = chip.dataset.mood;
+    if (state.selectedMoods.has(m)) {
+      state.selectedMoods.delete(m);
+      chip.classList.remove('selected');
+    } else {
+      state.selectedMoods.add(m);
+      chip.classList.add('selected');
+    }
+  });
+});
+
 document.getElementById('searchInput').addEventListener('input', renderAll);
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    state.recommendMode = false;
     renderAll();
   });
 });
 
-// ----- init: try geolocation immediately -----
+// View toggle
+document.querySelectorAll('.view-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.view-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.view = btn.dataset.view;
+    renderAll();
+  });
+});
+
+// ----- init -----
 requestGeolocation();
 </script>
 </body>
