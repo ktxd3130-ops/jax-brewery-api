@@ -1,26 +1,55 @@
-# JAX Brewery Guide
+# Brewery Guide
 
-Phase 1 of the **Jax Brewery API** — a curated dataset of every craft brewery in the greater Jacksonville, FL area.
+A geolocation-aware craft brewery discovery app.
 
-## What's here
+- **In Jacksonville?** → curated dataset with neighborhood, vibes, dog/kid friendly, events, tap highlights
+- **Anywhere else?** → falls back to [Open Brewery DB](https://www.openbrewerydb.org/) for global coverage
 
-- `index.html` — Browsable HTML dashboard (search, filter, "open now" indicator)
-- `breweries.json` — Structured dataset (31 breweries across 15 neighborhoods)
-- `vercel.json` — Static site config + CORS for the JSON endpoint
+## Live
 
-## Coverage
+- Site: https://jax-brewery-guide.vercel.app
+- API: https://jax-brewery-guide.vercel.app/api/breweries
+- JSON dataset: https://jax-brewery-guide.vercel.app/breweries.json
 
-Downtown · Riverside · San Marco · Springfield · Murray Hill · Mandarin · Southside · Jacksonville Beach · Atlantic Beach · Fernandina Beach / Amelia Island · St. Augustine
+## API
 
-## Refresh cadence
+| Endpoint | Description |
+|---|---|
+| `GET /api/breweries` | Full curated Jax dataset. Filters: `?neighborhood=`, `?dog_friendly=true`, `?kid_friendly=true`, `?search=` |
+| `GET /api/breweries/[id]` | Single curated brewery |
+| `GET /api/breweries/nearby?lat=X&lng=Y&radius=25` | Breweries within radius. Returns curated data near Jax, Open Brewery DB elsewhere |
+| `GET /api/breweries/by-city?city=Atlanta` | Breweries in a city (Open Brewery DB) |
 
-Updated weekly (every Monday). Closed breweries are excluded.
+CORS is open on all endpoints.
+
+## Project structure
+
+```
+├── index.html              # Geolocation-aware dashboard
+├── breweries.json          # Curated Jax dataset (31 breweries)
+├── api/
+│   ├── breweries.js              # GET /api/breweries
+│   └── breweries/
+│       ├── [id].js               # GET /api/breweries/:id
+│       ├── nearby.js             # GET /api/breweries/nearby
+│       └── by-city.js            # GET /api/breweries/by-city
+├── lib/
+│   └── util.js             # Distance, normalization, CORS
+├── vercel.json
+├── package.json
+└── README.md
+```
 
 ## Roadmap
 
-- **Phase 1** ✅ Static dashboard + JSON dataset
-- **Phase 2** API endpoints (`/api/breweries`, `/api/breweries/:id`, filters)
-- **Phase 3** Real-time hours + event scraping
-- **Phase 4** User submissions + check-ins
+- **Phase 1** ✅ Static dashboard + curated JSON
+- **Phase 2** ✅ API endpoints + geolocation + global fallback
+- **Phase 3** Real-time hours scraping, event aggregation
+- **Phase 4** User submissions, check-ins, ratings, photos
+- **Phase 5** Native iOS/Android wrapper
+
+## Refresh
+
+Curated data refreshes weekly (Mondays). Just regenerate `breweries.json`, commit, and push — Vercel auto-deploys.
 
 Built by Kendall Dale.
