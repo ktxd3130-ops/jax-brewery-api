@@ -49,8 +49,13 @@ module.exports = async (req, res) => {
       return res.status(200).json({ brewery_id: id, provider: "google", reviews: [], photos: [], note: "Place not found" });
     }
 
-    // 2) Place Details (reviews + photo refs + rating)
-    const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=rating,user_ratings_total,reviews,photos&key=${apiKey}`;
+    // 2) Place Details — pull rating, reviews, photos, hours, status, price level
+    const fields = [
+      "rating", "user_ratings_total", "reviews", "photos",
+      "current_opening_hours", "business_status", "price_level",
+      "url", "formatted_phone_number"
+    ].join(",");
+    const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=${fields}&key=${apiKey}`;
     const detailsRes = await fetch(detailsUrl);
     const detailsData = await detailsRes.json();
     const result = detailsData.result || {};
@@ -75,7 +80,13 @@ module.exports = async (req, res) => {
       rating: result.rating,
       review_count: result.user_ratings_total,
       reviews,
-      photos
+      photos,
+      business_status: result.business_status || null,           // OPERATIONAL, CLOSED_TEMPORARILY, CLOSED_PERMANENTLY
+      price_level: result.price_level ?? null,                   // 0..4
+      open_now: result.current_opening_hours?.open_now ?? null,
+      hours_today: result.current_opening_hours?.weekday_text || null,
+      google_url: result.url || null,
+      phone: result.formatted_phone_number || null
     };
 
     cache.set(id, { ts: Date.now(), data: payload });

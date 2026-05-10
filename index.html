@@ -830,6 +830,188 @@
     .stats-bar { flex-direction: column; gap: 8px; align-items: flex-start; }
     #map { height: 70vh; }
   }
+
+  /* ===== PINT GLASS SCRAPE OVERLAY ===== */
+  .scrape-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at top, #1a1d27 0%, #0a0c12 80%);
+    z-index: 4000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 24px;
+  }
+  .scrape-overlay.active { display: flex; }
+  .scrape-overlay h2 {
+    font-size: 1.4rem;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+  .scrape-overlay .scrape-city-name {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .scrape-overlay p.scrape-status {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+    min-height: 1.4em;
+    text-align: center;
+    max-width: 480px;
+  }
+  .scrape-stats {
+    display: flex;
+    gap: 24px;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    margin-top: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .scrape-stats .stat strong {
+    color: var(--accent);
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .scrape-cancel {
+    margin-top: 28px;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+  }
+  .scrape-cancel:hover { color: var(--text); border-color: var(--text-muted); }
+
+  /* The pint glass — 220×320 SVG-styled with CSS clip-path for the beer fill */
+  .pint-glass {
+    position: relative;
+    width: 220px;
+    height: 320px;
+    margin-bottom: 24px;
+  }
+  .pint-glass-svg { width: 100%; height: 100%; overflow: visible; }
+  .pint-glass-outline {
+    fill: none;
+    stroke: rgba(255,255,255,0.85);
+    stroke-width: 4;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 12px rgba(245,158,11,0.18));
+  }
+  .pint-glass-glare {
+    fill: rgba(255,255,255,0.07);
+  }
+  /* The amber fill — clip-path top edge animates with --fill */
+  .pint-glass-beer {
+    fill: url(#beerGradient);
+    clip-path: inset(calc((100% - var(--fill, 0%)) - 0%) 0 0 0);
+    transition: clip-path 0.5s cubic-bezier(.4,1.6,.6,1);
+  }
+  /* Foam — shows once fill is at least 20% */
+  .pint-glass-foam {
+    fill: #fdfaf0;
+    transform-origin: 50% 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.5s ease;
+  }
+  .pint-glass[data-fill-active="1"] .pint-glass-foam { opacity: 1; }
+  /* Bubbles */
+  .pint-bubble {
+    fill: rgba(255,255,255,0.55);
+    opacity: 0;
+    animation: bubbleRise 2.4s ease-in infinite;
+  }
+  .pint-glass[data-fill-active="1"] .pint-bubble { opacity: 1; }
+  .pint-bubble.b1 { animation-delay: 0s; }
+  .pint-bubble.b2 { animation-delay: 0.4s; }
+  .pint-bubble.b3 { animation-delay: 0.9s; }
+  .pint-bubble.b4 { animation-delay: 1.3s; }
+  .pint-bubble.b5 { animation-delay: 1.7s; }
+  @keyframes bubbleRise {
+    0%   { transform: translateY(0)     scale(0.6); opacity: 0; }
+    20%  { opacity: 0.9; }
+    80%  { opacity: 0.5; }
+    100% { transform: translateY(-180px) scale(1.2); opacity: 0; }
+  }
+  .pint-pct {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6), 0 0 20px rgba(245,158,11,0.5);
+    pointer-events: none;
+  }
+
+  /* Weather pill (added to drawer / right-now banner) */
+  .weather-banner {
+    max-width: 1400px;
+    margin: 12px auto 0;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(245,158,11,0.10));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--text);
+    font-size: 0.92rem;
+  }
+  .weather-banner.hidden { display: none; }
+  .weather-banner .wb-emoji { font-size: 1.6rem; line-height: 1; }
+  .weather-banner .wb-pitch { color: var(--text-muted); font-size: 0.85rem; }
+
+  /* Tap list (inside drawer) */
+  .tap-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .tap-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    align-items: center;
+  }
+  .tap-row .tap-name { font-weight: 600; color: var(--text); }
+  .tap-row .tap-style {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .tap-row .tap-abv {
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tap-row .tap-rating {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .tap-disclaimer {
+    margin-top: 10px;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
 </style>
 </head>
 <body>
@@ -845,8 +1027,17 @@
       <span class="loc-source" id="locSource" style="display:none"></span>
     </div>
     <button class="loc-action-btn tonight" id="tonightBtn">✨ What sounds good tonight?</button>
+    <button class="loc-action-btn tonight" id="weatherBtn" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">🌤️ Weather Pick</button>
     <button class="loc-action-btn" id="useLocationBtn">Use My Location</button>
     <button class="loc-action-btn secondary" id="changeCityBtn">Change City</button>
+  </div>
+</div>
+
+<div class="weather-banner hidden" id="weatherBanner">
+  <span class="wb-emoji" id="wbEmoji">🌤️</span>
+  <div>
+    <div id="wbHeadline"></div>
+    <div class="wb-pitch" id="wbPitch"></div>
   </div>
 </div>
 
@@ -931,6 +1122,58 @@
       <button class="primary" id="tonightSubmit">Pour Me a Pint →</button>
     </div>
   </div>
+</div>
+
+<!-- Pint glass scraping overlay -->
+<div class="scrape-overlay" id="scrapeOverlay">
+  <h2>Pouring breweries from <span class="scrape-city-name" id="scrapeCityName">…</span></h2>
+  <p class="scrape-status" id="scrapeStatus">Warming up the kegs…</p>
+
+  <div class="pint-glass" id="pintGlass" style="--fill: 0%">
+    <svg class="pint-glass-svg" viewBox="0 0 220 320" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="beerGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#fbbf24"/>
+          <stop offset="50%" stop-color="#f59e0b"/>
+          <stop offset="100%" stop-color="#b45309"/>
+        </linearGradient>
+        <clipPath id="pintShape">
+          <!-- Classic pint shape: wider at top, narrower at base -->
+          <path d="M 40 30 L 180 30 L 165 290 Q 165 300 155 300 L 65 300 Q 55 300 55 290 Z"/>
+        </clipPath>
+      </defs>
+
+      <!-- Beer fill (clipped to glass interior) -->
+      <g clip-path="url(#pintShape)">
+        <rect class="pint-glass-beer" x="0" y="0" width="220" height="320"/>
+        <!-- Bubbles -->
+        <circle class="pint-bubble b1" cx="80"  cy="290" r="3"/>
+        <circle class="pint-bubble b2" cx="120" cy="290" r="2"/>
+        <circle class="pint-bubble b3" cx="100" cy="290" r="4"/>
+        <circle class="pint-bubble b4" cx="140" cy="290" r="2.5"/>
+        <circle class="pint-bubble b5" cx="90"  cy="290" r="2"/>
+      </g>
+
+      <!-- Foam (rests on top of the beer fill, inside the clip) -->
+      <g clip-path="url(#pintShape)">
+        <ellipse class="pint-glass-foam" id="foamEllipse" cx="110" cy="32" rx="80" ry="14" style="display:none"/>
+        <ellipse class="pint-glass-foam" id="foamEllipse2" cx="80"  cy="38" rx="22" ry="8"  style="display:none"/>
+        <ellipse class="pint-glass-foam" id="foamEllipse3" cx="135" cy="34" rx="28" ry="9"  style="display:none"/>
+      </g>
+
+      <!-- Glass outline + glare -->
+      <path class="pint-glass-outline" d="M 40 30 L 180 30 L 165 290 Q 165 300 155 300 L 65 300 Q 55 300 55 290 Z"/>
+      <path class="pint-glass-glare" d="M 55 40 L 65 40 L 80 280 L 70 280 Z"/>
+    </svg>
+    <div class="pint-pct" id="pintPct">0%</div>
+  </div>
+
+  <div class="scrape-stats">
+    <div class="stat"><strong id="statDiscovered">0</strong>discovered</div>
+    <div class="stat"><strong id="statEnriched">0</strong>enriched</div>
+    <div class="stat"><strong id="statElapsed">0s</strong>elapsed</div>
+  </div>
+  <button class="scrape-cancel" id="scrapeCancel">Cancel</button>
 </div>
 
 <!-- Brewery Detail Drawer -->
@@ -1241,6 +1484,7 @@ async function loadNearby(lat, lng) {
 async function loadByCity(city) {
   state.loading = true;
   state.recommendMode = false;
+  hideWeatherBanner();
   renderAll();
   try {
     const res = await fetch(`/api/breweries/by-city?city=${encodeURIComponent(city)}`);
@@ -1252,6 +1496,222 @@ async function loadByCity(city) {
     state.loading = false;
     updateLocationPill();
     renderAll();
+  } catch (err) {
+    state.loading = false;
+    showError(err.message);
+  }
+}
+
+// ===== Multi-city scraper with pint-glass animation =====
+let scrapeAbort = null;
+
+function setPintFill(pct) {
+  const clamped = Math.max(0, Math.min(100, pct));
+  const glass = document.getElementById('pintGlass');
+  glass.style.setProperty('--fill', clamped + '%');
+  glass.dataset.fillActive = clamped >= 5 ? '1' : '0';
+  document.getElementById('pintPct').textContent = Math.round(clamped) + '%';
+
+  // Show foam once we're 20%+ full. Position foam at the beer surface.
+  const foam = document.getElementById('foamEllipse');
+  const foam2 = document.getElementById('foamEllipse2');
+  const foam3 = document.getElementById('foamEllipse3');
+  if (clamped >= 20) {
+    // Convert fill % into a Y coordinate inside the SVG (glass inner top=30, bottom=300, so range=270).
+    const y = 30 + (270 * (1 - clamped / 100));
+    [foam, foam2, foam3].forEach(el => { el.style.display = ''; });
+    foam.setAttribute('cy', y - 2);
+    foam2.setAttribute('cy', y - 8);
+    foam3.setAttribute('cy', y - 6);
+  } else {
+    [foam, foam2, foam3].forEach(el => { el.style.display = 'none'; });
+  }
+}
+
+function showScrapeOverlay(city) {
+  document.getElementById('scrapeCityName').textContent = city;
+  document.getElementById('scrapeStatus').textContent = 'Warming up the kegs…';
+  document.getElementById('statDiscovered').textContent = '0';
+  document.getElementById('statEnriched').textContent = '0';
+  document.getElementById('statElapsed').textContent = '0s';
+  setPintFill(0);
+  document.getElementById('scrapeOverlay').classList.add('active');
+}
+function hideScrapeOverlay() {
+  document.getElementById('scrapeOverlay').classList.remove('active');
+}
+
+async function loadByCityScrape(city, max = 15) {
+  // For non-Jax-area cities, run the live scraper with progress streaming.
+  // Falls back to plain JSON if SSE fails.
+  showScrapeOverlay(city);
+  const startTs = Date.now();
+  const elapsedTimer = setInterval(() => {
+    const s = Math.round((Date.now() - startTs) / 1000);
+    document.getElementById('statElapsed').textContent = s + 's';
+  }, 250);
+
+  scrapeAbort = new AbortController();
+
+  try {
+    // Use fetch + ReadableStream to consume SSE (EventSource doesn't support custom errors well).
+    const res = await fetch(`/api/scrape/city?city=${encodeURIComponent(city)}&max=${max}&stream=1`, {
+      signal: scrapeAbort.signal,
+      headers: { 'Accept': 'text/event-stream' }
+    });
+    if (!res.ok || !res.body) throw new Error('Scrape stream unavailable');
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+    let finalData = null;
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+
+      // Parse SSE events (separated by blank line)
+      let idx;
+      while ((idx = buffer.indexOf('\n\n')) >= 0) {
+        const block = buffer.slice(0, idx);
+        buffer = buffer.slice(idx + 2);
+        const evMatch = block.match(/^event:\s*(.+)$/m);
+        const dataMatch = block.match(/^data:\s*(.+)$/m);
+        if (!dataMatch) continue;
+        const event = evMatch ? evMatch[1].trim() : 'message';
+        let payload; try { payload = JSON.parse(dataMatch[1]); } catch { continue; }
+
+        if (event === 'progress') {
+          if (payload.current != null) setPintFill(payload.current);
+          if (payload.message) document.getElementById('scrapeStatus').textContent = payload.message;
+          if (payload.discovered_count != null) {
+            document.getElementById('statDiscovered').textContent = payload.discovered_count;
+          }
+          if (payload.enriched_count != null) {
+            document.getElementById('statEnriched').textContent = payload.enriched_count;
+          }
+        } else if (event === 'complete') {
+          finalData = payload;
+          setPintFill(100);
+          document.getElementById('scrapeStatus').textContent = `Done — ${payload.count} breweries from ${payload.city}`;
+        } else if (event === 'error') {
+          throw new Error(payload.message || 'Scrape failed');
+        }
+      }
+    }
+
+    if (!finalData) throw new Error('Scrape ended with no data');
+
+    // Brief pause so the user sees the full glass before swap-in
+    await new Promise(r => setTimeout(r, 700));
+    hideScrapeOverlay();
+
+    // Map scraped schema → render schema (the renderer expects fields like hours, food, vibes…)
+    state.breweries = finalData.breweries.map(b => ({
+      id: `scraped-${b.source_id || b.name}`,
+      name: b.name,
+      neighborhood: b.city || city,
+      address: b.address,
+      phone: b.phone || '',
+      website: b.website || '',
+      social: b.social || { instagram: '', facebook: '' },
+      hours: {},
+      known_for: b.known_for || (b.type ? `${b.type[0].toUpperCase()}${b.type.slice(1)} brewery` : 'Local brewery'),
+      food: (b.food_tags || []).join(', ') || 'Visit website for menu',
+      tap_highlights: b.tap_highlights || (b.taps && b.taps.length
+        ? b.taps.slice(0, 3).map(t => t.name).join(' · ')
+        : 'See current tap list at the brewery'),
+      latitude: b.latitude,
+      longitude: b.longitude,
+      vibes: b.vibes || [],
+      food_tags: b.food_tags || [],
+      untappd_url: b.untappd_url,
+      google_maps_url: b.google_maps_url,
+      yelp_url: b.yelp_url,
+      taps: b.taps || [],
+      source: 'scraped',
+      _scraped_raw: b
+    }));
+    state.source = 'scraped';
+    state.city = `${city} (live scrape)`;
+    state.userLoc = null;
+    state.loading = false;
+    state.recommendMode = false;
+    updateLocationPill();
+    renderAll();
+  } catch (err) {
+    if (err.name !== 'AbortError') {
+      document.getElementById('scrapeStatus').textContent = `✗ ${err.message}`;
+      setTimeout(() => hideScrapeOverlay(), 1800);
+      state.loading = false;
+      showError(err.message);
+    } else {
+      hideScrapeOverlay();
+      state.loading = false;
+    }
+  } finally {
+    clearInterval(elapsedTimer);
+    scrapeAbort = null;
+  }
+}
+
+document.getElementById('scrapeCancel').addEventListener('click', () => {
+  if (scrapeAbort) scrapeAbort.abort();
+  hideScrapeOverlay();
+});
+
+// ===== Weather-aware Pick =====
+function showWeatherBanner(weather, plan) {
+  const banner = document.getElementById('weatherBanner');
+  if (!weather) {
+    banner.classList.add('hidden');
+    return;
+  }
+  document.getElementById('wbEmoji').textContent = plan.emoji || '🌤️';
+  document.getElementById('wbHeadline').innerHTML =
+    `<strong>${weather.temp}°F · ${weather.description}</strong> in ${weather.city || 'your area'}`;
+  document.getElementById('wbPitch').textContent = plan.pitch || '';
+  banner.classList.remove('hidden');
+}
+function hideWeatherBanner() {
+  document.getElementById('weatherBanner').classList.add('hidden');
+}
+
+async function loadWeatherPick() {
+  state.loading = true;
+  state.recommendMode = true;
+  renderAll();
+
+  let lat = state.userLoc?.lat;
+  let lng = state.userLoc?.lng;
+  if (lat == null && navigator.geolocation) {
+    try {
+      const pos = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 8000 });
+      });
+      lat = pos.coords.latitude; lng = pos.coords.longitude;
+      state.userLoc = { lat, lng };
+    } catch {
+      lat = 30.33; lng = -81.66;
+    }
+  } else if (lat == null) {
+    lat = 30.33; lng = -81.66;
+  }
+
+  try {
+    const res = await fetch(`/api/breweries/weather-pick?lat=${lat}&lng=${lng}&radius=30`);
+    const data = await res.json();
+    state.breweries = data.breweries || [];
+    state.source = 'curated';
+    state.city = `Weather pick · ${data.weather?.temp != null ? data.weather.temp + '°F' : 'no key'}`;
+    state.loading = false;
+    updateLocationPill();
+    showWeatherBanner(data.weather, data.plan);
+    renderAll();
+    if (!data.weather) {
+      console.warn('Weather pick:', data.weather_error);
+    }
   } catch (err) {
     state.loading = false;
     showError(err.message);
@@ -1337,13 +1797,27 @@ document.getElementById('changeCityBtn').addEventListener('click', () => {
 document.getElementById('cityCancel').addEventListener('click', () => {
   document.getElementById('cityModal').classList.remove('active');
 });
+// Cities the curated dataset already covers — for these we use /api/breweries/by-city
+// which serves the rich JSON. For everything else, kick off the live scraper with the
+// pint-glass animation.
+const CURATED_CITIES = ['jacksonville','jacksonville beach','atlantic beach','neptune beach','fernandina','amelia island','st. augustine','st augustine','saint augustine'];
+
 document.getElementById('citySubmit').addEventListener('click', () => {
   const city = document.getElementById('cityInput').value.trim();
   if (!city) return;
   document.getElementById('cityModal').classList.remove('active');
   document.getElementById('cityInput').value = '';
-  loadByCity(city);
+
+  const cityLower = city.toLowerCase();
+  const isCurated = CURATED_CITIES.some(c => cityLower.includes(c));
+  if (isCurated) {
+    loadByCity(city);
+  } else {
+    loadByCityScrape(city, 15);
+  }
 });
+
+document.getElementById('weatherBtn').addEventListener('click', loadWeatherPick);
 document.getElementById('cityInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') document.getElementById('citySubmit').click();
 });
@@ -1499,13 +1973,16 @@ async function openDrawer(b) {
       </div>
 
       <div class="drawer-section">
-        <h3>🍺 What to Drink</h3>
+        <h3>🍺 What's Pouring</h3>
         ${b.tap_highlights ? `
           <div class="tap-list-card">
             <div class="tap-text">${b.tap_highlights}</div>
-          </div>` : '<div class="empty-section">Tap highlights not available</div>'}
+          </div>` : ''}
+        <div id="liveTapList">
+          <div class="empty-section" style="margin-top:10px">Loading live tap list…</div>
+        </div>
         <p style="margin-top:8px; font-size:0.82rem;">
-          Live tap list updates: <a href="${b.untappd_url || '#'}" target="_blank" style="color: var(--accent)">Untappd →</a>
+          See more on <a href="${b.untappd_url || '#'}" target="_blank" style="color: var(--accent)">Untappd →</a>
         </p>
       </div>
 
@@ -1579,7 +2056,7 @@ async function openDrawer(b) {
   }
 
   // Lazy-load reviews + photos via /api/breweries/details (only for curated breweries with numeric id)
-  if (b.source !== 'openbrewerydb' && typeof b.id === 'number') {
+  if (b.source !== 'openbrewerydb' && b.source !== 'scraped' && typeof b.id === 'number') {
     try {
       const res = await fetch(`/api/breweries/details?id=${b.id}`);
       const data = await res.json();
@@ -1590,6 +2067,55 @@ async function openDrawer(b) {
     }
   } else {
     renderReviews({ provider: 'unsupported' }, b);
+  }
+
+  // Lazy-load live tap list. For curated breweries the API can scrape Untappd → website
+  // fallback. For scraped breweries we already have b.taps inline from the scrape result.
+  loadLiveTapList(b);
+}
+
+function renderTapList(beers, disclaimer) {
+  if (!beers || !beers.length) {
+    return `<div class="empty-section">No live tap data found — check the brewery's Untappd or website</div>`;
+  }
+  const rows = beers.slice(0, 12).map(t => `
+    <div class="tap-row">
+      <div>
+        <div class="tap-name">${t.name}</div>
+        ${t.style ? `<div class="tap-style">${t.style}${t.description ? ' · ' + t.description : ''}</div>` : ''}
+      </div>
+      ${t.abv != null ? `<div class="tap-abv">${t.abv}% ABV</div>` : '<div></div>'}
+      ${t.rating != null ? `<div class="tap-rating">⭐ ${t.rating.toFixed(2)}</div>` : '<div></div>'}
+    </div>`).join('');
+  return `<div class="tap-list">${rows}</div>${disclaimer ? `<div class="tap-disclaimer">${disclaimer}</div>` : ''}`;
+}
+
+async function loadLiveTapList(b) {
+  const el = document.getElementById('liveTapList');
+  if (!el) return;
+
+  // Scraped breweries already have inline taps from the scrape pipeline
+  if (b.source === 'scraped' && Array.isArray(b.taps)) {
+    el.innerHTML = renderTapList(b.taps, 'Parsed from this brewery\'s website during the city scrape.');
+    return;
+  }
+
+  // Curated breweries → call /api/breweries/taps which scrapes Untappd then website
+  if (typeof b.id !== 'number') {
+    el.innerHTML = `<div class="empty-section">Live tap list unavailable for this listing</div>`;
+    return;
+  }
+
+  try {
+    const res = await fetch(`/api/breweries/taps?id=${b.id}`);
+    const data = await res.json();
+    if (data.beers && data.beers.length) {
+      el.innerHTML = renderTapList(data.beers, data.disclaimer);
+    } else {
+      el.innerHTML = `<div class="empty-section">${data.disclaimer || 'No live tap data right now'}</div>`;
+    }
+  } catch {
+    el.innerHTML = `<div class="empty-section">Tap scrape unavailable</div>`;
   }
 }
 

@@ -1,0 +1,493 @@
+{
+  "city": "Tampa",
+  "scraped_at": "2026-05-10T16:46:31.114Z",
+  "count": 15,
+  "sources_used": {
+    "open_brewery_db": 17,
+    "google_places": 0
+  },
+  "breweries": [
+    {
+      "source_id": "4679ff59-8ef6-4443-b6ec-f58232c6b7d7",
+      "source": "openbrewerydb",
+      "name": "7venth Sun Tampa",
+      "type": "micro",
+      "address": "6809 N Nebraska Ave, Tampa, Florida, 33604-5660",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8132315900",
+      "website": "",
+      "latitude": 27.9495902,
+      "longitude": -82.4500207,
+      "untappd_url": "https://untappd.com/search?q=7venth%20Sun%20Tampa%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=7venth%20Sun%20Tampa%206809%20N%20Nebraska%20Ave%2C%20Tampa%2C%20Florida%2C%2033604-5660",
+      "yelp_url": "https://www.yelp.com/search?find_desc=7venth%20Sun%20Tampa&find_loc=6809%20N%20Nebraska%20Ave%2C%20Tampa%2C%20Florida%2C%2033604-5660"
+    },
+    {
+      "source_id": "783c5daa-ea5c-4462-836e-c2846ad3ff4e",
+      "source": "openbrewerydb",
+      "name": "81Bay Brewing Company",
+      "type": "micro",
+      "address": "4465 W Gandy Blvd Ste 600, Tampa, Florida, 33611-3379",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8133722739",
+      "website": "http://81baybrewco.com",
+      "latitude": null,
+      "longitude": null,
+      "social": {
+        "instagram": "https://www.instagram.com/81BayBrewingCo",
+        "facebook": "https://www.facebook.com/81BayBrewingCo",
+        "twitter": "",
+        "tiktok": ""
+      },
+      "food_tags": [],
+      "vibes": [],
+      "known_for": "81Bay Brewing Company is South Tampa",
+      "taps_url": "https://www.81baybrewco.com/beer",
+      "taps": [
+        {
+          "name": "LIGHTNING LAGER ABV:4.2%",
+          "style": "",
+          "abv": 4.2,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "American Light Lager. Light bodied, refreshing and flavorful.",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "THE SUN VIKING IPA ABV:6.3%",
+          "style": "",
+          "abv": 6.3,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "American IPA. Unfiltered. Azacca hops and dry hopped with Idaho 7.",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "REEL SLO IRISH RED ABV:5.5%",
+          "style": "",
+          "abv": 5.5,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "Traditional Irish Red Ale. Slightly malty and roasty with soft sweetness.",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "JOJO BEAN COFFEE PORTER ABV: 6.0%",
+          "style": "",
+          "abv": 6,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "Full",
+          "style": "bodied Porter brewed with Ginger Beard Coffee Espresso Roast.",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        }
+      ],
+      "tap_highlights": "LIGHTNING LAGER ABV:4.2% · American Light Lager. Light bodied, refreshing and flavorful. · THE SUN VIKING IPA ABV:6.3% · American IPA. Unfiltered. Azacca hops and dry hopped with Idaho 7.",
+      "untappd_url": "https://untappd.com/search?q=81Bay%20Brewing%20Company%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=81Bay%20Brewing%20Company%204465%20W%20Gandy%20Blvd%20Ste%20600%2C%20Tampa%2C%20Florida%2C%2033611-3379",
+      "yelp_url": "https://www.yelp.com/search?find_desc=81Bay%20Brewing%20Company&find_loc=4465%20W%20Gandy%20Blvd%20Ste%20600%2C%20Tampa%2C%20Florida%2C%2033611-3379"
+    },
+    {
+      "source_id": "d4e376b6-3aad-46ae-ae8d-471791ae03f8",
+      "source": "openbrewerydb",
+      "name": "Angry Chair Brewing, LLC.",
+      "type": "micro",
+      "address": "6401 N Florida Ave, Tampa, Florida, 33604-6007",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8138921651",
+      "website": "http://www.angrychairbrewing.com",
+      "latitude": 28.005127,
+      "longitude": -82.459381,
+      "social": {
+        "instagram": "https://www.instagram.com/angrychairbrewing",
+        "facebook": "https://www.facebook.com/AngryChairBrewing",
+        "twitter": "",
+        "tiktok": ""
+      },
+      "food_tags": [],
+      "vibes": [],
+      "known_for": "With beer, you’re always learning, experimenting, and tweaking something. We consider our beers forward thinking, and we don’t always brew to style. Somehow we won a gold medal for our pilsner though, so we can follow the rules if we want t",
+      "taps_url": "https://angrychairbrewing.com/beers/",
+      "taps": [
+        {
+          "name": "2nd Anniversary Stout Imperial Sweet Stout",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "3 Little Birds Berliner Weisse",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "4 Bars of Bitterness American Pale Ale",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "5 Lives Gose Gose",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "Adjunct Trail Imperial Sweet Stout",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "Arawn Imperial Sweet Stout",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "B.A. Sincerely Sorry Imperial Sweet Stout",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "BA Lunar Lycan Imperial Sweet Stout",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "Barrel Aged Fionn Imperial Porter",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "Barrel Aged Imperial Awakening Imperial Milk Stout",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "Barrel Aged Imperial German Chocolate Cupcake Stout Imperial Sweet Stout",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "Black Birdz Berliner Weisse",
+          "style": "",
+          "abv": null,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        }
+      ],
+      "tap_highlights": "2nd Anniversary Stout Imperial Sweet Stout · 3 Little Birds Berliner Weisse · 4 Bars of Bitterness American Pale Ale · 5 Lives Gose Gose",
+      "untappd_url": "https://untappd.com/search?q=Angry%20Chair%20Brewing%2C%20LLC.%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Angry%20Chair%20Brewing%2C%20LLC.%206401%20N%20Florida%20Ave%2C%20Tampa%2C%20Florida%2C%2033604-6007",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Angry%20Chair%20Brewing%2C%20LLC.&find_loc=6401%20N%20Florida%20Ave%2C%20Tampa%2C%20Florida%2C%2033604-6007"
+    },
+    {
+      "source_id": "26baf7e9-4615-4874-84b7-4b718c84d5ea",
+      "source": "openbrewerydb",
+      "name": "Brew Bus Brewing",
+      "type": "brewpub",
+      "address": "4101 N Florida Ave, Tampa, Florida, 33603-3817",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8139907310",
+      "website": "http://www.brewbususa.com",
+      "latitude": 27.9826232,
+      "longitude": -82.4586495,
+      "social": {
+        "instagram": "https://www.instagram.com/ridethebrewbus",
+        "facebook": "https://www.facebook.com/TheBrewBusTampaBay",
+        "twitter": "",
+        "tiktok": ""
+      },
+      "food_tags": [],
+      "vibes": [
+        "patio"
+      ],
+      "known_for": "Visit Tampa Bay&#8217;s best breweries and bars, try award&#x2d;winning beers, and learn about the brewing process. Book your public or private Brew Bus tour today!",
+      "taps_url": "http://www.brewbususa.com/private-bus-tours/",
+      "taps": [
+        {
+          "name": "Thirsty Thursdays 10% off all Thursday rentals *Promo must be mentioned at the t",
+          "style": "",
+          "abv": 10,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "Sunday Funday 10% off all Sunday rentals *Promo must be mentioned at the time of",
+          "style": "",
+          "abv": 10,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        },
+        {
+          "name": "Day Out of the Office Book a corporate outing 6 weeks in advance and receive 10%",
+          "style": "",
+          "abv": 10,
+          "ibu": null,
+          "description": null,
+          "rating": null
+        }
+      ],
+      "tap_highlights": "Thirsty Thursdays 10% off all Thursday rentals *Promo must be mentioned at the t · Sunday Funday 10% off all Sunday rentals *Promo must be mentioned at the time of · Day Out of the Office Book a corporate outing 6 weeks in advance and receive 10%",
+      "untappd_url": "https://untappd.com/search?q=Brew%20Bus%20Brewing%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Brew%20Bus%20Brewing%204101%20N%20Florida%20Ave%2C%20Tampa%2C%20Florida%2C%2033603-3817",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Brew%20Bus%20Brewing&find_loc=4101%20N%20Florida%20Ave%2C%20Tampa%2C%20Florida%2C%2033603-3817"
+    },
+    {
+      "source_id": "1eff0c5d-93dc-4b96-acec-cdcfd85b6769",
+      "source": "openbrewerydb",
+      "name": "Cigar City Brewing Co",
+      "type": "regional",
+      "address": "3924 W Spruce St, Tampa, Florida, 33607-2441",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8133486363",
+      "website": "http://www.cigarcitybrewing.com",
+      "latitude": 27.959172,
+      "longitude": -82.509195,
+      "untappd_url": "https://untappd.com/search?q=Cigar%20City%20Brewing%20Co%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Cigar%20City%20Brewing%20Co%203924%20W%20Spruce%20St%2C%20Tampa%2C%20Florida%2C%2033607-2441",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Cigar%20City%20Brewing%20Co&find_loc=3924%20W%20Spruce%20St%2C%20Tampa%2C%20Florida%2C%2033607-2441"
+    },
+    {
+      "source_id": "070be339-1a2e-4ec9-a995-23a55599dc0f",
+      "source": "openbrewerydb",
+      "name": "Coppertail Brewing",
+      "type": "micro",
+      "address": "2601 E 2nd Ave, Tampa, Florida, 33605-5503",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8132471500",
+      "website": "http://www.coppertailbrewing.com",
+      "latitude": 27.956553,
+      "longitude": -82.430498,
+      "social": {
+        "instagram": "http://instagram.com/coppertailbrewing",
+        "facebook": "http://www.facebook.com/2008",
+        "twitter": "",
+        "tiktok": ""
+      },
+      "food_tags": [],
+      "vibes": [],
+      "known_for": "Discover Coppertail Brewing Co. in Tampa, FL – unique craft beers, a historic tasting room, and brewery tours in Ybor City.",
+      "untappd_url": "https://untappd.com/search?q=Coppertail%20Brewing%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Coppertail%20Brewing%202601%20E%202nd%20Ave%2C%20Tampa%2C%20Florida%2C%2033605-5503",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Coppertail%20Brewing&find_loc=2601%20E%202nd%20Ave%2C%20Tampa%2C%20Florida%2C%2033605-5503"
+    },
+    {
+      "source_id": "285cd494-30a4-4dd7-8034-5c0c648cde0a",
+      "source": "openbrewerydb",
+      "name": "D. G. Yuengling and Son Inc",
+      "type": "regional",
+      "address": "11111 N 30th St, Tampa, Florida, 33612-6439",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8139728552",
+      "website": "http://www.yuengling.com",
+      "latitude": 28.04767978,
+      "longitude": -82.42608918,
+      "untappd_url": "https://untappd.com/search?q=D.%20G.%20Yuengling%20and%20Son%20Inc%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=D.%20G.%20Yuengling%20and%20Son%20Inc%2011111%20N%2030th%20St%2C%20Tampa%2C%20Florida%2C%2033612-6439",
+      "yelp_url": "https://www.yelp.com/search?find_desc=D.%20G.%20Yuengling%20and%20Son%20Inc&find_loc=11111%20N%2030th%20St%2C%20Tampa%2C%20Florida%2C%2033612-6439"
+    },
+    {
+      "source_id": "457de2b4-b8fd-4821-8f97-38dd0e27bc37",
+      "source": "openbrewerydb",
+      "name": "Hidden Springs Ale Works",
+      "type": "micro",
+      "address": "1631 N Franklin St, Tampa, Florida, 33602-2621",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8132262739",
+      "website": "http://www.Hiddenspringsaleworks.com",
+      "latitude": 27.95878231,
+      "longitude": -82.46008537,
+      "social": {
+        "instagram": "https://www.instagram.com/hiddenspringsaleworks",
+        "facebook": "http://www.facebook.com/2008",
+        "twitter": "",
+        "tiktok": ""
+      },
+      "food_tags": [],
+      "vibes": [],
+      "untappd_url": "https://untappd.com/search?q=Hidden%20Springs%20Ale%20Works%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Hidden%20Springs%20Ale%20Works%201631%20N%20Franklin%20St%2C%20Tampa%2C%20Florida%2C%2033602-2621",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Hidden%20Springs%20Ale%20Works&find_loc=1631%20N%20Franklin%20St%2C%20Tampa%2C%20Florida%2C%2033602-2621"
+    },
+    {
+      "source_id": "9b6630e3-3499-4472-8406-a9c59037fb9f",
+      "source": "openbrewerydb",
+      "name": "Mr Dunderbaks Biergarten and Brewery / Dunderbrau Brewing",
+      "type": "brewpub",
+      "address": "14929 Bruce B Downs Blvd, Tampa, Florida, 33613-2860",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8139774104",
+      "website": "http://www.dunderbaks.ieasysite.com",
+      "latitude": 28.08237293,
+      "longitude": -82.4138299,
+      "untappd_url": "https://untappd.com/search?q=Mr%20Dunderbaks%20Biergarten%20and%20Brewery%20%2F%20Dunderbrau%20Brewing%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Mr%20Dunderbaks%20Biergarten%20and%20Brewery%20%2F%20Dunderbrau%20Brewing%2014929%20Bruce%20B%20Downs%20Blvd%2C%20Tampa%2C%20Florida%2C%2033613-2860",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Mr%20Dunderbaks%20Biergarten%20and%20Brewery%20%2F%20Dunderbrau%20Brewing&find_loc=14929%20Bruce%20B%20Downs%20Blvd%2C%20Tampa%2C%20Florida%2C%2033613-2860"
+    },
+    {
+      "source_id": "c8751600-8370-4ce2-b405-9c39238a2f17",
+      "source": "openbrewerydb",
+      "name": "Six Ten Brewing",
+      "type": "micro",
+      "address": "7052 Benjamin Rd, Tampa, Florida, 33634-3034",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8138860610",
+      "website": "",
+      "latitude": null,
+      "longitude": null,
+      "untappd_url": "https://untappd.com/search?q=Six%20Ten%20Brewing%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Six%20Ten%20Brewing%207052%20Benjamin%20Rd%2C%20Tampa%2C%20Florida%2C%2033634-3034",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Six%20Ten%20Brewing&find_loc=7052%20Benjamin%20Rd%2C%20Tampa%2C%20Florida%2C%2033634-3034"
+    },
+    {
+      "source_id": "66db9365-5062-4f15-b25f-c40c894c9ec3",
+      "source": "openbrewerydb",
+      "name": "Southern Brewing & Winemaking Brewery",
+      "type": "brewpub",
+      "address": "4500 N Nebraska Ave, Tampa, Florida, 33603-4149",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8132387800",
+      "website": "http://www.southernbrewingwinemaking.com",
+      "latitude": 27.9495902,
+      "longitude": -82.4500207,
+      "untappd_url": "https://untappd.com/search?q=Southern%20Brewing%20%26%20Winemaking%20Brewery%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Southern%20Brewing%20%26%20Winemaking%20Brewery%204500%20N%20Nebraska%20Ave%2C%20Tampa%2C%20Florida%2C%2033603-4149",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Southern%20Brewing%20%26%20Winemaking%20Brewery&find_loc=4500%20N%20Nebraska%20Ave%2C%20Tampa%2C%20Florida%2C%2033603-4149"
+    },
+    {
+      "source_id": "f54a5693-be9d-4faa-ac97-47d62a225392",
+      "source": "openbrewerydb",
+      "name": "Tampa Bay Brewing Co Brewpub",
+      "type": "micro",
+      "address": "1600 E 8th Ave Ste A123, Tampa, Florida, 33605-3760",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8132471422",
+      "website": "http://tbbc.beer",
+      "latitude": null,
+      "longitude": null,
+      "untappd_url": "https://untappd.com/search?q=Tampa%20Bay%20Brewing%20Co%20Brewpub%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Tampa%20Bay%20Brewing%20Co%20Brewpub%201600%20E%208th%20Ave%20Ste%20A123%2C%20Tampa%2C%20Florida%2C%2033605-3760",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Tampa%20Bay%20Brewing%20Co%20Brewpub&find_loc=1600%20E%208th%20Ave%20Ste%20A123%2C%20Tampa%2C%20Florida%2C%2033605-3760"
+    },
+    {
+      "source_id": "582945be-7f01-4bdc-850f-1f93e5b149a2",
+      "source": "openbrewerydb",
+      "name": "Tampa Bay Brewing Co Production Brewery",
+      "type": "brewpub",
+      "address": "13937 Monroes Business Park, Tampa, Florida, 33635-6309",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8132471422",
+      "website": "",
+      "latitude": null,
+      "longitude": null,
+      "untappd_url": "https://untappd.com/search?q=Tampa%20Bay%20Brewing%20Co%20Production%20Brewery%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Tampa%20Bay%20Brewing%20Co%20Production%20Brewery%2013937%20Monroes%20Business%20Park%2C%20Tampa%2C%20Florida%2C%2033635-6309",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Tampa%20Bay%20Brewing%20Co%20Production%20Brewery&find_loc=13937%20Monroes%20Business%20Park%2C%20Tampa%2C%20Florida%2C%2033635-6309"
+    },
+    {
+      "source_id": "84a82ca6-2e8c-4d10-a24a-375ba1f2ca58",
+      "source": "openbrewerydb",
+      "name": "Tampa Beer Works",
+      "type": "micro",
+      "address": "333 N Falkenburg Rd Ste D407, Tampa, Florida, 33619-7895",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8136851909",
+      "website": "http://www.esbbrewing.com",
+      "latitude": null,
+      "longitude": null,
+      "untappd_url": "https://untappd.com/search?q=Tampa%20Beer%20Works%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Tampa%20Beer%20Works%20333%20N%20Falkenburg%20Rd%20Ste%20D407%2C%20Tampa%2C%20Florida%2C%2033619-7895",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Tampa%20Beer%20Works&find_loc=333%20N%20Falkenburg%20Rd%20Ste%20D407%2C%20Tampa%2C%20Florida%2C%2033619-7895"
+    },
+    {
+      "source_id": "efcc1f93-659b-4e5b-aa97-5f8518c5ef36",
+      "source": "openbrewerydb",
+      "name": "The Wild Rover Brewery",
+      "type": "micro",
+      "address": "13921 Lynmar Blvd, Tampa, Florida, 33626",
+      "city": "Tampa",
+      "state": "Florida",
+      "phone": "8134755995",
+      "website": "http://www.thewildroverbrewery.com",
+      "latitude": null,
+      "longitude": null,
+      "untappd_url": "https://untappd.com/search?q=The%20Wild%20Rover%20Brewery%20Tampa&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=The%20Wild%20Rover%20Brewery%2013921%20Lynmar%20Blvd%2C%20Tampa%2C%20Florida%2C%2033626",
+      "yelp_url": "https://www.yelp.com/search?find_desc=The%20Wild%20Rover%20Brewery&find_loc=13921%20Lynmar%20Blvd%2C%20Tampa%2C%20Florida%2C%2033626"
+    }
+  ]
+}

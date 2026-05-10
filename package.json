@@ -1,6 +1,14 @@
 {
   "name": "jax-brewery-guide",
-  "version": "1.0.0",
-  "description": "JAX Brewery Guide — Phase 1 of the Jax Brewery API",
-  "private": true
+  "version": "5.0.0",
+  "description": "Pint — curated craft brewery guide with weather-aware picks, live tap scraping, and multi-city scraper.",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "scrape": "node scripts/scrape.js",
+    "scrape:tampa": "node scripts/scrape.js Tampa --max 15",
+    "scrape:jax": "node scripts/scrape.js Jacksonville --max 25"
+  }
 }
