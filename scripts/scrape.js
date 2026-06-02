@@ -83,7 +83,13 @@ const city = positional.join(" ").trim();
         website: b.website || "",
         social: b.social || { instagram: "", facebook: "" },
         hours: {},
-        known_for: b.known_for || `${(b.type || "Local").charAt(0).toUpperCase() + (b.type || "local").slice(1)} brewery`,
+        known_for: b.known_for || (
+          b.type === "distillery" ? "Craft distillery"
+          : b.type === "tap_house" ? "Tap house — pours local craft"
+          : b.type === "unique" ? "Must-experience drink destination"
+          : `${(b.obdb_subtype || "Local").charAt(0).toUpperCase() + (b.obdb_subtype || "local").slice(1)} brewery`
+        ),
+        type: b.type || "brewery",
         food: b.food_tags?.length ? b.food_tags.join(", ") : "Visit website for menu",
         dog_friendly: b.vibes?.includes("dog_park") || null,
         kid_friendly: b.vibes?.includes("family_focused") || null,

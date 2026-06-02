@@ -38,7 +38,15 @@ module.exports = async (req, res) => {
     });
   }
 
-  // Fall back to Open Brewery DB for other cities
+  // Fall back to Open Brewery DB for other cities.
+  // Small-town auto-widen: if the first pass returns < 7 results, grow the radius
+  // by 50% and re-filter, up to 4 expansions (so 25 → 37.5 → 56 → 84 → 127 mi cap).
+  // We stop once we have >= 10 or hit the cap. Distance stays a sort key so closer
+  // results always come first.
+  const MIN_RESULTS = 7;
+  const TARGET_RESULTS = 10;
+  const MAX_EXPANSIONS = 4;
+
   try {
     const url = `https://api.openbrewerydb.org/v1/breweries?by_dist=${lat},${lng}&per_page=50`;
     const response = await fetch(url);
@@ -46,10 +54,21 @@ module.exports = async (req, res) => {
       return res.status(502).json({ error: "Open Brewery DB unavailable" });
     }
     const raw = await response.json();
-    const breweries = raw
+    const all = raw
       .map(b => normalizeOpenBrewery(b, lat, lng))
-      .filter(b => b.distance !== null && b.distance <= radius)
+      .filter(b => b.distance !== null)
       .sort((a, b) => a.distance - b.distance);
+
+    let effectiveRadius = radius;
+    let expansions = 0;
+    let breweries = all.filter(b => b.distance <= effectiveRadius);
+
+    while (breweries.length < MIN_RESULTS && expansions < MAX_EXPANSIONS && all.length > breweries.length) {
+      effectiveRadius *= 1.5;
+      expansions++;
+      breweries = all.filter(b => b.distance <= effectiveRadius);
+      if (breweries.length >= TARGET_RESULTS) break;
+    }
 
     const cityName = breweries[0]?.neighborhood || "Your area";
 
@@ -57,6 +76,9 @@ module.exports = async (req, res) => {
       source: "openbrewerydb",
       city: cityName,
       user_location: { lat, lng },
+      radius_requested: radius,
+      radius_used: Math.round(effectiveRadius * 10) / 10,
+      radius_expansions: expansions,
       count: breweries.length,
       breweries
     });

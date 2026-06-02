@@ -26,9 +26,25 @@ A geolocation + weather-aware + recommendation-driven craft brewery discovery ap
 | `GET /api/breweries/by-city?city=Atlanta` | Curated cities only (Jax/Amelia/St Aug). Falls through to OBDB. |
 | `GET /api/breweries/right-now?lat=X&lng=Y&moods=live_music,dog` | Smart recommendations with `why` reasons |
 | `GET /api/breweries/details?id=X` | Reviews + photos + hours + price level (Google Places) |
-| **`GET /api/breweries/taps?id=X`** | Live tap list (Untappd venue scrape → website fallback) |
-| **`GET /api/breweries/weather-pick?lat=X&lng=Y`** | Weather-aware brewery picks |
-| **`GET /api/scrape/city?city=Tampa[&max=15][&stream=1]`** | Discover + enrich any US city. With `stream=1`, returns SSE progress events that drive the pint-glass animation. |
+| **`GET /api/breweries/lookup-details?name=X&address=Y`** | Same as `/details` but for non-curated venues (scraped cities). Drives the hero photo banner. |
+| `GET /api/breweries/taps?id=X` | Live tap list (Untappd venue scrape → website fallback) |
+| `GET /api/breweries/weather-pick?lat=X&lng=Y` | Weather-aware brewery picks |
+| `GET /api/scrape/city?city=Tampa[&max=15][&stream=1]` | Discover + enrich any US city — breweries, distilleries, and tap houses. With `stream=1`, returns SSE progress events that drive the pint-glass animation. Auto-folds in city aliases (e.g. College Station ↔ Bryan). |
+
+### Venue types
+
+Pint now models four venue categories on the `type` field:
+
+| Type | What it is | Where it comes from |
+|---|---|---|
+| `brewery` | Makes their own beer on-site | OBDB + Google Places "craft breweries" |
+| `distillery` | Spirits, on-site | Google Places "distilleries in <city>" |
+| `tap_house` | Pours local craft but doesn't brew | Google Places "craft beer tap house" |
+| `unique` | Curated must-experience destinations | Hand-added to `breweries.json` (Pour in Jax is the first) |
+
+### Small-town radius auto-widen
+
+`/api/breweries/nearby` now expands the radius by 50% per pass (up to 4 expansions, ~125 mi cap) when fewer than 7 results are found. The response surfaces `radius_used` and `radius_expansions` so the UI can tell the user "widened to 75 mi" instead of silently showing distant places. Distance stays the primary sort key.
 
 CORS open on all endpoints.
 

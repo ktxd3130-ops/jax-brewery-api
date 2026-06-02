@@ -5,7 +5,9 @@
     "description": "Pint \u2014 the curated craft beer guide. City-keyed, food-tagged, curator-driven.",
     "last_updated": "2026-05-09",
     "next_refresh": "Weekly \u2014 every Monday",
-    "total_breweries": 31,
+    "total_breweries": 32,
+    "total_unique_locations": 1,
+    "types_covered": ["brewery", "unique"],
     "coverage_area": "Jacksonville, Jacksonville Beach, Atlantic Beach, Neptune Beach, Springfield, San Marco, Riverside, Murray Hill, Mandarin, Southside, Fernandina Beach/Amelia Island, St. Augustine",
     "curator": "Kendall Dale",
     "notes": "Phase 1 \u2014 curated dataset from web research. Breweries marked as permanently closed have been excluded. Hours and events may change; verify before visiting.",
@@ -2109,6 +2111,75 @@
         "byof_friendly"
       ],
       "curator_take": null
+    },
+    {
+      "id": 32,
+      "name": "Pour",
+      "type": "unique",
+      "neighborhood": "Riverside",
+      "address": "2912 Corinthian Ave, Jacksonville, FL 32210",
+      "phone": "",
+      "website": "https://www.pourjax.com/",
+      "social": {
+        "instagram": "https://www.instagram.com/pourjax/",
+        "facebook": ""
+      },
+      "hours": {
+        "Mon": "Closed",
+        "Tue": "4PM–10PM",
+        "Wed": "4PM–10PM",
+        "Thu": "4PM–11PM",
+        "Fri": "4PM–12AM",
+        "Sat": "12PM–12AM",
+        "Sun": "12PM–9PM"
+      },
+      "known_for": "Tap-centric drink destination — not a brewery, but pours an enormous rotating selection of local craft beer, ciders, wines, and cocktails. Self-pour wall + curated bottle list. A must-visit for serious beer fans.",
+      "food": "Snacks, light bites",
+      "dog_friendly": true,
+      "kid_friendly": false,
+      "events": "Tap takeovers, bottle releases, rare-beer nights",
+      "tap_highlights": "Rotating 40+ taps of local + national craft, ciders, wines on tap",
+      "status": "open",
+      "latitude": 30.2944,
+      "longitude": -81.7039,
+      "weekly_schedule": {
+        "Mon": [],
+        "Tue": [],
+        "Wed": [],
+        "Thu": [],
+        "Fri": [],
+        "Sat": [],
+        "Sun": []
+      },
+      "vibes": [
+        "tap_centric",
+        "huge_selection",
+        "self_pour",
+        "local_focus",
+        "must_experience",
+        "rare_beer"
+      ],
+      "untappd_url": "https://untappd.com/search?q=Pour%20Jacksonville&type=venue",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Pour%20Jacksonville%202912%20Corinthian%20Ave",
+      "yelp_url": "https://www.yelp.com/search?find_desc=Pour&find_loc=Jacksonville%2C%20FL",
+      "city": "Jacksonville",
+      "region": "Jacksonville",
+      "food_tags": [
+        "snacks_only",
+        "byof_friendly"
+      ],
+      "curator_take": {
+        "draft": true,
+        "text": "If you actually care about what's pouring tonight, Pour is your stop. Wall of self-pour taps, rotating local lineup, and the kind of bottle selection that justifies a special trip even though they don't brew themselves."
+      }
+    }
+  ],
+  "unique_locations": [
+    {
+      "id": 32,
+      "name": "Pour",
+      "city": "Jacksonville",
+      "reason": "Tap-centric. Self-pour wall + 40+ rotating taps of local craft. Not a brewery but essential for any Jax beer crawl."
     }
   ]
 }

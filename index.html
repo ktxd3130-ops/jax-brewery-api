@@ -14,19 +14,32 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   :root {
-    --bg: #0f1117;
-    --card-bg: #1a1d27;
-    --card-hover: #22263a;
-    --accent: #f59e0b;
-    --accent2: #3b82f6;
-    --accent3: #a855f7;
+    /* "Coastal Pint" — turquoise primary, beer stays amber inside the glass. */
+    --bg: #0b1117;
+    --card-bg: #131922;
+    --card-hover: #1a2230;
+
+    /* Brand accents */
+    --accent: #14b8a6;          /* teal-500 — primary brand */
+    --accent-bright: #5eead4;    /* teal-300 — gradient highlight */
+    --accent-deep: #0d9488;      /* teal-600 — pressed / depth */
+    --accent2: #38bdf8;          /* sky-400 — cool info (kid-friendly, "global" pills) */
+    --accent3: #c084fc;          /* purple-400 — "Tonight" / mood recs */
+    --accent-warm: #fb923c;      /* orange-400 — warm complement, used sparingly */
+
+    /* Reserved for anything beer-glass / "what's pouring" related */
+    --beer-amber: #f59e0b;
+    --beer-amber-light: #fbbf24;
+    --beer-amber-deep: #b45309;
+
     --text: #e2e8f0;
     --text-muted: #94a3b8;
     --text-dim: #64748b;
-    --border: #2d3348;
-    --green: #22c55e;
-    --red: #ef4444;
-    --tag-bg: #1e293b;
+    --border: #233042;
+    --border-bright: #2d4358;
+    --green: #34d399;            /* emerald — plays with teal */
+    --red: #f87171;
+    --tag-bg: #18242f;
     --radius: 12px;
   }
 
@@ -51,14 +64,14 @@
   .hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, rgba(245,158,11,0.08) 0%, transparent 70%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(20,184,166,0.10) 0%, transparent 70%);
     pointer-events: none;
   }
   .hero h1 {
     font-size: 2.4rem;
     font-weight: 800;
     letter-spacing: -1px;
-    background: linear-gradient(135deg, var(--accent) 0%, #fbbf24 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 4px;
@@ -97,7 +110,7 @@
     letter-spacing: 0.5px;
     padding: 2px 8px;
     border-radius: 10px;
-    background: rgba(245,158,11,0.15);
+    background: rgba(20,184,166,0.15);
     color: var(--accent);
   }
   .location-pill .loc-source.global {
@@ -260,11 +273,11 @@
   .leaflet-popup-content a { color: var(--accent); }
   .leaflet-popup-close-button { color: var(--text-muted) !important; }
   .user-marker {
-    background: var(--accent2);
+    background: var(--accent);
     width: 16px; height: 16px;
     border-radius: 50%;
     border: 3px solid #fff;
-    box-shadow: 0 0 0 4px rgba(59,130,246,0.4), 0 0 12px rgba(59,130,246,0.6);
+    box-shadow: 0 0 0 4px rgba(20,184,166,0.45), 0 0 12px rgba(20,184,166,0.6);
   }
 
   /* CARD */
@@ -278,10 +291,10 @@
     overflow: hidden;
   }
   .card:hover {
-    border-color: rgba(245,158,11,0.3);
+    border-color: rgba(20,184,166,0.4);
     background: var(--card-hover);
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(20,184,166,0.05);
   }
   .card.recommended {
     border-color: rgba(168,85,247,0.4);
@@ -361,7 +374,7 @@
     align-items: center;
     gap: 6px;
     padding: 8px 14px;
-    background: linear-gradient(135deg, var(--accent), #fbbf24);
+    background: linear-gradient(135deg, var(--beer-amber-light), var(--beer-amber));
     color: #000;
     border-radius: 8px;
     font-size: 0.82rem;
@@ -385,7 +398,10 @@
   }
   .badge-dog { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: var(--green); }
   .badge-kid { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3); color: var(--accent2); }
-  .badge-food { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.3); color: var(--accent); }
+  .badge-food { background: rgba(245,158,11,0.10); border-color: rgba(245,158,11,0.30); color: var(--beer-amber-light); }
+  .badge-distillery { background: rgba(192,132,252,0.10); border-color: rgba(192,132,252,0.35); color: var(--accent3); }
+  .badge-tap-house { background: rgba(20,184,166,0.10); border-color: rgba(20,184,166,0.35); color: var(--accent); }
+  .badge-unique { background: linear-gradient(135deg, rgba(251,146,60,0.18), rgba(192,132,252,0.18)); border-color: rgba(251,146,60,0.4); color: var(--accent-warm); font-weight: 700; }
   .card-footer {
     display: flex;
     justify-content: space-between;
@@ -569,7 +585,7 @@
     overflow: hidden;
   }
   .drawer-hero.gradient {
-    background: linear-gradient(135deg, var(--accent3) 0%, #ec4899 50%, var(--accent) 100%);
+    background: linear-gradient(135deg, var(--accent-deep) 0%, var(--accent) 45%, var(--accent3) 100%);
   }
   .drawer-hero-photo {
     position: absolute; inset: 0;
@@ -640,8 +656,8 @@
     line-height: 1.5;
   }
   .curator-take {
-    background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(168,85,247,0.08));
-    border: 1px solid rgba(245,158,11,0.25);
+    background: linear-gradient(135deg, rgba(20,184,166,0.10), rgba(192,132,252,0.08));
+    border: 1px solid rgba(20,184,166,0.30);
     border-radius: 10px;
     padding: 14px 16px;
     margin: 4px 0 20px;
@@ -715,7 +731,7 @@
   }
   .schedule-day.today {
     border: 1.5px solid var(--accent);
-    background: rgba(245,158,11,0.05);
+    background: rgba(20,184,166,0.07);
   }
   .schedule-day-label {
     font-weight: 600;
@@ -733,7 +749,7 @@
     border-radius: 6px;
     font-size: 0.85rem;
   }
-  .hours-row.today { border: 1.5px solid var(--accent); background: rgba(245,158,11,0.05); }
+  .hours-row.today { border: 1.5px solid var(--accent); background: rgba(20,184,166,0.07); }
   .hours-row .day { color: var(--text-dim); font-weight: 500; }
   .hours-row .time { color: var(--text); }
 
@@ -802,9 +818,10 @@
   }
   .drawer-cta:hover { border-color: var(--accent); color: var(--accent); }
   .drawer-cta.primary {
-    background: linear-gradient(135deg, var(--accent), #fbbf24);
-    color: #000;
+    background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+    color: #0b1117;
     border-color: transparent;
+    box-shadow: 0 4px 14px rgba(20,184,166,0.25);
   }
   .drawer-cta.primary:hover { opacity: 0.9; color: #000; }
 
@@ -960,7 +977,7 @@
     max-width: 1400px;
     margin: 12px auto 0;
     padding: 12px 18px;
-    background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(245,158,11,0.10));
+    background: linear-gradient(135deg, rgba(56,189,248,0.14), rgba(20,184,166,0.10));
     border: 1px solid var(--border);
     border-radius: var(--radius);
     display: flex;
@@ -1027,7 +1044,7 @@
       <span class="loc-source" id="locSource" style="display:none"></span>
     </div>
     <button class="loc-action-btn tonight" id="tonightBtn">✨ What sounds good tonight?</button>
-    <button class="loc-action-btn tonight" id="weatherBtn" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">🌤️ Weather Pick</button>
+    <button class="loc-action-btn tonight" id="weatherBtn" style="background: linear-gradient(135deg, var(--accent2), var(--accent));">🌤️ Weather Pick</button>
     <button class="loc-action-btn" id="useLocationBtn">Use My Location</button>
     <button class="loc-action-btn secondary" id="changeCityBtn">Change City</button>
   </div>
@@ -1283,6 +1300,9 @@ function renderCard(b, rank) {
       ${whyHtml}
       ${isRec && b.untappd_url ? `<a class="tap-cta" href="${b.untappd_url}" target="_blank" rel="noopener">🍺 See What's On Tap →</a>` : ''}
       <div class="badges">
+        ${b.type === 'distillery' ? '<span class="badge badge-distillery">🥃 Distillery</span>' : ''}
+        ${b.type === 'tap_house' ? '<span class="badge badge-tap-house">🍻 Tap House</span>' : ''}
+        ${b.type === 'unique' ? '<span class="badge badge-unique">✨ Must Experience</span>' : ''}
         ${b.dog_friendly === true ? '<span class="badge badge-dog">Dog Friendly</span>' : ''}
         ${b.kid_friendly === true ? '<span class="badge badge-kid">Kid Friendly</span>' : ''}
         ${hasFullKitchen(b.food) ? '<span class="badge badge-food">Full Kitchen</span>' : ''}
@@ -1464,6 +1484,7 @@ async function loadCurated() {
 async function loadNearby(lat, lng) {
   state.loading = true;
   state.recommendMode = false;
+  hideWeatherBanner();
   renderAll();
   try {
     const res = await fetch(`/api/breweries/nearby?lat=${lat}&lng=${lng}&radius=25`);
@@ -1473,6 +1494,10 @@ async function loadNearby(lat, lng) {
     state.city = data.city;
     state.userLoc = { lat, lng };
     state.loading = false;
+    // Surface auto-widened radius so users understand why distant places show up.
+    if (data.radius_expansions > 0) {
+      state.city = `${data.city} · widened to ${data.radius_used} mi`;
+    }
     updateLocationPill();
     renderAll();
   } catch (err) {
@@ -1611,13 +1636,19 @@ async function loadByCityScrape(city, max = 15) {
     state.breweries = finalData.breweries.map(b => ({
       id: `scraped-${b.source_id || b.name}`,
       name: b.name,
+      type: b.type || 'brewery',
       neighborhood: b.city || city,
       address: b.address,
       phone: b.phone || '',
       website: b.website || '',
       social: b.social || { instagram: '', facebook: '' },
       hours: {},
-      known_for: b.known_for || (b.type ? `${b.type[0].toUpperCase()}${b.type.slice(1)} brewery` : 'Local brewery'),
+      known_for: b.known_for || (
+        b.type === 'distillery' ? 'Craft distillery'
+        : b.type === 'tap_house' ? 'Tap house — pours local craft'
+        : b.obdb_subtype ? `${b.obdb_subtype[0].toUpperCase()}${b.obdb_subtype.slice(1)} brewery`
+        : 'Local brewery'
+      ),
       food: (b.food_tags || []).join(', ') || 'Visit website for menu',
       tap_highlights: b.tap_highlights || (b.taps && b.taps.length
         ? b.taps.slice(0, 3).map(t => t.name).join(' · ')
@@ -1876,9 +1907,11 @@ function handleCardClick(e, id) {
 }
 
 function getHueFromName(name) {
+  // Bias to the cool half (teal → blue → violet) so auto-gradients stay on-brand.
+  // Range: 160°-280° (teal, cyan, sky, blue, indigo, violet).
   let hash = 0;
   for (let i = 0; i < name.length; i++) hash = (hash << 5) - hash + name.charCodeAt(i);
-  return Math.abs(hash) % 360;
+  return 160 + (Math.abs(hash) % 120);
 }
 
 function renderStars(rating) {
@@ -2055,13 +2088,31 @@ async function openDrawer(b) {
     }, 200);
   }
 
-  // Lazy-load reviews + photos via /api/breweries/details (only for curated breweries with numeric id)
-  if (b.source !== 'openbrewerydb' && b.source !== 'scraped' && typeof b.id === 'number') {
+  // Lazy-load reviews + photos.
+  // - Curated brewery (numeric id) → /api/breweries/details?id=X
+  // - Scraped brewery (string id, has name+address) → /api/breweries/lookup-details
+  // - OBDB fallback → unsupported (only has minimal data)
+  if (typeof b.id === 'number') {
     try {
       const res = await fetch(`/api/breweries/details?id=${b.id}`);
       const data = await res.json();
       renderReviews(data, b);
-      renderPhotos(data);
+      renderPhotos(data, b);
+    } catch (err) {
+      renderReviews({ provider: 'error' }, b);
+    }
+  } else if (b.source === 'scraped' && b.name) {
+    try {
+      const raw = b._scraped_raw || {};
+      const params = new URLSearchParams({
+        name: b.name,
+        address: b.address || '',
+      });
+      if (raw.place_id) params.set('place_id', raw.place_id);
+      const res = await fetch(`/api/breweries/lookup-details?${params}`);
+      const data = await res.json();
+      renderReviews(data, b);
+      renderPhotos(data, b);
     } catch (err) {
       renderReviews({ provider: 'error' }, b);
     }
@@ -2119,13 +2170,30 @@ async function loadLiveTapList(b) {
   }
 }
 
-function renderPhotos(data) {
+function renderPhotos(data, brewery) {
   if (!data.photos || data.photos.length === 0) return;
+  const heroEl = document.getElementById('drawerHero');
   const photosEl = document.getElementById('drawerPhotos');
   if (!photosEl) return;
-  photosEl.innerHTML = data.photos.map(p => `<img src="${p.url}" alt="" loading="lazy" />`).join('');
-  photosEl.style.display = 'flex';
-  document.getElementById('drawerHero').style.display = 'none';
+
+  // Use the FIRST photo as a hero banner background — replaces the hue gradient.
+  // The brewery name still overlays via the existing .drawer-hero markup.
+  if (heroEl) {
+    const first = data.photos[0];
+    heroEl.style.background = `
+      linear-gradient(180deg, rgba(11,17,23,0.10) 0%, rgba(11,17,23,0.55) 65%, rgba(11,17,23,0.85) 100%),
+      url('${first.url}') center/cover no-repeat
+    `;
+    heroEl.style.minHeight = '220px';
+    heroEl.style.display = '';
+  }
+
+  // The remaining photos (2+) go in the gallery row below.
+  const gallery = data.photos.slice(1);
+  if (gallery.length) {
+    photosEl.innerHTML = gallery.map(p => `<img src="${p.url}" alt="${(brewery?.name || '')}" loading="lazy" />`).join('');
+    photosEl.style.display = 'flex';
+  }
 }
 
 function renderReviews(data, brewery) {

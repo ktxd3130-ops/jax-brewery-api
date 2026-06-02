@@ -4,7 +4,8 @@
     "api/scrape/city.js": { "maxDuration": 300 },
     "api/breweries/taps.js": { "maxDuration": 30 },
     "api/breweries/weather-pick.js": { "maxDuration": 15 },
-    "api/breweries/details.js": { "maxDuration": 15 }
+    "api/breweries/details.js": { "maxDuration": 15 },
+    "api/breweries/lookup-details.js": { "maxDuration": 15 }
   },
   "headers": [
     {
