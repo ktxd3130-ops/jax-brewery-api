@@ -46,7 +46,45 @@ Free tier: ~11k Place Details calls/month at $0. Each card open = 1 call (cached
 - **Phase 3.5** ✅ Live tap links + review platform links
 - **Phase 4** ✅ In-app brewery detail drawer + lazy-loaded reviews/photos via Places API
 - **Phase 5** Real-time tap list scraper (Vercel Cron + KV); weather-aware recommendations; user accounts & check-ins
-- **Phase 6** Native iOS/Android wrapper
+- **Phase 6** 🚧 Native iOS/Android wrapper (Capacitor) — **in progress, see below**
+
+## Native app (iOS/Android via Capacitor)
+
+Pint is being packaged for the **App Store** (iPhone first) and **Google Play** (fast-follow) using **Capacitor**, which wraps the existing web app in a native shell. See `APP_STORE_PLAN.md` for the full deployment plan and `STORE_LISTING.md` for store copy.
+
+### Repo layout for native
+| Path | Purpose |
+|---|---|
+| `index.html` (root) | The **web** app, served live at `jax-brewery-guide.vercel.app`. Untouched. |
+| `www/` | The **mobile bundle** Capacitor packages (`webDir`). A self-contained copy of the web app with all third-party assets vendored locally. |
+| `www/vendor/leaflet/` | Leaflet 1.9.4 (css/js/marker images) — self-hosted (was a CDN) so the map works offline and passes App Store guideline 4.2. |
+| `www/assets/fonts/` | Inter (weights 300–800), self-hosted (was Google Fonts). |
+| `www/manifest.json` | PWA manifest (also enables "Add to Home Screen" on the web). |
+| `www/breweries.json` | Bundled offline seed — the core list loads with zero network. |
+| `resources/` | `icon.png` (1024) + `splash.png` (2732) masters for `@capacitor/assets`. |
+| `capacitor.config.json` | App id `com.kendalldale.pint`, `webDir: www`, splash/geolocation config. |
+| `privacy.html` | Privacy policy — deploys to `/privacy` (required for store submission). |
+
+### ✅ Done (Phase 1 scaffolding)
+- Mobile bundle (`www/`) created without disturbing the live web deploy.
+- De-CDN'd: Leaflet + Inter fonts vendored locally (offline-safe, no third-party runtime requests).
+- PWA manifest + iOS meta tags (`apple-mobile-web-app-*`, `theme-color`, `viewport-fit=cover` for safe areas).
+- `API_BASE` added so WebView calls reach the live Vercel API (CORS already open); all four `/api/*` fetches prefixed.
+- Offline seed: `breweries.json` bundled; core list renders with no connection.
+- App icon designed (`www/assets/img/icon.svg`) and rasterized to real PNGs (icon set + splash master).
+- Capacitor config + `package.json` deps/scripts in place.
+- Store listing copy + privacy policy drafted.
+
+### ⏳ Remaining (your machine — needs Xcode / accounts / push creds)
+1. **Phase 0 first** — merge Sprint A → `main` and apply the data refresh (`PINT_DO_THIS.md`) so the wrapper builds from current code.
+2. `npm install` to pull Capacitor.
+3. `npx cap init` is pre-done via `capacitor.config.json`; run `npm run cap:add:ios` (and `:android`).
+4. `npm run icons` to generate native icon/splash sets from `resources/`.
+5. Swap `navigator.geolocation` → `@capacitor/geolocation`; add `NSLocationWhenInUseUsageDescription` to `Info.plist`.
+6. Open in Xcode (`npm run ios`), set signing, run on device, then TestFlight → submit.
+7. Apple Developer Program enrollment (long lead time — start now), name availability check, deploy `privacy.html`.
+
+> Re-sync the bundle after editing the root web app: `npm run sync:web` (copies `index.html` + `breweries.json` into `www/`), then re-apply the `www`-only changes (vendored asset paths, manifest tags, `API_BASE`). Long-term, consider a small build step or unifying the two so the copy isn't manual.
 
 ## Refresh cadence
 

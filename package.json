@@ -1,6 +1,29 @@
 {
   "name": "jax-brewery-guide",
   "version": "1.0.0",
-  "description": "JAX Brewery Guide — Phase 1 of the Jax Brewery API",
-  "private": true
+  "description": "Pint — local craft-beer guide. Web (Vercel) + native iOS/Android shell (Capacitor).",
+  "private": true,
+  "scripts": {
+    "sync:web": "cp index.html www/index.html && cp breweries.json www/breweries.json",
+    "icons": "capacitor-assets generate --assetPath resources --iconBackgroundColor '#0f1117' --splashBackgroundColor '#0f1117'",
+    "cap:add:ios": "cap add ios",
+    "cap:add:android": "cap add android",
+    "cap:sync": "cap sync",
+    "ios": "cap open ios",
+    "android": "cap open android"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.4.1"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/app": "^8.1.0",
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/geolocation": "^8.2.0",
+    "@capacitor/ios": "^8.4.1",
+    "@capacitor/share": "^8.0.1",
+    "@capacitor/splash-screen": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.2"
+  }
 }
