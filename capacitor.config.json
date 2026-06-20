@@ -1,0 +1,22 @@
+{
+  "appId": "com.kendalldale.pint",
+  "appName": "Pint",
+  "webDir": "www",
+  "server": {
+    "iosScheme": "capacitor",
+    "androidScheme": "https"
+  },
+  "ios": {
+    "contentInset": "always"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#0f1117",
+      "showSpinner": false
+    },
+    "Geolocation": {
+      "permissions": ["location"]
+    }
+  }
+}
