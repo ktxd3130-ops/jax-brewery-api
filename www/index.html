@@ -46,6 +46,31 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* Offline / stale-data banner */
+  .offline-banner {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 14px;
+    padding-top: max(8px, env(safe-area-inset-top));
+    background: #2a2410;
+    border-bottom: 1px solid var(--accent);
+    color: #fcd34d;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .offline-banner.show { display: flex; }
+  .offline-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    flex: 0 0 auto;
+  }
+
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg);
@@ -848,6 +873,11 @@
 </head>
 <body>
 
+<div class="offline-banner" id="offlineBanner" role="status" aria-live="polite">
+  <span class="offline-dot"></span>
+  <span id="offlineBannerText">You're offline — showing saved breweries</span>
+</div>
+
 <div class="hero">
   <h1 id="brandName">Pint</h1>
   <p class="sub" id="brandTagline">Fill your pint. Find the right brewery, right now.</p>
@@ -962,8 +992,7 @@
   </p>
   <p style="margin-top:4px; font-size:0.75rem;">
     <a href="/breweries.json" target="_blank">JSON</a> ·
-    <a href="/api/breweries" target="_blank">API</a> ·
-    name placeholder — final brand TBD
+    <a href="/api/breweries" target="_blank">API</a>
   </p>
 </footer>
 
@@ -974,6 +1003,90 @@
 // Point them at the live Vercel deployment. CORS is open (Access-Control-Allow-Origin: *).
 // On the plain web build this can be set to '' to use same-origin.
 const API_BASE = 'https://jax-brewery-guide.vercel.app';
+
+// ===== OFFLINE CACHE LAYER =====
+// Persists the last successful API response per endpoint so the app shows saved
+// data (with a "last updated" note) instead of a blank error when offline or the
+// backend is unreachable. Uses @capacitor/preferences natively, localStorage on web.
+const Cache = (function () {
+  const PREFIX = 'pint:cache:';
+  function prefsPlugin() {
+    const cap = window.Capacitor;
+    if (cap && cap.isNativePlatform && cap.isNativePlatform()) {
+      return cap.Plugins && cap.Plugins.Preferences;
+    }
+    return null;
+  }
+  return {
+    async set(key, value) {
+      const payload = JSON.stringify({ data: value, ts: Date.now() });
+      try {
+        const p = prefsPlugin();
+        if (p) await p.set({ key: PREFIX + key, value: payload });
+        else localStorage.setItem(PREFIX + key, payload);
+      } catch (_) { /* cache is best-effort */ }
+    },
+    async get(key) {
+      try {
+        const p = prefsPlugin();
+        let raw;
+        if (p) { const r = await p.get({ key: PREFIX + key }); raw = r && r.value; }
+        else raw = localStorage.getItem(PREFIX + key);
+        return raw ? JSON.parse(raw) : null;
+      } catch (_) { return null; }
+    }
+  };
+})();
+
+// Fetch JSON with a network-first, cache-fallback strategy.
+// Returns { data, fromCache, ts }. Throws only if network fails AND no cache exists.
+async function cachedFetchJSON(url, cacheKey) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    await Cache.set(cacheKey, data);
+    hideOfflineBanner();
+    return { data, fromCache: false, ts: Date.now() };
+  } catch (err) {
+    const cached = await Cache.get(cacheKey);
+    if (cached) {
+      showOfflineBanner(cached.ts);
+      return { data: cached.data, fromCache: true, ts: cached.ts };
+    }
+    throw err;
+  }
+}
+
+function relativeTime(ts) {
+  if (!ts) return '';
+  const mins = Math.round((Date.now() - ts) / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins} min ago`;
+  const hrs = Math.round(mins / 60);
+  if (hrs < 24) return `${hrs} hr ago`;
+  const days = Math.round(hrs / 24);
+  return `${days} day${days === 1 ? '' : 's'} ago`;
+}
+
+function showOfflineBanner(ts) {
+  const el = document.getElementById('offlineBanner');
+  const txt = document.getElementById('offlineBannerText');
+  if (!el) return;
+  txt.textContent = ts
+    ? `Showing saved breweries · last updated ${relativeTime(ts)}`
+    : "You're offline — showing saved breweries";
+  el.classList.add('show');
+}
+
+function hideOfflineBanner() {
+  const el = document.getElementById('offlineBanner');
+  if (el) el.classList.remove('show');
+}
+
+// Reflect connectivity changes immediately.
+window.addEventListener('offline', () => showOfflineBanner(null));
+window.addEventListener('online', () => hideOfflineBanner());
 
 // ===== NATIVE GEOLOCATION BRIDGE =====
 // In Capacitor's WKWebView the browser navigator.geolocation does not work.
@@ -1278,8 +1391,7 @@ async function loadNearby(lat, lng) {
   state.recommendMode = false;
   renderAll();
   try {
-    const res = await fetch(`${API_BASE}/api/breweries/nearby?lat=${lat}&lng=${lng}&radius=25`);
-    const data = await res.json();
+    const { data } = await cachedFetchJSON(`${API_BASE}/api/breweries/nearby?lat=${lat}&lng=${lng}&radius=25`, 'nearby');
     state.breweries = data.breweries || [];
     state.source = data.source;
     state.city = data.city;
@@ -1298,8 +1410,7 @@ async function loadByCity(city) {
   state.recommendMode = false;
   renderAll();
   try {
-    const res = await fetch(`${API_BASE}/api/breweries/by-city?city=${encodeURIComponent(city)}`);
-    const data = await res.json();
+    const { data } = await cachedFetchJSON(`${API_BASE}/api/breweries/by-city?city=${encodeURIComponent(city)}`, `by-city:${city.toLowerCase()}`);
     state.breweries = data.breweries || [];
     state.source = data.source;
     state.city = data.city || city;
@@ -1341,8 +1452,7 @@ async function loadRightNow() {
   const moods = Array.from(state.selectedMoods).join(',');
   try {
     const url = `${API_BASE}/api/breweries/right-now?lat=${lat}&lng=${lng}&radius=30${moods ? `&moods=${moods}` : ''}`;
-    const res = await fetch(url);
-    const data = await res.json();
+    const { data } = await cachedFetchJSON(url, 'right-now');
     state.breweries = data.breweries || [];
     state.source = 'curated';
     state.city = `Tonight near you · ${data.day}`;
